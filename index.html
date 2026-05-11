@@ -4,177 +4,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Rich'Lieu - Restaurant Lounge Bar</title>
+<title>Le Rich'Lieu - Restaurant Lounge Bar Premium</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;background:#111;color:#f5f5f5;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#f5f5f5;overflow-x:hidden;}
 .fp{font-family:'Playfair Display',serif;}
 .or{color:#D4AF37;}
 .tg{background:linear-gradient(90deg,#D4AF37,#F0D87C,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.page{display:none;}
+.page{display:none;animation:fadeIn 0.4s;}
 .page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(5,5,5,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.25);}
-.nav-wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;max-width:1400px;margin:0 auto;}
-.logo-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:#D4AF37;font-weight:900;cursor:pointer;line-height:1.1;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,10,10,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.25);}
+.nav-wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;max-width:1400px;margin:0 auto;gap:12px;}
+.logo-box{cursor:pointer;flex-shrink:0;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:#D4AF37;font-weight:900;line-height:1.1;}
 .logo-sub{font-size:0.55rem;color:rgba(212,175,55,0.6);letter-spacing:0.2em;text-transform:uppercase;}
-.nav-scroll{display:flex;gap:2px;align-items:center;overflow-x:auto;scrollbar-width:none;flex:1;margin:0 12px;}
+.nav-scroll{display:flex;gap:2px;align-items:center;overflow-x:auto;scrollbar-width:none;flex:1;}
 .nav-scroll::-webkit-scrollbar{display:none;}
-.nb{background:none;border:none;color:rgba(245,245,245,0.75);cursor:pointer;font-size:12px;padding:7px 10px;border-radius:6px;white-space:nowrap;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.nb{background:none;border:none;color:rgba(245,245,245,0.7);cursor:pointer;font-size:12px;padding:7px 10px;border-radius:6px;white-space:nowrap;font-family:'Inter',sans-serif;transition:all 0.2s;position:relative;}
 .nb:hover,.nb.acv{color:#D4AF37;background:rgba(212,175,55,0.12);font-weight:600;}
+.evt-badge{position:absolute;top:-2px;right:-2px;background:#8B0000;color:#fff;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
 .nav-right{display:flex;gap:8px;align-items:center;flex-shrink:0;}
-.cart-btn{background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.35);color:#D4AF37;border-radius:20px;padding:7px 14px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;transition:all 0.2s;white-space:nowrap;}
+.cart-btn{background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.35);color:#D4AF37;border-radius:20px;padding:7px 12px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:5px;font-weight:600;}
 .cart-btn:hover{background:rgba(212,175,55,0.25);}
-.adm-btn{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;transition:all 0.2s;}
-.adm-btn:hover{transform:scale(1.04);}
+.adm-btn{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:11px;font-weight:700;}
 
 /* MODAL */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;align-items:center;justify-content:center;padding:16px;}
-.modal-bg.open{display:flex;}
-.modal{background:#1a1a1a;border:1px solid rgba(212,175,55,0.35);border-radius:16px;padding:32px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
-.modal h2{font-family:'Playfair Display',serif;color:#D4AF37;margin-bottom:20px;font-size:1.4rem;}
-.inp{width:100%;background:#111;border:1px solid rgba(212,175,55,0.3);color:#f5f5f5;border-radius:8px;padding:11px 14px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:12px;outline:none;transition:border 0.2s;}
+.modal-bg.open{display:flex;animation:fadeIn 0.2s;}
+.modal{background:#171717;border:1px solid rgba(212,175,55,0.3);border-radius:16px;padding:28px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
+.modal h2{font-family:'Playfair Display',serif;color:#D4AF37;margin-bottom:16px;font-size:1.4rem;}
+
+/* INPUTS */
+.inp{width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.3);color:#f5f5f5;border-radius:8px;padding:11px 14px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:10px;outline:none;}
 .inp:focus{border-color:#D4AF37;}
-.inp option{background:#111;}
-.lbl{display:block;color:rgba(212,175,55,0.8);font-size:12px;font-weight:600;margin-bottom:5px;letter-spacing:0.05em;}
+.inp option{background:#0a0a0a;}
+.lbl{display:block;color:rgba(212,175,55,0.85);font-size:12px;font-weight:600;margin-bottom:5px;}
 .fg{margin-bottom:12px;}
-.btn-or{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;width:100%;transition:all 0.2s;}
-.btn-or:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,175,55,0.35);}
-.btn-ghost{background:transparent;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;border-radius:8px;padding:10px 20px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.2s;}
-.btn-ghost:hover{background:rgba(212,175,55,0.1);}
-.btn-red{background:rgba(139,0,0,0.8);border:none;color:#fff;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;transition:all 0.2s;}
-.btn-red:hover{background:#8B0000;}
-.btn-green{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;border-radius:8px;padding:12px 20px;cursor:pointer;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;width:100%;margin-bottom:8px;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
-.btn-green:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,0.35);}
-.btn-blue{background:linear-gradient(135deg,#0088cc,#005580);color:#fff;border:none;border-radius:8px;padding:12px 20px;cursor:pointer;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;width:100%;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
-.btn-blue:hover{transform:translateY(-1px);}
-.close-btn{float:right;background:none;border:none;color:rgba(245,245,245,0.5);font-size:22px;cursor:pointer;line-height:1;}
+
+/* BUTTONS */
+.btn-or{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-weight:700;font-size:14px;width:100%;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.btn-or:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,175,55,0.35);}
+.btn-red{background:#8B0000;border:none;color:#fff;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;}
+.btn-green{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;border-radius:8px;padding:12px 20px;cursor:pointer;font-weight:700;font-size:14px;width:100%;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Inter',sans-serif;}
+.btn-blue{background:linear-gradient(135deg,#0088cc,#005580);color:#fff;border:none;border-radius:8px;padding:12px 20px;cursor:pointer;font-weight:700;font-size:14px;width:100%;font-family:'Inter',sans-serif;}
+.close-btn{float:right;background:none;border:none;color:rgba(245,245,245,0.5);font-size:22px;cursor:pointer;}
 .close-btn:hover{color:#D4AF37;}
 
 /* CARDS */
-.card{background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:14px;overflow:hidden;transition:all 0.3s;}
-.card:hover{border-color:rgba(212,175,55,0.4);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.4);}
-.card-img{width:100%;height:180px;object-fit:cover;background:#222;display:block;}
-.card-img-placeholder{width:100%;height:180px;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);display:flex;align-items:center;justify-content:center;font-size:3rem;}
-.card-body{padding:16px;}
-.card-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:#f5f5f5;margin-bottom:6px;}
-.card-desc{font-size:12px;color:rgba(245,245,245,0.5);margin-bottom:10px;line-height:1.5;}
-.card-price{font-size:1.1rem;font-weight:700;color:#D4AF37;margin-bottom:12px;}
-.card-footer{display:flex;gap:8px;}
+.card{background:linear-gradient(135deg,#171717,#121212);border:1px solid rgba(212,175,55,0.18);border-radius:14px;overflow:hidden;transition:all 0.3s;}
+.card:hover{border-color:#D4AF37;transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,175,55,0.15);}
+.card-img{width:100%;height:180px;object-fit:cover;background:#222;cursor:pointer;}
+.card-body{padding:14px;}
+.card-name{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:5px;}
+.card-desc{font-size:11px;color:rgba(245,245,245,0.45);margin-bottom:8px;line-height:1.5;min-height:30px;}
+.card-price{font-size:1.05rem;font-weight:700;color:#D4AF37;margin-bottom:10px;}
+.card-cat{display:inline-block;background:rgba(212,175,55,0.12);color:#D4AF37;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700;margin-bottom:6px;text-transform:uppercase;}
+.card-foot{display:flex;gap:6px;}
 
-/* GRID */
-.grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:20px;}
-@media(max-width:600px){.grid-cards{grid-template-columns:repeat(2,1fr);gap:12px;}.card-img,.card-img-placeholder{height:140px;}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:18px;}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr);gap:10px;}.card-img{height:120px;}.card-name{font-size:0.95rem;}}
 
 /* CATS */
-.cat-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
-.cat-chip{background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);color:rgba(212,175,55,0.8);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;transition:all 0.2s;}
-.cat-chip:hover,.cat-chip.sel{background:#D4AF37;color:#111;font-weight:700;border-color:#D4AF37;}
+.cat-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.cat-chip{background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.25);color:rgba(212,175,55,0.8);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;}
+.cat-chip.sel,.cat-chip:hover{background:#D4AF37;color:#111;font-weight:700;}
 
 /* HERO */
-.hero{min-height:100vh;background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.8) 100%),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,8vw,5rem);line-height:1.1;margin-bottom:16px;}
-.hero p{font-size:clamp(1rem,3vw,1.3rem);color:rgba(245,245,245,0.7);margin-bottom:32px;max-width:600px;}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.hero{min-height:100vh;background:linear-gradient(180deg,rgba(0,0,0,0.75),rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.85)),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=80') center/cover fixed;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,8vw,5.5rem);line-height:1;margin-bottom:14px;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:28px;}
+.hero-btn-2{background:rgba(255,255,255,0.08);border:1px solid rgba(212,175,55,0.4);color:#D4AF37;border-radius:30px;padding:13px 26px;cursor:pointer;font-size:14px;font-family:'Inter',sans-serif;backdrop-filter:blur(8px);font-weight:600;}
+.hero-btn-2:hover{background:rgba(212,175,55,0.15);}
 
-/* SECTIONS */
-.section{padding:60px 20px;max-width:1200px;margin:0 auto;}
-.sec-title{text-align:center;margin-bottom:40px;}
+/* SECTION */
+.section{padding:50px 20px;max-width:1200px;margin:0 auto;}
+.sec-title{text-align:center;margin-bottom:32px;}
 .sec-title p{font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:8px;}
 .sec-title h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);}
-.divider{width:60px;height:2px;background:linear-gradient(90deg,#D4AF37,#F0D87C);margin:12px auto 0;}
+.divider{width:60px;height:2px;background:linear-gradient(90deg,#D4AF37,#F0D87C);margin:10px auto;}
 
-/* ADMIN SIDEBAR */
+/* PAGE HEADER */
+.ph{padding:90px 20px 40px;text-align:center;background:linear-gradient(135deg,rgba(0,0,0,0.85),rgba(139,0,0,0.3)),url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80') center/cover;}
+.ph h1{font-family:'Playfair Display',serif;font-size:2.5rem;}
+.ph p{font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:8px;}
+
+/* ADMIN */
 .admin-layout{display:flex;min-height:100vh;padding-top:65px;}
-.admin-sidebar{width:220px;background:#0d0d0d;border-right:1px solid rgba(212,175,55,0.15);padding:20px 12px;flex-shrink:0;position:sticky;top:65px;height:calc(100vh - 65px);overflow-y:auto;}
-.admin-sidebar h3{font-size:10px;letter-spacing:0.2em;color:rgba(212,175,55,0.5);text-transform:uppercase;margin-bottom:12px;padding:0 8px;}
-.sb-btn{display:block;width:100%;background:none;border:none;color:rgba(245,245,245,0.7);cursor:pointer;font-size:13px;padding:10px 12px;border-radius:8px;text-align:left;font-family:'Inter',sans-serif;transition:all 0.2s;margin-bottom:3px;}
-.sb-btn:hover,.sb-btn.sb-active{color:#D4AF37;background:rgba(212,175,55,0.12);}
+.admin-sidebar{width:230px;background:#0d0d0d;border-right:1px solid rgba(212,175,55,0.15);padding:20px 12px;flex-shrink:0;position:sticky;top:65px;height:calc(100vh - 65px);overflow-y:auto;}
+.admin-sidebar h3{font-size:10px;letter-spacing:0.2em;color:rgba(212,175,55,0.5);margin-bottom:12px;padding:0 8px;text-transform:uppercase;}
+.sb-btn{display:block;width:100%;background:none;border:none;color:rgba(245,245,245,0.7);cursor:pointer;font-size:13px;padding:10px 12px;border-radius:8px;text-align:left;margin-bottom:3px;font-family:'Inter',sans-serif;}
+.sb-btn:hover,.sb-btn.act{color:#D4AF37;background:rgba(212,175,55,0.12);font-weight:600;}
 .admin-content{flex:1;padding:28px;overflow-y:auto;}
 .admin-panel{display:none;}
-.admin-panel.active{display:block;}
+.admin-panel.act{display:block;animation:fadeIn 0.3s;}
 @media(max-width:700px){.admin-layout{flex-direction:column;}.admin-sidebar{width:100%;position:static;height:auto;display:flex;gap:4px;flex-wrap:wrap;padding:10px;}.admin-sidebar h3{display:none;}.sb-btn{width:auto;font-size:11px;padding:7px 10px;}.admin-content{padding:16px;}}
 
-/* STAT CARDS */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:28px;}
-.stat-card{background:linear-gradient(135deg,#1a1a1a,#151515);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:20px;text-align:center;}
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:24px;}
+.stat-card{background:linear-gradient(135deg,#171717,#0f0f0f);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:18px;text-align:center;}
 .stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;color:#D4AF37;font-weight:700;}
 .stat-lbl{font-size:11px;color:rgba(245,245,245,0.5);margin-top:4px;}
 
+/* UPLOAD */
+.upload-area{border:2px dashed rgba(212,175,55,0.4);border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(212,175,55,0.03);}
+.upload-area:hover{border-color:#D4AF37;background:rgba(212,175,55,0.07);}
+.prod-img-preview{width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-bottom:8px;display:none;}
+
 /* GALLERY */
-.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
-.gal-item{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:#1a1a1a;}
-.gal-item img{width:100%;height:100%;object-fit:cover;display:block;}
-.gal-del{position:absolute;top:6px;right:6px;background:rgba(139,0,0,0.85);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+.gal-item{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:#1a1a1a;cursor:pointer;}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.gal-item:hover img{transform:scale(1.08);}
+.gal-del{position:absolute;top:6px;right:6px;background:rgba(139,0,0,0.9);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;}
 
 /* RESERVATION */
-.res-form{background:#1a1a1a;border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;}
+.res-form{background:#171717;border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:28px;max-width:600px;margin:0 auto;}
 
-/* UPLOAD AREA */
-.upload-area{border:2px dashed rgba(212,175,55,0.35);border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(212,175,55,0.03);}
-.upload-area:hover{border-color:#D4AF37;background:rgba(212,175,55,0.07);}
-
-/* PRODUCT FORM */
-.prod-img-preview{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:none;}
-
-/* ORDERS */
-.order-card{background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:18px;margin-bottom:12px;}
-.order-status{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
-.status-new{background:rgba(212,175,55,0.2);color:#D4AF37;}
-.status-done{background:rgba(37,211,102,0.2);color:#25D366;}
-.status-cancelled{background:rgba(139,0,0,0.2);color:#ff6666;}
-
-/* EVENTS */
-.evt-card{background:linear-gradient(135deg,#1a1a1a,#111);border:1px solid rgba(212,175,55,0.2);border-radius:14px;padding:22px;margin-bottom:14px;display:flex;gap:16px;align-items:center;}
-.evt-date{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border-radius:10px;padding:10px 14px;text-align:center;min-width:56px;flex-shrink:0;}
-.evt-day{font-size:1.5rem;font-weight:900;font-family:'Playfair Display',serif;line-height:1;}
-.evt-mon{font-size:10px;font-weight:700;text-transform:uppercase;}
-
-/* CART SIDEBAR */
+/* CART */
 .cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:8888;}
 .cart-overlay.open{display:block;}
-.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:360px;max-width:100vw;background:#141414;border-left:1px solid rgba(212,175,55,0.2);z-index:8889;padding:24px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.3s ease;}
+.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:380px;max-width:100vw;background:#141414;border-left:1px solid rgba(212,175,55,0.25);z-index:8889;padding:22px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.3s;}
 .cart-drawer.open{transform:translateX(0);}
-.cart-items{flex:1;overflow-y:auto;margin:16px 0;}
-.ci{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.cart-items{flex:1;overflow-y:auto;margin:14px 0;}
+.ci{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
 .ci-img{width:50px;height:50px;border-radius:8px;object-fit:cover;background:#222;flex-shrink:0;}
-.ci-name{font-size:13px;font-weight:600;flex:1;}
-.ci-price{font-size:13px;color:#D4AF37;font-weight:700;}
-.ci-qty{display:flex;align-items:center;gap:8px;}
-.qty-btn{background:rgba(212,175,55,0.15);border:none;color:#D4AF37;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
-.cart-total{font-family:'Playfair Display',serif;font-size:1.3rem;color:#D4AF37;text-align:center;padding:16px 0;border-top:1px solid rgba(212,175,55,0.2);}
+.ci-info{flex:1;min-width:0;}
+.ci-name{font-size:13px;font-weight:600;}
+.ci-price{font-size:12px;color:#D4AF37;font-weight:700;}
+.ci-qty{display:flex;align-items:center;gap:6px;}
+.qty-btn{background:rgba(212,175,55,0.15);border:none;color:#D4AF37;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:14px;}
+.cart-total{font-family:'Playfair Display',serif;font-size:1.3rem;color:#D4AF37;text-align:center;padding:14px 0;border-top:1px solid rgba(212,175,55,0.2);}
 
 /* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:#D4AF37;color:#111;padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;z-index:99999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none;}
-.toast.show{transform:translateY(0);opacity:1;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#D4AF37;color:#111;padding:12px 22px;border-radius:30px;font-weight:700;font-size:14px;z-index:99999;opacity:0;transition:all 0.3s;pointer-events:none;box-shadow:0 8px 24px rgba(212,175,55,0.4);}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
-/* REACTION */
-.reaction-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
-.r-btn{background:rgba(255,255,255,0.07);border:none;border-radius:20px;padding:5px 12px;cursor:pointer;font-size:13px;color:#f5f5f5;transition:all 0.2s;}
-.r-btn:hover{background:rgba(212,175,55,0.2);transform:scale(1.1);}
-.r-btn.reacted{background:rgba(212,175,55,0.25);color:#D4AF37;}
+/* ORDER CARD */
+.order-card{background:#171717;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:16px;margin-bottom:12px;}
+.status{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;}
+.s-new{background:rgba(212,175,55,0.2);color:#D4AF37;}
+.s-done{background:rgba(37,211,102,0.2);color:#25D366;}
+.s-can{background:rgba(139,0,0,0.3);color:#ff6666;}
+
+/* EVENT */
+.evt-card{background:linear-gradient(135deg,#171717,#0d0d0d);border:1px solid rgba(212,175,55,0.25);border-radius:14px;padding:20px;margin-bottom:14px;display:flex;gap:14px;align-items:center;}
+.evt-date{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border-radius:10px;padding:10px 14px;text-align:center;min-width:60px;flex-shrink:0;}
+.evt-day{font-size:1.6rem;font-weight:900;font-family:'Playfair Display',serif;line-height:1;}
+.evt-mon{font-size:9px;font-weight:700;text-transform:uppercase;}
+.evt-info{flex:1;min-width:0;}
+
+/* EVENT BANNER */
+.evt-banner{background:linear-gradient(90deg,#8B0000,#D4AF37,#8B0000);background-size:200% 100%;animation:scrollBg 4s linear infinite;color:#fff;padding:8px 16px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;}
+@keyframes scrollBg{0%{background-position:0% 0;}100%{background-position:200% 0;}}
 
 /* FOOTER */
-footer{background:#0a0a0a;border-top:1px solid rgba(212,175,55,0.15);padding:40px 20px;text-align:center;}
-.footer-logo{font-family:'Playfair Display',serif;font-size:1.8rem;color:#D4AF37;margin-bottom:8px;}
+footer{background:#070707;border-top:1px solid rgba(212,175,55,0.15);padding:36px 20px;text-align:center;}
 
-/* LOUNGE HERO */
-.lounge-hero{height:350px;background:linear-gradient(135deg,rgba(0,0,0,0.8),rgba(139,0,0,0.3)),url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1200&q=80') center/cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin-top:65px;}
+/* HOME FEAT */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;}
+.feat{background:linear-gradient(135deg,#171717,#0f0f0f);border:1px solid rgba(212,175,55,0.18);border-radius:14px;padding:26px;text-align:center;cursor:pointer;transition:all 0.3s;}
+.feat:hover{transform:translateY(-5px);border-color:#D4AF37;box-shadow:0 14px 30px rgba(212,175,55,0.15);}
 
-/* ANIMATE */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-.anim{animation:fadeUp 0.5s ease forwards;}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr;}}
-.about-img{width:100%;height:300px;object-fit:cover;border-radius:16px;border:2px solid rgba(212,175,55,0.2);}
-
-/* NAV MOBILE */
-@media(max-width:768px){
-.nav-scroll button span{display:none;}
-}
+/* QTY MODAL */
+.qty-row{display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0;}
+.qty-big{background:rgba(212,175,55,0.15);border:none;color:#D4AF37;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:20px;font-weight:700;}
+.qty-disp{font-size:1.6rem;font-weight:700;min-width:40px;text-align:center;}
 </style>
 </head>
 <body>
@@ -182,7 +181,32 @@ footer{background:#0a0a0a;border-top:1px solid rgba(212,175,55,0.15);padding:40p
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- CART OVERLAY -->
+<!-- EVENT BANNER -->
+<div id="evtBanner"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wrap">
+    <div class="logo-box" onclick="showPage('home')">
+      <div class="logo-name">Le Rich'Lieu</div>
+      <div class="logo-sub">Restaurant • Lounge • Bar</div>
+    </div>
+    <div class="nav-scroll">
+      <button class="nb acv" data-nav="home" onclick="showPage('home')">🏠 Accueil</button>
+      <button class="nb" data-nav="restaurant" onclick="showPage('restaurant')">🍽️ Restaurant</button>
+      <button class="nb" data-nav="bar" onclick="showPage('bar')">🍹 Bar</button>
+      <button class="nb" data-nav="reservation" onclick="showPage('reservation')">📅 Réservation</button>
+      <button class="nb" data-nav="events" onclick="showPage('events')">🎉 Évents <span id="evtBadge" class="evt-badge" style="display:none;">0</span></button>
+      <button class="nb" data-nav="gallery" onclick="showPage('gallery')">🖼️ Galerie</button>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()">🛒 <span id="cartCount">0</span></button>
+      <button class="adm-btn" onclick="adminBtnClick()">👑 Admin</button>
+    </div>
+  </div>
+</nav>
+
+<!-- CART -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
   <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -191,471 +215,316 @@ footer{background:#0a0a0a;border-top:1px solid rgba(212,175,55,0.15);padding:40p
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-total" id="cartTotal">Total : 0 FCFA</div>
-  <button class="btn-or" onclick="checkout()" style="margin-bottom:8px;">✅ Commander</button>
-  <button class="btn-green" onclick="orderWhatsApp()">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Commander via WhatsApp
-  </button>
+  <button class="btn-green" onclick="orderWhatsApp()">💬 Commander via WhatsApp</button>
   <button class="btn-blue" onclick="orderCall()">📞 Commander par Téléphone</button>
 </div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-wrap">
-    <div onclick="showPage('home')" style="cursor:pointer;">
-      <div class="logo-name">Le Rich'Lieu</div>
-      <div class="logo-sub">Restaurant • Lounge • Bar</div>
-    </div>
-    <div class="nav-scroll">
-      <button class="nb acv" onclick="showPage('home')">🏠 Accueil</button>
-      <button class="nb" onclick="showPage('restaurant')">🍽️ Restaurant</button>
-      <button class="nb" onclick="showPage('bar')">🍹 Bar Lounge</button>
-      <button class="nb" onclick="showPage('reservation')">📅 Réservation</button>
-      <button class="nb" onclick="showPage('events')">🎉 Évènements</button>
-      <button class="nb" onclick="showPage('gallery')">🖼️ Galerie</button>
-    </div>
-    <div class="nav-right">
-      <button class="cart-btn" onclick="openCart()">
-        🛒 <span id="cartCount">0</span>
-      </button>
-      <button class="adm-btn" onclick="openAdminModal()">👑 Admin</button>
-    </div>
-  </div>
-</nav>
-
-<!-- ==================== HOME ==================== -->
+<!-- ============ HOME ============ -->
 <div id="page-home" class="page active">
   <div class="hero">
-    <div class="anim">
-      <p style="font-size:12px;letter-spacing:0.3em;color:rgba(212,175,55,0.7);text-transform:uppercase;margin-bottom:12px;">✨ Bienvenue au</p>
-      <h1 class="fp">Le Rich'<span style="color:#D4AF37;">Lieu</span></h1>
-      <p style="color:rgba(245,245,245,0.75);font-size:1.1rem;margin-bottom:12px;">Saveurs • Lounge • Élégance</p>
-      <p style="color:rgba(245,245,245,0.5);font-size:14px;margin-bottom:32px;">Gagnoa, Quartier Garahio</p>
+    <div>
+      <p style="font-size:12px;letter-spacing:0.3em;color:rgba(212,175,55,0.7);text-transform:uppercase;margin-bottom:14px;">✨ Bienvenue au</p>
+      <h1 class="fp">Le Rich'<span class="or">Lieu</span></h1>
+      <p style="color:rgba(245,245,245,0.75);font-size:1.1rem;">Restaurant • Lounge Bar • Expérience Premium</p>
+      <p style="color:rgba(245,245,245,0.45);font-size:13px;margin-top:8px;">📍 Gagnoa, Quartier Garahio</p>
       <div class="hero-btns">
-        <button class="btn-or" style="padding:14px 28px;border-radius:30px;font-size:15px;" onclick="showPage('restaurant')">🍽️ Voir le Menu</button>
-        <button onclick="showPage('reservation')" style="background:rgba(255,255,255,0.1);border:1px solid rgba(212,175,55,0.4);color:#D4AF37;border-radius:30px;padding:14px 28px;cursor:pointer;font-size:15px;font-family:'Inter',sans-serif;backdrop-filter:blur(8px);transition:all 0.2s;">📅 Réserver une Table</button>
+        <button class="btn-or" style="padding:14px 26px;border-radius:30px;width:auto;" onclick="showPage('restaurant')">🍽️ Voir le Menu</button>
+        <button class="hero-btn-2" onclick="showPage('reservation')">📅 Réserver</button>
+        <button class="hero-btn-2" onclick="showPage('events')">🎉 Évènements</button>
       </div>
     </div>
   </div>
 
-  <!-- FEATURES -->
   <div class="section">
     <div class="sec-title">
       <p>NOS SERVICES</p>
       <h2 class="fp tg">Une Expérience Unique</h2>
       <div class="divider"></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;">
-      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('restaurant')">
-        <div style="font-size:3rem;margin-bottom:12px;">🍽️</div>
-        <h3 class="fp or" style="margin-bottom:8px;">Restaurant</h3>
-        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Plats raffinés, spécialités locales et cuisine internationale</p>
+    <div class="feat-grid">
+      <div class="feat" onclick="showPage('restaurant')">
+        <div style="font-size:2.8rem;margin-bottom:10px;">🍽️</div>
+        <h3 class="fp or">Restaurant</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;margin-top:6px;">Plats raffinés et spécialités locales</p>
       </div>
-      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('bar')">
-        <div style="font-size:3rem;margin-bottom:12px;">🍹</div>
-        <h3 class="fp or" style="margin-bottom:8px;">Bar Lounge</h3>
-        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Cocktails exclusifs, champagnes et whiskys premium</p>
+      <div class="feat" onclick="showPage('bar')">
+        <div style="font-size:2.8rem;margin-bottom:10px;">🍹</div>
+        <h3 class="fp or">Bar Lounge</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;margin-top:6px;">Cocktails, champagnes et whiskys premium</p>
       </div>
-      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('reservation')">
-        <div style="font-size:3rem;margin-bottom:12px;">📅</div>
-        <h3 class="fp or" style="margin-bottom:8px;">Réservation</h3>
-        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Réservez votre table en quelques clics facilement</p>
+      <div class="feat" onclick="showPage('reservation')">
+        <div style="font-size:2.8rem;margin-bottom:10px;">📅</div>
+        <h3 class="fp or">Réservation</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;margin-top:6px;">Réservez votre table en un clic</p>
       </div>
-      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('events')">
-        <div style="font-size:3rem;margin-bottom:12px;">🎉</div>
-        <h3 class="fp or" style="margin-bottom:8px;">Évènements</h3>
-        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Soirées spéciales, concerts live et événements privés</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <div style="background:#0d0d0d;padding:60px 0;">
-    <div class="section">
-      <div class="about-grid">
-        <div>
-          <p style="font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:12px;">QUI SOMMES-NOUS</p>
-          <h2 class="fp tg" style="font-size:2.2rem;margin-bottom:20px;">L'Art de Recevoir</h2>
-          <p style="color:rgba(245,245,245,0.6);line-height:1.8;margin-bottom:16px;">Le Rich'Lieu Lounge Bar, situé à Gagnoa quartier Garahio, vous offre une expérience moderne alliant gastronomie raffinée et ambiance lounge premium.</p>
-          <p style="color:rgba(245,245,245,0.6);line-height:1.8;margin-bottom:24px;">Découvrez nos spécialités culinaires, nos cocktails exclusifs et nos soirées thématiques dans un cadre élégant et chaleureux.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a href="tel:0789890470" style="background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border-radius:8px;padding:12px 20px;text-decoration:none;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;">📞 0789890470</a>
-            <a href="https://wa.me/2250789890470" target="_blank" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:8px;padding:12px 20px;text-decoration:none;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;">💬 WhatsApp</a>
-          </div>
-        </div>
-        <div>
-          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Restaurant" class="about-img">
-        </div>
+      <div class="feat" onclick="showPage('events')">
+        <div style="font-size:2.8rem;margin-bottom:10px;">🎉</div>
+        <h3 class="fp or">Évènements</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;margin-top:6px;">Soirées et événements premium</p>
       </div>
     </div>
   </div>
 
-  <!-- FEATURED PRODUCTS -->
   <div class="section">
     <div class="sec-title">
       <p>NOS INCONTOURNABLES</p>
       <h2 class="fp tg">Menu Vedette</h2>
       <div class="divider"></div>
     </div>
-    <div class="grid-cards" id="featuredGrid"></div>
+    <div class="grid" id="featuredGrid"></div>
   </div>
 
-  <!-- CONTACT -->
-  <div style="background:#0d0d0d;padding:60px 0;">
-    <div class="section" style="text-align:center;">
-      <div class="sec-title">
-        <p>NOUS TROUVER</p>
-        <h2 class="fp tg">Contact & Localisation</h2>
-        <div class="divider"></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:32px;">
-        <div class="card" style="padding:24px;text-align:center;">
-          <div style="font-size:2rem;margin-bottom:8px;">📍</div>
-          <h4 class="fp or" style="margin-bottom:6px;">Adresse</h4>
-          <p style="color:rgba(245,245,245,0.5);font-size:13px;">Gagnoa, Quartier Garahio</p>
-        </div>
-        <div class="card" style="padding:24px;text-align:center;cursor:pointer;" onclick="window.location='tel:0789890470'">
-          <div style="font-size:2rem;margin-bottom:8px;">📞</div>
-          <h4 class="fp or" style="margin-bottom:6px;">Téléphone</h4>
-          <p style="color:rgba(245,245,245,0.5);font-size:13px;">0789890470<br>0779911714</p>
-        </div>
-        <div class="card" style="padding:24px;text-align:center;cursor:pointer;" onclick="window.open('https://wa.me/2250789890470','_blank')">
-          <div style="font-size:2rem;margin-bottom:8px;">💬</div>
-          <h4 class="fp or" style="margin-bottom:6px;">WhatsApp</h4>
-          <p style="color:rgba(245,245,245,0.5);font-size:13px;">Commandez directement via WhatsApp</p>
-        </div>
-        <div class="card" style="padding:24px;text-align:center;">
-          <div style="font-size:2rem;margin-bottom:8px;">⏰</div>
-          <h4 class="fp or" style="margin-bottom:6px;">Horaires</h4>
-          <p style="color:rgba(245,245,245,0.5);font-size:13px;">Lun-Dim : 12h – 00h</p>
-        </div>
-      </div>
+  <div style="background:#070707;padding:50px 20px;text-align:center;">
+    <div class="sec-title">
+      <p>CONTACT</p>
+      <h2 class="fp tg">Nous Contacter</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;max-width:900px;margin:0 auto;">
+      <div class="feat">📍<h4 class="or fp" style="margin:8px 0 4px;">Adresse</h4><p style="color:rgba(245,245,245,0.5);font-size:13px;">Gagnoa, Garahio</p></div>
+      <div class="feat" onclick="window.location='tel:0789890470'">📞<h4 class="or fp" style="margin:8px 0 4px;">Téléphone</h4><p style="color:rgba(245,245,245,0.5);font-size:13px;">0789890470<br>0779911714</p></div>
+      <div class="feat" onclick="window.open('https://wa.me/2250789890470','_blank')">💬<h4 class="or fp" style="margin:8px 0 4px;">WhatsApp</h4><p style="color:rgba(245,245,245,0.5);font-size:13px;">Commandez en ligne</p></div>
+      <div class="feat">⏰<h4 class="or fp" style="margin:8px 0 4px;">Horaires</h4><p style="color:rgba(245,245,245,0.5);font-size:13px;">Lun-Dim<br>12h – 00h</p></div>
     </div>
   </div>
 
   <footer>
-    <div class="footer-logo fp">Le Rich'Lieu</div>
-    <p style="color:rgba(212,175,55,0.5);font-size:12px;margin-bottom:4px;">Saveurs • Lounge • Élégance</p>
-    <p style="color:rgba(245,245,245,0.3);font-size:11px;">Gagnoa, Quartier Garahio | © 2025 Le Rich'Lieu</p>
+    <div class="fp" style="font-size:1.8rem;color:#D4AF37;margin-bottom:6px;">Le Rich'Lieu</div>
+    <p style="color:rgba(212,175,55,0.5);font-size:12px;">Restaurant • Lounge Bar Premium</p>
+    <p style="color:rgba(245,245,245,0.3);font-size:11px;margin-top:6px;">© 2025 Le Rich'Lieu — Gagnoa</p>
   </footer>
 </div>
 
-<!-- ==================== RESTAURANT ==================== -->
-<div id="page-restaurant" class="page" style="padding-top:70px;">
-  <div style="background:linear-gradient(135deg,rgba(0,0,0,0.9),rgba(139,0,0,0.2)),url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80') center/cover;padding:60px 20px;text-align:center;">
-    <p style="font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:8px;">NOS SPÉCIALITÉS</p>
-    <h1 class="fp tg" style="font-size:2.5rem;">Menu Restaurant</h1>
-  </div>
+<!-- ============ RESTAURANT ============ -->
+<div id="page-restaurant" class="page">
+  <div class="ph"><p>NOS SPÉCIALITÉS</p><h1 class="tg fp">Menu Restaurant</h1></div>
   <div class="section">
-    <div class="cat-bar" id="restCatBar"></div>
-    <div class="grid-cards" id="restGrid"></div>
+    <div class="cat-bar" id="restCats"></div>
+    <div class="grid" id="restGrid"></div>
   </div>
 </div>
 
-<!-- ==================== BAR ==================== -->
+<!-- ============ BAR ============ -->
 <div id="page-bar" class="page">
-  <div class="lounge-hero">
-    <div>
-      <p style="font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:8px;">NOTRE BAR LOUNGE</p>
-      <h1 class="fp tg" style="font-size:2.5rem;">Bar & Cocktails</h1>
-      <p style="color:rgba(245,245,245,0.6);margin-top:8px;">Cocktails exclusifs • Champagnes • Whiskys Premium</p>
-    </div>
-  </div>
+  <div class="ph" style="background:linear-gradient(135deg,rgba(0,0,0,0.85),rgba(139,0,0,0.3)),url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1200&q=80') center/cover;"><p>BAR LOUNGE</p><h1 class="tg fp">Bar & Cocktails</h1></div>
   <div class="section">
-    <div class="cat-bar" id="barCatBar"></div>
-    <div class="grid-cards" id="barGrid"></div>
+    <div class="cat-bar" id="barCats"></div>
+    <div class="grid" id="barGrid"></div>
   </div>
 </div>
 
-<!-- ==================== RESERVATION ==================== -->
-<div id="page-reservation" class="page" style="padding-top:70px;">
+<!-- ============ RESERVATION ============ -->
+<div id="page-reservation" class="page">
+  <div class="ph"><p>TABLE & ÉVÉNEMENT</p><h1 class="tg fp">Réserver une Table</h1></div>
   <div class="section">
-    <div class="sec-title">
-      <p>TABLE & ÉVÉNEMENT</p>
-      <h2 class="fp tg">Réserver une Table</h2>
-      <div class="divider"></div>
-    </div>
     <div class="res-form">
-      <div class="fg">
-        <label class="lbl">👤 Votre Nom</label>
-        <input class="inp" id="resName" type="text" placeholder="Ex: Kouassi Jean">
+      <div class="fg"><label class="lbl">👤 Votre Nom *</label><input class="inp" id="resName" placeholder="Kouassi Jean"></div>
+      <div class="fg"><label class="lbl">📞 Téléphone *</label><input class="inp" id="resPhone" type="tel" placeholder="0789890470"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="fg"><label class="lbl">📅 Date *</label><input class="inp" id="resDate" type="date"></div>
+        <div class="fg"><label class="lbl">⏰ Heure *</label><input class="inp" id="resTime" type="time"></div>
       </div>
-      <div class="fg">
-        <label class="lbl">📞 Votre Numéro</label>
-        <input class="inp" id="resPhone" type="tel" placeholder="Ex: 0789890470">
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-        <div class="fg">
-          <label class="lbl">📅 Date</label>
-          <input class="inp" id="resDate" type="date">
-        </div>
-        <div class="fg">
-          <label class="lbl">⏰ Heure</label>
-          <input class="inp" id="resTime" type="time">
-        </div>
-      </div>
-      <div class="fg">
-        <label class="lbl">👥 Nombre de Personnes</label>
+      <div class="fg"><label class="lbl">👥 Nombre de Personnes</label>
         <select class="inp" id="resGuests">
-          <option value="1">1 personne</option>
-          <option value="2">2 personnes</option>
-          <option value="3">3 personnes</option>
-          <option value="4">4 personnes</option>
-          <option value="5">5 personnes</option>
-          <option value="6">6 personnes</option>
-          <option value="8">8 personnes</option>
-          <option value="10">10+ personnes</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10+</option>
         </select>
       </div>
-      <div class="fg">
-        <label class="lbl">🍽️ Type de Réservation</label>
+      <div class="fg"><label class="lbl">🍽️ Type</label>
         <select class="inp" id="resType">
-          <option value="restaurant">Restaurant</option>
-          <option value="bar-lounge">Bar Lounge</option>
-          <option value="vip">Salon VIP</option>
-          <option value="evenement">Événement Privé</option>
-          <option value="anniversaire">Anniversaire</option>
+          <option>Restaurant</option><option>Bar Lounge</option><option>Salon VIP</option><option>Anniversaire</option><option>Événement Privé</option>
         </select>
       </div>
-      <div class="fg">
-        <label class="lbl">📝 Message (optionnel)</label>
-        <textarea class="inp" id="resMsg" rows="3" placeholder="Informations supplémentaires, demandes spéciales..."></textarea>
-      </div>
-      <button class="btn-or" onclick="submitReservation()" style="margin-bottom:10px;">✅ Confirmer la Réservation</button>
-      <button class="btn-green" onclick="reservWhatsApp()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Réserver via WhatsApp
-      </button>
+      <div class="fg"><label class="lbl">📝 Message</label><textarea class="inp" id="resMsg" rows="2" placeholder="Demandes spéciales..."></textarea></div>
+      <button class="btn-or" onclick="submitReservation()" style="margin-bottom:8px;">✅ Confirmer la Réservation</button>
+      <button class="btn-green" onclick="reservWhatsApp()">💬 Réserver via WhatsApp</button>
     </div>
   </div>
 </div>
 
-<!-- ==================== EVENTS ==================== -->
-<div id="page-events" class="page" style="padding-top:70px;">
-  <div class="section">
-    <div class="sec-title">
-      <p>AGENDA</p>
-      <h2 class="fp tg">Nos Évènements</h2>
-      <div class="divider"></div>
-    </div>
-    <div id="eventsList"></div>
-  </div>
+<!-- ============ EVENTS ============ -->
+<div id="page-events" class="page">
+  <div class="ph"><p>AGENDA</p><h1 class="tg fp">Nos Évènements</h1></div>
+  <div class="section"><div id="eventsList"></div></div>
 </div>
 
-<!-- ==================== GALLERY ==================== -->
-<div id="page-gallery" class="page" style="padding-top:70px;">
-  <div class="section">
-    <div class="sec-title">
-      <p>NOTRE UNIVERS</p>
-      <h2 class="fp tg">Galerie Photos</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="gal-grid" id="publicGallery"></div>
-  </div>
+<!-- ============ GALLERY ============ -->
+<div id="page-gallery" class="page">
+  <div class="ph"><p>NOTRE UNIVERS</p><h1 class="tg fp">Galerie Photos</h1></div>
+  <div class="section"><div class="gal-grid" id="publicGallery"></div></div>
 </div>
 
-<!-- ==================== ADMIN ==================== -->
+<!-- ============ ADMIN ============ -->
 <div id="page-admin" class="page">
   <div class="admin-layout">
     <div class="admin-sidebar">
       <h3>ADMINISTRATION</h3>
-      <button class="sb-btn sb-active" onclick="showPanel('dashboard')">📊 Dashboard</button>
-      <button class="sb-btn" onclick="showPanel('add-product')">➕ Ajouter Produit</button>
-      <button class="sb-btn" onclick="showPanel('manage-products')">📦 Mes Produits</button>
-      <button class="sb-btn" onclick="showPanel('orders')">🧾 Commandes</button>
-      <button class="sb-btn" onclick="showPanel('reservations-admin')">📅 Réservations</button>
-      <button class="sb-btn" onclick="showPanel('events-admin')">🎉 Évènements</button>
-      <button class="sb-btn" onclick="showPanel('gallery-admin')">🖼️ Galerie</button>
-      <button class="sb-btn" onclick="showPanel('caisse')">💰 Caisse</button>
-      <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(212,175,55,0.15);">
-        <button class="sb-btn" onclick="adminLogout()" style="color:rgba(255,100,100,0.8);">🚪 Déconnexion</button>
+      <button class="sb-btn act" onclick="showPanel('dashboard',this)">📊 Dashboard</button>
+      <button class="sb-btn" onclick="showPanel('add',this)">➕ Ajouter Produit</button>
+      <button class="sb-btn" onclick="showPanel('manage',this)">📦 Mes Produits</button>
+      <button class="sb-btn" onclick="showPanel('orders',this)">🧾 Commandes</button>
+      <button class="sb-btn" onclick="showPanel('reservs',this)">📅 Réservations</button>
+      <button class="sb-btn" onclick="showPanel('events',this)">🎉 Évènements</button>
+      <button class="sb-btn" onclick="showPanel('gallery',this)">🖼️ Galerie</button>
+      <button class="sb-btn" onclick="showPanel('caisse',this)">💰 Caisse</button>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(212,175,55,0.15);">
+        <button class="sb-btn" onclick="adminLogout()" style="color:#ff6666;">🚪 Déconnexion</button>
       </div>
     </div>
-
     <div class="admin-content">
       <!-- DASHBOARD -->
-      <div class="admin-panel active" id="panel-dashboard">
-        <h2 class="fp tg" style="font-size:1.8rem;margin-bottom:8px;">Tableau de Bord</h2>
-        <p style="color:rgba(212,175,55,0.5);margin-bottom:24px;font-size:13px;">Bienvenue dans l'administration du Rich'Lieu</p>
+      <div class="admin-panel act" id="p-dashboard">
+        <h2 class="fp tg" style="font-size:1.6rem;margin-bottom:6px;">Tableau de Bord</h2>
+        <p style="color:rgba(212,175,55,0.5);margin-bottom:20px;font-size:13px;">Bienvenue dans l'administration</p>
         <div class="stat-grid">
-          <div class="stat-card"><div class="stat-num" id="statProducts">0</div><div class="stat-lbl">Produits</div></div>
-          <div class="stat-card"><div class="stat-num" id="statOrders">0</div><div class="stat-lbl">Commandes</div></div>
-          <div class="stat-card"><div class="stat-num" id="statReservations">0</div><div class="stat-lbl">Réservations</div></div>
-          <div class="stat-card"><div class="stat-num" id="statRevenue">0</div><div class="stat-lbl">Revenus FCFA</div></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-          <div style="background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:20px;">
-            <h3 class="fp or" style="margin-bottom:16px;font-size:1rem;">📋 Dernières Commandes</h3>
-            <div id="dashOrders"><p style="color:rgba(245,245,245,0.3);font-size:13px;">Aucune commande</p></div>
-          </div>
-          <div style="background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:20px;">
-            <h3 class="fp or" style="margin-bottom:16px;font-size:1rem;">📅 Dernières Réservations</h3>
-            <div id="dashReservations"><p style="color:rgba(245,245,245,0.3);font-size:13px;">Aucune réservation</p></div>
-          </div>
+          <div class="stat-card"><div class="stat-num" id="dProducts">0</div><div class="stat-lbl">Produits</div></div>
+          <div class="stat-card"><div class="stat-num" id="dOrders">0</div><div class="stat-lbl">Commandes</div></div>
+          <div class="stat-card"><div class="stat-num" id="dRes">0</div><div class="stat-lbl">Réservations</div></div>
+          <div class="stat-card"><div class="stat-num" id="dRev">0</div><div class="stat-lbl">Revenus FCFA</div></div>
         </div>
       </div>
 
       <!-- ADD PRODUCT -->
-      <div class="admin-panel" id="panel-add-product">
-        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">➕ Ajouter un Produit</h2>
+      <div class="admin-panel" id="p-add">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:18px;">➕ Ajouter un Produit</h2>
         <div style="max-width:500px;">
-          <!-- IMAGE UPLOAD -->
           <div class="fg">
             <label class="lbl">📸 Photo du Produit</label>
-            <label class="upload-area" for="prodImgInput" style="display:block;">
-              <img id="prodImgPreview" class="prod-img-preview" alt="Aperçu">
-              <div id="uploadPrompt">
+            <label class="upload-area" for="prodImgIn">
+              <img id="prodImgPrev" class="prod-img-preview" alt="">
+              <div id="upPrompt">
                 <div style="font-size:2.5rem;margin-bottom:8px;">📷</div>
-                <p style="color:rgba(212,175,55,0.7);font-weight:600;font-size:14px;">Cliquez pour choisir une photo</p>
-                <p style="color:rgba(245,245,245,0.3);font-size:12px;margin-top:4px;">Depuis votre galerie téléphone</p>
+                <p style="color:rgba(212,175,55,0.75);font-weight:600;font-size:14px;">Cliquez pour choisir une photo</p>
+                <p style="color:rgba(245,245,245,0.3);font-size:11px;margin-top:4px;">Depuis votre galerie téléphone</p>
               </div>
             </label>
-            <input type="file" id="prodImgInput" accept="image/*" style="display:none;" onchange="previewProdImg(event)">
+            <input type="file" id="prodImgIn" accept="image/*" style="display:none;" onchange="previewProdImg(event)">
           </div>
-          <div class="fg">
-            <label class="lbl">🏷️ Nom du Produit *</label>
-            <input class="inp" id="prodName" type="text" placeholder="Ex: Poulet Grillé aux Herbes">
-          </div>
-          <div class="fg">
-            <label class="lbl">💰 Prix (FCFA) *</label>
-            <input class="inp" id="prodPrice" type="number" placeholder="Ex: 3500">
-          </div>
-          <div class="fg">
-            <label class="lbl">📂 Type *</label>
-            <select class="inp" id="prodType" onchange="updateCategories()">
+          <div class="fg"><label class="lbl">🏷️ Nom *</label><input class="inp" id="pName" placeholder="Ex: Poulet Yassa"></div>
+          <div class="fg"><label class="lbl">💰 Prix FCFA *</label><input class="inp" id="pPrice" type="number" placeholder="3500"></div>
+          <div class="fg"><label class="lbl">📂 Type *</label>
+            <select class="inp" id="pType" onchange="updCats()">
               <option value="restaurant">🍽️ Restaurant</option>
               <option value="bar">🍹 Bar Lounge</option>
             </select>
           </div>
-          <div class="fg">
-            <label class="lbl">🗂️ Catégorie *</label>
-            <select class="inp" id="prodCat"></select>
-          </div>
-          <div class="fg">
-            <label class="lbl">📝 Description</label>
-            <textarea class="inp" id="prodDesc" rows="3" placeholder="Décrivez votre plat ou boisson..."></textarea>
-          </div>
+          <div class="fg"><label class="lbl">🗂️ Catégorie *</label><select class="inp" id="pCat"></select></div>
+          <div class="fg"><label class="lbl">📝 Description</label><textarea class="inp" id="pDesc" rows="2" placeholder="Description..."></textarea></div>
           <button class="btn-or" onclick="saveProduct()">💾 Enregistrer le Produit</button>
         </div>
       </div>
 
-      <!-- MANAGE PRODUCTS -->
-      <div class="admin-panel" id="panel-manage-products">
-        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">📦 Gérer les Produits</h2>
-        <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
-          <button class="cat-chip sel" onclick="filterAdminProducts('all',this)">Tous</button>
-          <button class="cat-chip" onclick="filterAdminProducts('restaurant',this)">🍽️ Restaurant</button>
-          <button class="cat-chip" onclick="filterAdminProducts('bar',this)">🍹 Bar</button>
+      <!-- MANAGE -->
+      <div class="admin-panel" id="p-manage">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:14px;">📦 Mes Produits</h2>
+        <div class="cat-bar">
+          <button class="cat-chip sel" onclick="filterAdm('all',this)">Tous</button>
+          <button class="cat-chip" onclick="filterAdm('restaurant',this)">🍽️ Restaurant</button>
+          <button class="cat-chip" onclick="filterAdm('bar',this)">🍹 Bar</button>
         </div>
-        <div class="grid-cards" id="adminProductsGrid"></div>
+        <div class="grid" id="admProdGrid"></div>
       </div>
 
       <!-- ORDERS -->
-      <div class="admin-panel" id="panel-orders">
-        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">🧾 Commandes Reçues</h2>
-        <div id="ordersAdmin"><p style="color:rgba(245,245,245,0.3);">Aucune commande pour l'instant.</p></div>
+      <div class="admin-panel" id="p-orders">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:18px;">🧾 Commandes</h2>
+        <div id="ordList"></div>
       </div>
 
-      <!-- RESERVATIONS ADMIN -->
-      <div class="admin-panel" id="panel-reservations-admin">
-        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">📅 Réservations</h2>
-        <div id="reservationsAdmin"><p style="color:rgba(245,245,245,0.3);">Aucune réservation pour l'instant.</p></div>
+      <!-- RESERVATIONS -->
+      <div class="admin-panel" id="p-reservs">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:18px;">📅 Réservations</h2>
+        <div id="resList"></div>
       </div>
 
-      <!-- EVENTS ADMIN -->
-      <div class="admin-panel" id="panel-events-admin">
-        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">🎉 Gérer les Évènements</h2>
-        <div style="max-width:500px;margin-bottom:32px;">
-          <div class="fg">
-            <label class="lbl">🎪 Nom de l'Évènement *</label>
-            <input class="inp" id="evtName" type="text" placeholder="Ex: Soirée Jazz Live">
+      <!-- EVENTS -->
+      <div class="admin-panel" id="p-events">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:18px;">🎉 Évènements</h2>
+        <div style="max-width:500px;margin-bottom:28px;">
+          <div class="fg"><label class="lbl">🎪 Nom *</label><input class="inp" id="evName" placeholder="Soirée Jazz Live"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div class="fg"><label class="lbl">📅 Date *</label><input class="inp" id="evDate" type="date"></div>
+            <div class="fg"><label class="lbl">⏰ Heure</label><input class="inp" id="evTime" type="time"></div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div class="fg">
-              <label class="lbl">📅 Date *</label>
-              <input class="inp" id="evtDate" type="date">
-            </div>
-            <div class="fg">
-              <label class="lbl">⏰ Heure *</label>
-              <input class="inp" id="evtTime" type="time">
-            </div>
-          </div>
-          <div class="fg">
-            <label class="lbl">🎭 Type</label>
-            <select class="inp" id="evtType">
-              <option value="🎵 Concert Live">🎵 Concert Live</option>
-              <option value="🎶 Soirée DJ">🎶 Soirée DJ</option>
-              <option value="👑 Soirée VIP">👑 Soirée VIP</option>
-              <option value="🎂 Anniversaire">🎂 Anniversaire</option>
-              <option value="🥂 Cocktail Party">🥂 Cocktail Party</option>
-              <option value="🍽️ Dîner Gala">🍽️ Dîner Gala</option>
+          <div class="fg"><label class="lbl">🎭 Type</label>
+            <select class="inp" id="evType">
+              <option>🎵 Concert Live</option><option>🎶 Soirée DJ</option><option>👑 Soirée VIP</option><option>🎂 Anniversaire</option><option>🥂 Cocktail Party</option>
             </select>
           </div>
-          <div class="fg">
-            <label class="lbl">📝 Description</label>
-            <textarea class="inp" id="evtDesc" rows="2" placeholder="Description de l'évènement..."></textarea>
-          </div>
+          <div class="fg"><label class="lbl">📝 Description</label><textarea class="inp" id="evDesc" rows="2"></textarea></div>
           <button class="btn-or" onclick="saveEvent()">💾 Enregistrer l'Évènement</button>
         </div>
-        <div id="eventsAdminList"></div>
+        <div id="evAdmList"></div>
       </div>
 
-      <!-- GALLERY ADMIN -->
-      <div class="admin-panel" id="panel-gallery-admin">
-        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">🖼️ Gérer la Galerie</h2>
+      <!-- GALLERY -->
+      <div class="admin-panel" id="p-gallery">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:18px;">🖼️ Galerie</h2>
         <div class="fg">
-          <label class="upload-area" for="galInput" style="display:block;">
-            <input type="file" id="galInput" accept="image/*" multiple onchange="addGalleryImgs(event)" style="display:none;">
+          <label class="upload-area" for="galIn">
+            <input type="file" id="galIn" accept="image/*" multiple onchange="addGalImgs(event)" style="display:none;">
             <div style="font-size:2.5rem;margin-bottom:8px;">📷</div>
-            <p style="color:rgba(212,175,55,0.7);font-weight:600;font-size:14px;">Ajouter des photos depuis votre galerie</p>
-            <p style="color:rgba(245,245,245,0.3);font-size:12px;margin-top:4px;">Plusieurs photos acceptées</p>
+            <p style="color:rgba(212,175,55,0.75);font-weight:600;font-size:14px;">Ajouter des photos</p>
+            <p style="color:rgba(245,245,245,0.3);font-size:11px;margin-top:4px;">Plusieurs photos acceptées</p>
           </label>
         </div>
-        <div class="gal-grid" id="adminGalleryGrid"></div>
+        <div class="gal-grid" id="admGalGrid"></div>
       </div>
 
       <!-- CAISSE -->
-      <div class="admin-panel" id="panel-caisse">
-        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">💰 Caisse & Statistiques</h2>
+      <div class="admin-panel" id="p-caisse">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:18px;">💰 Caisse & Statistiques</h2>
         <div class="stat-grid">
-          <div class="stat-card"><div class="stat-num" id="caisseJour">0</div><div class="stat-lbl">Ventes Aujourd'hui (FCFA)</div></div>
-          <div class="stat-card"><div class="stat-num" id="caisseMois">0</div><div class="stat-lbl">Ventes Ce Mois</div></div>
-          <div class="stat-card"><div class="stat-num" id="caisseTotal">0</div><div class="stat-lbl">Total Général</div></div>
-          <div class="stat-card"><div class="stat-num" id="caisseNb">0</div><div class="stat-lbl">Nb Commandes</div></div>
+          <div class="stat-card"><div class="stat-num" id="cJour">0</div><div class="stat-lbl">Aujourd'hui</div></div>
+          <div class="stat-card"><div class="stat-num" id="cMois">0</div><div class="stat-lbl">Ce Mois</div></div>
+          <div class="stat-card"><div class="stat-num" id="cTotal">0</div><div class="stat-lbl">Total Général</div></div>
+          <div class="stat-card"><div class="stat-num" id="cNb">0</div><div class="stat-lbl">Nb Commandes</div></div>
         </div>
-        <div style="background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:20px;">
-          <h3 class="fp or" style="margin-bottom:16px;">📋 Historique des Ventes</h3>
-          <div id="salesHistory"><p style="color:rgba(245,245,245,0.3);font-size:13px;">Aucune vente enregistrée.</p></div>
+        <div style="background:#171717;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:18px;">
+          <h3 class="fp or" style="margin-bottom:14px;">📋 Historique</h3>
+          <div id="histVentes"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ==================== MODALS ==================== -->
-
-<!-- ADMIN LOGIN MODAL -->
-<div class="modal-bg" id="adminLoginModal">
+<!-- ============ MODALS ============ -->
+<div class="modal-bg" id="m-login">
   <div class="modal" style="max-width:380px;">
-    <button class="close-btn" onclick="closeModal('adminLoginModal')">✕</button>
+    <button class="close-btn" onclick="closeM('m-login')">✕</button>
     <h2>👑 Administration</h2>
-    <p style="color:rgba(245,245,245,0.5);font-size:13px;margin-bottom:20px;">Le Rich'Lieu — Accès sécurisé</p>
-    <div class="fg">
-      <label class="lbl">🔐 Code d'accès</label>
-      <input class="inp" id="adminCode" type="password" placeholder="Entrez le code admin" onkeydown="if(event.key==='Enter')checkAdmin()">
-    </div>
+    <p style="color:rgba(245,245,245,0.5);font-size:13px;margin-bottom:16px;">Le Rich'Lieu — Accès sécurisé</p>
+    <div class="fg"><label class="lbl">👤 Identifiant</label><input class="inp" id="aUser" placeholder="admin"></div>
+    <div class="fg"><label class="lbl">🔐 Mot de passe</label><input class="inp" id="aPass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkAdmin()"></div>
     <button class="btn-or" onclick="checkAdmin()">🔓 Se Connecter</button>
-    <p id="adminErr" style="color:#ff6666;font-size:12px;margin-top:10px;display:none;">❌ Code incorrect. Réessayez.</p>
+    <p id="aErr" style="color:#ff6666;font-size:12px;margin-top:10px;display:none;">❌ Identifiants incorrects</p>
   </div>
 </div>
 
-<!-- PRODUCT DETAIL MODAL -->
-<div class="modal-bg" id="productModal">
-  <div class="modal" style="max-width:500px;">
-    <button class="close-btn" onclick="closeModal('productModal')">✕</button>
-    <img id="pmImg" style="width:100%;height:220px;object-fit:cover;border-radius:12px;margin-bottom:16px;background:#222;" alt="">
-    <h2 id="pmName" style="font-size:1.4rem;margin-bottom:8px;"></h2>
-    <p id="pmDesc" style="color:rgba(245,245,245,0.5);font-size:13px;margin-bottom:12px;line-height:1.6;"></p>
-    <p id="pmPrice" style="color:#D4AF37;font-size:1.3rem;font-weight:700;margin-bottom:8px;"></p>
-    <p id="pmCat" style="color:rgba(212,175,55,0.5);font-size:12px;margin-bottom:16px;"></p>
-    <div class="reaction-bar"
+<div class="modal-bg" id="m-product">
+  <div class="modal">
+    <button class="close-btn" onclick="closeM('m-product')">✕</button>
+    <img id="mpImg" style="width:100%;height:220px;object-fit:cover;border-radius:12px;margin-bottom:14px;background:#222;">
+    <h2 id="mpName"></h2>
+    <p id="mpDesc" style="color:rgba(245,245,245,0.55);font-size:13px;line-height:1.6;margin-bottom:10px;"></p>
+    <p id="mpPrice" style="color:#D4AF37;font-size:1.4rem;font-weight:700;margin-bottom:14px;"></p>
+    <div class="qty-row">
+      <button class="qty-big" onclick="changeQty(-1)">−</button>
+      <span class="qty-disp" id="mpQty">1</span>
+      <button class="qty-big" onclick="changeQty(1)">+</button>
+    </div>
+    <button class="btn-or" onclick="addToCartFromModal()">🛒 Ajouter au Panier</button>
+  </div>
+</div>
+
+<script>
+// ============ DATA ============
+const ADMIN_USER='admin', ADMIN_PASS='rich2026';
+const WHATSAPP='2250789890470', PHONE='0789890470';
+const CATS_REST=['Riz','Attiéké','Poisson','Poulet','Viande','Sauces','Desserts'];
+const CATS_BAR=['Whisky','Champagne','Cocktails','Bières','Vins','Soft Drinks'];
+
+let products = JSON.parse(localStorage.getItem('rl_products')||'null') || [
+  {id:1,name:"Poulet Braisé",price:3500,type:"restaurant",cat:"Poulet",desc:"Poulet braisé aux épices, attiéké et alloco",img:"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&q=80"},
+  {id:2,name:"Riz Sauce Graine",price:2500,type:"restaurant",cat:"Riz",desc:"Riz blanc avec sauce graine traditionnelle",img:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80"},
+  {id:3,name:"Poisson Braisé",price:4000,type:"restaurant",cat:"Poisson",desc:"Poisson frais grillé accompagné d'
