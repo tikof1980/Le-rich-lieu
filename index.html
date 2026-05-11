@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Rich'Lieux - Restaurant Lounge Bar</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        noir: '#111111', 'noir-profond': '#0A0A0A',
+        or: '#D4AF37', 'or-clair': '#F0D87C',
+        bordeaux: '#8B0000', ivoire: '#F5F5F5'
+      },
+      fontFamily: { playfair: ['Playfair Display','serif'], inter: ['Inter','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #111; color: #F5F5F5; }
+  .font-playfair { font-family: 'Playfair Display', serif; }
+  .text-gradient-or { background: linear-gradient(90deg,#D4AF37,#F0D87C,#D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .card-luxe { background: linear-gradient(135deg,#0A0A0A,#111); border: 1px solid rgba(212,175,55,0.2); border-radius: 1rem; transition: all 0.3s; }
+  .card-luxe:hover { border-color: rgba(212,175,55,0.6); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(212,175,55,0.15); }
+  .btn-or { background: linear-gradient(90deg,#D4AF37,#F0D87C); color: #111; font-weight: 700; padding: 0.75rem 1.5rem; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer; }
+  .btn-or:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(212,175,55,0.4); }
+  .glass { background: rgba(10,10,10,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212,175,55,0.2); }
+  @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+  .marquee { animation: marquee 25s linear infinite; }
+  @keyframes glow { 0%,100% { box-shadow: 0 0 20px #D4AF37; } 50% { box-shadow: 0 0 50px #D4AF37; } }
+  .animate-glow { animation: glow 2s infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+  .animate-float { animation: float 3s ease-in-out infinite; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.6s ease-out; }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #0A0A0A; }
+  ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+  .hide-scroll::-webkit-scrollbar { display: none; }
+  .page { display: none; }
+  .page.active { display: block; }
+  .toast { position: fixed; top: 100px; right: 20px; background: #111; color: #D4AF37; padding: 1rem 1.5rem; border: 1px solid #D4AF37; border-radius: 0.5rem; z-index: 1000; animation: fadeIn 0.3s; }
+</style>
+</head>
+<body class="bg-noir">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 glass">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <a onclick="showPage('home')" class="text-2xl font-playfair font-bold text-gradient-or cursor-pointer">Le Rich'Lieux</a>
+    <div class="hidden md:flex gap-6">
+      <a onclick="showPage('home')" class="hover:text-or cursor-pointer transition">Accueil</a>
+      <a onclick="showPage('restaurant')" class="hover:text-or cursor-pointer transition">Restaurant</a>
+      <a onclick="showPage('bar')" class="hover:text-or cursor-pointer transition">Bar Lounge</a>
+      <a onclick="showPage('reservation')" class="hover:text-or cursor-pointer transition">Réservation</a>
+      <a onclick="showPage('events')" class="hover:text-or cursor-pointer transition">Évènements</a>
+      <a onclick="showPage('gallery')" class="hover:text-or cursor-pointer transition">Galerie</a>
+      <a onclick="showPage('admin')" class="hover:text-or cursor-pointer transition text-xs">⚙️ Admin</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="tel:0789890470" class="text-or hover:text-or-clair">📞</a>
+      <button onclick="showPage('cart')" class="text-or relative">
+        🛒 <span id="cart-count" class="absolute -top-2 -right-2 bg-bordeaux text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+      </button>
+      <button onclick="toggleMenu()" class="md:hidden text-or">☰</button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-noir-profond border-t border-or/20 px-4 py-4">
+    <a onclick="showPage('home'); toggleMenu()" class="block py-2 hover:text-or cursor-pointer">Accueil</a>
+    <a onclick="showPage('restaurant'); toggleMenu()" class="block py-2 hover:text-or cursor-pointer">Restaurant</a>
+    <a onclick="showPage('bar'); toggleMenu()" class="block py-2 hover:text-or cursor-pointer">Bar Lounge</a>
+    <a onclick="showPage('reservation'); toggleMenu()" class="block py-2 hover:text-or cursor-pointer">Réservation</a>
+    <a onclick="showPage('events'); toggleMenu()" class="block py-2 hover:text-or cursor-pointer">Évènements</a>
+    <a onclick="showPage('gallery'); toggleMenu()" class="block py-2 hover:text-or cursor-pointer">Galerie</a>
+  </div>
+</nav>
+
+<!-- BANNIÈRE ÉVÉNEMENT -->
+<div class="fixed top-[72px] w-full bg-gradient-to-r from-bordeaux via-or to-bordeaux text-noir font-bold py-2 z-40 overflow-hidden">
+  <div class="marquee whitespace-nowrap">
+    🎉 SOIRÉE DJ VENDREDI • 🍾 CHAMPAGNE OFFERT VIP • 🎵 LIVE MUSIC SAMEDI • 🌟 RÉSERVEZ : 0789890470 • 🥂 HAPPY HOUR 18H-20H
+  </div>
+</div>
+
+<!-- ============ PAGE ACCUEIL ============ -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <section class="relative h-screen flex items-center justify-center overflow-hidden pt-32">
+    <div class="absolute inset-0 bg-gradient-to-br from-noir via-noir-profond to-bordeaux/30"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-or rounded-full blur-3xl opacity-20 animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-bordeaux rounded-full blur-3xl opacity-20 animate-pulse"></div>
+    <div class="relative z-10 text-center px-4 max-w-4xl fade-in">
+      <p class="text-or tracking-[0.3em] mb-4 text-sm md:text-base">SAVEURS • LOUNGE • ÉLÉGANCE</p>
+      <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6">
+        Bienvenue au <span class="text-gradient-or">Rich'Lieux</span>
+      </h1>
+      <p class="text-ivoire/80 text-lg md:text-xl mb-8">
+        Une expérience culinaire et lounge d'exception à Gagnoa.<br>
+        Découvrez nos saveurs, nos cocktails et notre ambiance unique.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:0789890470" class="btn-or">📞 Commander : 0789890470</a>
+        <button onclick="showPage('reservation')" class="border-2 border-or text-or px-6 py-3 rounded-lg hover:bg-or hover:text-noir transition">📅 Réserver une table</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="py-20 px-4 max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-or tracking-widest mb-2">À PROPOS</p>
+        <h2 class="font-playfair text-4xl font-bold mb-6">L'art de recevoir <span class="text-gradient-or">à l'ivoirienne</span></h2>
+        <p class="text-ivoire/80 mb-4 leading-relaxed">
+          Situé au cœur de Gagnoa dans le quartier Garahio, Le Rich'Lieux Lounge Bar vous offre une expérience unique alliant gastronomie raffinée et ambiance lounge premium.
+        </p>
+        <p class="text-ivoire/80 leading-relaxed">
+          Cocktails créatifs, champagnes d'exception, plats traditionnels revisités... Tout est pensé pour faire de votre visite un moment inoubliable.
+        </p>
+      </div>
+      <div class="card-luxe p-8">
+        <div class="grid grid-cols-2 gap-6 text-center">
+          <div><div class="text-4xl font-bold text-or">500+</div><div class="text-ivoire/70 text-sm">Clients satisfaits</div></div>
+          <div><div class="text-4xl font-bold text-or">50+</div><div class="text-ivoire/70 text-sm">Plats au menu</div></div>
+          <div><div class="text-4xl font-bold text-or">30+</div><div class="text-ivoire/70 text-sm">Cocktails</div></div>
+          <div><div class="text-4xl font-bold text-or">7j/7</div><div class="text-ivoire/70 text-sm">Service</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÉGORIES -->
+  <section class="py-20 px-4 max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-or tracking-widest mb-2">NOTRE CARTE</p>
+      <h2 class="font-playfair text-4xl md:text-5xl font-bold">Découvrez nos <span class="text-gradient-or">spécialités</span></h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div onclick="showPage('restaurant')" class="card-luxe p-6 text-center cursor-pointer">
+        <div class="text-6xl mb-4 animate-float">🍚</div>
+        <h3 class="text-xl font-bold text-or mb-2">Riz & Sauces</h3>
+        <p class="text-ivoire/70 text-sm">Composez votre plat parfait</p>
+      </div>
+      <div onclick="showPage('restaurant')" class="card-luxe p-6 text-center cursor-pointer">
+        <div class="text-6xl mb-4 animate-float">🍖</div>
+        <h3 class="text-xl font-bold text-or mb-2">Grillades</h3>
+        <p class="text-ivoire/70 text-sm">Viandes et poissons braisés</p>
+      </div>
+      <div onclick="showPage('bar')" class="card-luxe p-6 text-center cursor-pointer">
+        <div class="text-6xl mb-4 animate-float">🍹</div>
+        <h3 class="text-xl font-bold text-or mb-2">Cocktails</h3>
+        <p class="text-ivoire/70 text-sm">Créations exclusives</p>
+      </div>
+      <div onclick="showPage('bar')" class="card-luxe p-6 text-center cursor-pointer">
+        <div class="text-6xl mb-4 animate-float">🍾</div>
+        <h3 class="text-xl font-bold text-or mb-2">Champagnes</h3>
+        <p class="text-ivoire/70 text-sm">Sélection premium</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PAGE RESTAURANT ============ -->
+<div id="page-restaurant" class="page pt-32">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <p class="text-or tracking-widest mb-2">MENU RESTAURANT</p>
+      <h1 class="font-playfair text-5xl font-bold text-gradient-or">Notre Carte</h1>
+    </div>
+    <div id="restaurant-categories" class="flex gap-3 overflow-x-auto pb-4 mb-8 hide-scroll"></div>
+    <div id="restaurant-products" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</div>
+
+<!-- ============ PAGE BAR ============ -->
+<div id="page-bar" class="page pt-32">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <p class="text-or tracking-widest mb-2">BAR LOUNGE</p>
+      <h1 class="font-playfair text-5xl font-bold text-gradient-or">Nos Boissons</h1>
+    </div>
+    <div id="bar-categories" class="flex gap-3 overflow-x-auto pb-4 mb-8 hide-scroll"></div>
+    <div id="bar-products" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</div>
+
+<!-- ============ PAGE PANIER ============ -->
+<div id="page-cart" class="page pt-32">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="font-playfair text-4xl text-gradient-or mb-8">Mon Panier 🛒</h1>
+    <div id="cart-items"></div>
+    <div id="cart-empty" class="card-luxe p-12 text-center">
+      <p class="text-ivoire/70 mb-4 text-lg">Votre panier est vide</p>
+      <button onclick="showPage('restaurant')" class="btn-or">Voir le menu</button>
+    </div>
+    <div id="cart-summary" class="hidden card-luxe p-6 mt-6">
+      <div class="flex justify-between text-2xl mb-6">
+        <span>Total:</span>
+        <span class="text-gradient-or font-bold"><span id="cart-total">0</span> FCFA</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <button onclick="sendWhatsApp()" class="btn-or">💬 Commander via WhatsApp</button>
+        <a href="tel:0789890470" class="border-2 border-or text-or px-6 py-3 rounded-lg hover:bg-or hover:text-noir transition text-center">📞 Appeler</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE RÉSERVATION ============ -->
+<div id="page-reservation" class="page pt-32">
+  <div class="max-w-2xl mx-auto px-4 py-12">
+    <div class="text-center mb-8">
+      <p class="text-or tracking-widest mb-2">RÉSERVATION</p>
+      <h1 class="font-playfair text-4xl text-gradient-or">Réservez votre table</h1>
+    </div>
+    <form onsubmit="submitReservation(event)" class="card-luxe p-8 space-y-4">
+      <div>
+        <label class="block text-or mb-2">Nom complet</label>
+        <input required type="text" id="res-name" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none">
+      </div>
+      <div>
+        <label class="block text-or mb-2">Téléphone</label>
+        <input required type="tel" id="res-phone" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-or mb-2">Date</label>
+          <input required type="date" id="res-date" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none">
+        </div>
+        <div>
+          <label class="block text-or mb-2">Heure</label>
+          <input required type="time" id="res-time" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none">
+        </div>
+      </div>
+      <div>
+        <label class="block text-or mb-2">Nombre de personnes</label>
+        <input required type="number" id="res-guests" min="1" max="20" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none">
+      </div>
+      <div>
+        <label class="block text-or mb-2">Notes (optionnel)</label>
+        <textarea id="res-notes" rows="3" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none"></textarea>
+      </div>
+      <button type="submit" class="btn-or w-full">📅 Confirmer la réservation</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ PAGE ÉVÉNEMENTS ============ -->
+<div id="page-events" class="page pt-32">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <p class="text-or tracking-widest mb-2">ÉVÈNEMENTS</p>
+      <h1 class="font-playfair text-5xl font-bold text-gradient-or">Nos Soirées</h1>
+    </div>
+    <div id="events-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</div>
+
+<!-- ============ PAGE GALERIE ============ -->
+<div id="page-gallery" class="page pt-32">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <p class="text-or tracking-widest mb-2">GALERIE</p>
+      <h1 class="font-playfair text-5xl font-bold text-gradient-or">Notre Univers</h1>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">🍽️</div>
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">🍷</div>
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">🎉</div>
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">🍾</div>
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">🍹</div>
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">🥂</div>
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">🎵</div>
+      <div class="card-luxe aspect-square flex items-center justify-center text-7xl">✨</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE ADMIN ============ -->
+<div id="page-admin" class="page pt-32">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div id="admin-login" class="max-w-md mx-auto">
+      <h1 class="font-playfair text-4xl text-gradient-or mb-8 text-center">🔐 Admin</h1>
+      <form onsubmit="adminLogin(event)" class="card-luxe p-8 space-y-4">
+        <input required type="text" id="admin-user" placeholder="Identifiant" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none">
+        <input required type="password" id="admin-pwd" placeholder="Mot de passe" class="w-full bg-noir-profond border border-or/30 rounded-lg p-3 focus:border-or outline-none">
+        <button type="submit" class="btn-or w-full">Connexion</button>
+        <p class="text-ivoire/50 text-xs text-center">Démo: admin / richlieux2025</p>
+      </form>
+    </div>
+
+    <div id="admin-dashboard" class="hidden">
+      <div class="flex justify-between items-center mb-8">
+        <h1 class="font-playfair text-4xl text-gradient-or">📊 Tableau de Bord</h1>
+        <button onclick="adminLogout()" class="text-bordeaux hover:text-red-400">Déconnexion</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="card-luxe p-6">
+          <div class="text-or text-sm mb-2">Commandes du jour</div>
+          <div class="text-3xl font-bold" id="stat-orders">0</div>
+        </div>
+        <div class="card-luxe p-6">
+          <div class="text-or text-sm mb-2">CA du jour</div>
+          <div class="text-3xl font-bold" id="stat-revenue">0 F</div>
+        </div>
+        <div class="card-luxe p-6">
+          <div class="text-or text-sm mb-2">Réservations</div>
+          <div class="text-3xl font-bold" id="stat-reservations">0</div>
+        </div>
+        <div class="card-luxe p-6">
+          <div class="text-or text-sm mb-2">Produits</div>
+          <div class="text-3xl font-bold" id="stat-products">0</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 mb-6 overflow-x-auto hide-scroll">
+        <button onclick="adminTab('products')" class="admin-tab btn-or whitespace-nowrap">Produits</button>
+        <button onclick="adminTab('orders')" class="admin-tab border border-or text-or px-4 py-2 rounded-lg whitespace-nowrap">Commandes</button>
+        <button onclick="adminTab('reservations')" class="admin-tab border border-or text-or px-4 py-2 rounded-lg whitespace-nowrap">Réservations</button>
+        <button onclick="adminTab('events')" class="admin-tab border border-or text-or px-4 py-2 rounded-lg whitespace-nowrap">Évènements</button>
+      </div>
+
+      <!-- Products tab -->
+      <div id="admin-tab-products" class="admin-content">
+        <button onclick="openProductModal()" class="btn-or mb-4">+ Ajouter un produit</button>
+        <div id="admin-products-list" class="space-y-2"></div>
+      </div>
+
+      <div id="admin-tab-orders" class="admin-content hidden">
+        <div id="admin-orders-list" class="space-y-2"></div>
+      </div>
+
+      <div id="admin-tab-reservations" class="admin-content hidden">
+        <div id="admin-reservations-list" class="space-y-2"></div>
+      </div>
+
+      <div id="admin-tab-events" class="admin-content hidden">
+        <button onclick="openEventModal()" class="btn-or mb-4">+ Ajouter un évènement</button>
+        <div id="admin-events-list" class="space-y-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PRODUIT -->
+<div id="product-modal" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
+  <div class="card-luxe p-8 max-w-md w-full">
+    <h3 class="font-playfair text-2xl text-gradient-or mb-4">Nouveau Produit</h3>
+    <form onsubmit="saveProduct(event)" class="space-y-3">
+      <input required type="text" id="prod-name" placeholder="Nom" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+      <textarea id="prod-desc" placeholder="Description" class="w-full bg-noir-profond border border-or/30 rounded p-2"></textarea>
+      <input required type="number" id="prod-price" placeholder="Prix (FCFA)" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+      <select id="prod-type" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+        <option value="restaurant">Restaurant</option>
+        <option value="bar">Bar</option>
+      </select>
+      <input required type="text" id="prod-cat" placeholder="Catégorie" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+      <input type="text" id="prod-emoji" placeholder="Emoji (ex: 🍔)" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+      <div class="flex gap-2">
+        <button type="submit" class="btn-or flex-1">Enregistrer</button>
+        <button type="button" onclick="closeProductModal()" class="border border-or text-or px-4 py-2 rounded flex-1">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL ÉVÉNEMENT -->
+<div id="event-modal" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
+  <div class="card-luxe p-8 max-w-md w-full">
+    <h3 class="font-playfair text-2xl text-gradient-or mb-4">Nouvel Évènement</h3>
+    <form onsubmit="saveEvent(event)" class="space-y-3">
+      <input required type="text" id="ev-title" placeholder="Titre" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+      <textarea required id="ev-desc" placeholder="Description" class="w-full bg-noir-profond border border-or/30 rounded p-2"></textarea>
+      <input required type="date" id="ev-date" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+      <input type="text" id="ev-emoji" placeholder="Emoji (ex: 🎉)" class="w-full bg-noir-profond border border-or/30 rounded p-2">
+      <div class="flex gap-2">
+        <button type="submit" class="btn-or flex-1">Enregistrer</button>
+        <button type="button" onclick="closeEventModal()" class="border border-or text-or px-4 py-2 rounded flex-1">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- POPUP ÉVÉNEMENT -->
+<div id="event-popup" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
+  <div class="card-luxe p-8 max-w-md animate-glow relative">
+    <button onclick="closeEventPopup()" class="absolute top-4 right-4 text-or text-2xl">×</button>
+    <div class="text-center">
+      <div class="text-6xl mb-4">🎉</div>
+      <h3 class="font-playfair text-3xl text-gradient-or mb-2">Soirée Spéciale</h3>
+      <p class="text-ivoire mb-4">DJ Night Vendredi - Champagne offert pour les VIP !</p>
+      <a href="tel:0789890470" class="btn-or inline-block">Réserver maintenant</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-noir-profond border-t border-or/20 py-12 px-4 mt-20">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+    <div>
+      <h3 class="text-2xl font-playfair text-gradient-or mb-4">Le Rich'Lieux</h3>
+      <p class="text-ivoire/70">Saveurs • Lounge • Élégance</p>
+    </div>
+    <div>
+      <h4 class="text-or font-bold mb-4">Contact</h4>
+      <div class="space-y-2 text-ivoire/70">
+        <p>📍 Gagnoa, quartier Garahio</p>
+        <a href="tel:0789890470" class="block hover:text-or">📞 0789890470</a>
+        <a href="tel:0779911714" class="block hover:text-or">📞 0779911714</a>
+        <a href="https://wa.me/2250789890470" class="block hover:text-or">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-or font-bold mb-4">Horaires</h4>
+      <div class="text-ivoire/70 space-y-1">
+        <p>Lun - Jeu : 12h - 00h</p>
+        <p>Ven - Sam : 12h - 04h</p>
+        <p>Dim : 14h - 00h</p>
+      </div>
+    </div>
+  </div>
+  <div class="text-center text-ivoire/50 mt-8 pt-8 border-t border-or/10">
+    © 2025 Le Rich'Lieux. Tous droits réservés.
+  </div>
+</footer>
+
+<script>
+// ============ DONNÉES ============
+let products = JSON.parse(localStorage.getItem('rl_products')) || [
+  {id:1, name:'Riz Sauce Graine', desc:'Riz parfumé avec sauce graine traditionnelle', price:3500, type:'restaurant', cat:'Riz', emoji:'🍛'},
+  {id:2, name:'Poisson Braisé', desc:'Poisson frais grillé aux épices', price:5000, type:'restaurant', cat:'Poissons', emoji:'🐟'},
+  {id:3, name:'Poulet Braisé', desc:'Poulet mariné et braisé', price:4500, type:'restaurant', cat:'Viandes', emoji:'🍗'},
+  {id:4, name:'Attiéké Poisson', desc:'Attiéké servi avec poisson grillé', price:4000, type:'restaurant', cat:'Riz', emoji:'🥘'},
+  {id:5, name:'Sauce Arachide', desc:'Sauce arachide onctueuse', price:3000, type:'restaurant', cat:'Sauces', emoji:'🥜'},
+  {id:6, name:'Tiramisu', desc:'Tiramisu maison', price:2500, type:'restaurant', cat:'Desserts', emoji:'🍰'},
+  {id:7, name:'Salade César', desc:'Salade fraîche au poulet', price:3000, type:'restaurant', cat:'Entrées', emoji:'🥗'},
+  {id:8, name:'Mojito', desc:'Cocktail rhum, menthe, citron vert', price:3500, type:'bar', cat:'Cocktails', emoji:'🍹'},
+  {id:9, name:'Jack Daniels', desc:"Whisky américain", price:25000, type:'bar', cat:'Whisky', emoji:'🥃'},
+  {id:10, name:'Moët & Chandon', desc:'Champagne brut impérial', price:55000, type:'bar', cat:'Champagnes', emoji:'🍾'},
+  {id:11, name:'Heineken', desc:'Bière premium', price:1500, type:'bar', cat:'Bières', emoji:'🍺'},
+  {id:12, name:'Pina Colada', desc:'Rhum, ananas, coco', price:4000, type:'bar', cat:'Cocktails', emoji:'🍹'},
+  {id:13, name:'Coca-Cola', desc:'Soft drink classique', price:1000, type:'bar', cat:'Soft Drinks', emoji:'🥤'},
+]
+let cart = JSON.parse(localStorage.getItem('rl_cart')) || []
+let orders = JSON.parse(localStorage.getItem('rl_orders')) || []
+let reservations = JSON.parse(localStorage.getItem('rl_reservations')) || []
+let events = JSON.parse(localStorage.getItem('rl_events')) || [
+  {id:1, title:'DJ Night', desc:'Soirée DJ avec ambiance survoltée', date:'2025-12-31', emoji:'🎵'},
+  {id:2, title:'Soirée VIP', desc:'Champagne offert aux VIP', date:'2025-12-25', emoji:'🥂'},
+]
+let isAdmin = false
+let currentRestCat = 'Tous', currentBarCat = 'Tous'
+
+const save = () => {
+  localStorage.setItem('rl_products', JSON.stringify(products))
+  localStorage.setItem('rl_cart', JSON.stringify(cart))
+  localStorage.setItem('rl_orders', JSON.stringify(orders))
+  localStorage.setItem('rl_reservations', JSON.stringify(reservations))
+  localStorage.setItem('rl_events', JSON.stringify(events))
+}
+
+// ============ NAVIGATION ============
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
+  document.getElementById('page-' + page).classList.add('active')
+  window.scrollTo(0,0)
+  if (page === 'restaurant') renderRestaurant()
+  if (page === 'bar') renderBar()
+  if (page === 'cart') renderCart()
+  if (page === 'events') renderEvents()
+  if (page === 'admin') renderAdmin()
+}
+
+function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden') }
+
+// ============ TOAST ============
+function toast(msg) {
+  const t = document.createElement('div')
+  t.className = 'toast'
+  t.textContent = msg
+  document.body.appendChild(t)
+  setTimeout(() => t.remove(), 3000)
+}
+
+// ============ MENU RESTAURANT ============
+function renderRestaurant() {
+  const cats = ['Tous', ...new Set(products.filter(p=>p.type==='restaurant').map(p=>p.cat))]
+  document.getElementById('restaurant-categories').innerHTML = cats.map(c => 
+    `<button onclick="filterRest('${c}')" class="px-6 py-2 rounded-full whitespace-nowrap transition ${currentRestCat===c?'bg-or text-noir font-bold':'border border-or/30 hover:border-or'}">${c}</button>`
+  ).join('')
+  const filtered = currentRestCat==='Tous' ? products.filter(p=>p.type==='restaurant') : products.filter(p=>p.type==='restaurant' && p.cat===currentRestCat)
+  document.getElementById('restaurant-products').innerHTML = filtered.map(p => productCard(p)).join('')
+}
+function filterRest(c) { currentRestCat = c; renderRestaurant() }
+
+// ============ MENU BAR ============
+function renderBar() {
+  const cats = ['Tous', ...new Set(products.filter(p=>p.type==='bar').map(p=>p.cat))]
+  document.getElementById('bar-categories').innerHTML = cats.map(c => 
+    `<button onclick="filterBar('${c}')" class="px-6 py-2 rounded-full whitespace-nowrap transition ${currentBarCat===c?'bg-or text-noir font-bold':'border border-or/30 hover:border-or'}">${c}</button>`
+  ).join('')
+  const filtered = currentBarCat==='Tous' ? products.filter(p=>p.type==='bar') : products.filter(p=>p.type==='bar' && p.cat===currentBarCat)
+  document.getElementById('bar-products').innerHTML = filtered.map(p => productCard(p)).join('')
+}
+function filterBar(c) { currentBarCat = c; renderBar() }
+
+function productCard(p) {
+  return `<div class="card-luxe p-6 fade-in">
+    <div class="text-7xl text-center mb-4">${p.emoji||'🍽️'}</div>
+    <h3 class="font-playfair text-xl font-bold text-or mb-2">${p.name}</h3>
+    <p class="text-ivoire/70 text-sm mb-4">${p.desc||''}</p>
+    <div class="flex justify-between items-center">
+      <span class="text-2xl font-bold text-gradient-or">${p.price.toLocaleString()} F</span>
+      <button onclick="addToCart(${p.id})" class="bg-or text-noir w-12 h-12 rounded-full hover:bg-or-clair transition text-2xl font-bold">+</button>
+    </div>
+  </div>`
+}
+
+// ============ PANIER ============
+function addToCart(id) {
+  const p = products.find(x => x.id === id)
+  const existing = cart.find(x => x.id === id)
+  if (existing) existing.qty++
+  else cart.push({...p, qty: 1})
+  save()
+  updateCartCount()
+  toast(`✓ ${p.name} ajouté`)
+}
+
+function updateCartCount() {
+  document.getElementById('cart-count').textContent = cart.reduce((s,i)=>s+i.qty,0)
+}
+
+function renderCart() {
+  const empty = document.getElementById('cart-empty')
+  const summary = document.getElementById('cart-summary')
+  const list = document.getElementById('cart-items')
+  if (cart.length === 0) {
+    empty.classList.remove('hidden')
+    summary.classList.add('hidden')
+    list.innerHTML = ''
+    return
+  }
+  empty.classList.add('hidden')
+  summary.classList.remove('hidden')
+  list.innerHTML = cart.map(i => `
+    <div class="card-luxe p-4 flex items-center gap-4 mb-3">
+      <div class="text-4xl">${i.emoji||'🍽️'}</div>
+      <div class="flex-1">
+        <h3 class="text-or font-bold">${i.name}</h3>
+        <p class="text-ivoire/70">${i.price.toLocaleString()} F</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="updateQty(${i.id},${i.qty-1})" class="bg-or/20 w-8 h-8 rounded">−</button>
+        <span class="w-8 text-center">${i.qty}</span>
+        <button onclick="updateQty(${i.id},${i.qty+1})" class="bg-or/20 w-8 h-8 rounded">+</button>
+      </div>
+      <button onclick="removeFromCart(${i.id})" class="text-bordeaux text-xl">🗑️</button>
+    </div>
+  `).join('')
+  document.getElementById('cart-total').textContent = cart.reduce((s,i)=>s+i.price*i.qty,0).toLocaleString()
+}
+
+function updateQty(id, q) {
+  if (q < 1) return removeFromCart(id)
+  cart.find(i=>i.id===id).qty = q
+  save(); updateCartCount(); renderCart()
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i=>i.id!==id)
+  save(); updateCartCount(); renderCart()
+}
+
+function sendWhatsApp() {
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0)
+  const msg = `🍽️ *Commande Rich'Lieux*\n\n` + 
+    cart.map(i=>`• ${i.name} x${i.qty} = ${(i.price*i.qty).toLocaleString()} F`).join('\n') +
+    `\n\n💰 *Total: ${total.toLocaleString()} FCFA*`
+  // Sauvegarder la commande
+  orders.push({id:Date.now(), items:[...cart], total, date:new Date().toISOString(), status:'pending'})
+  save()
+  window.open(`https://wa.me/2250789890470?text=${encodeURIComponent(msg)}`)
+  cart = []; save(); updateCartCount(); renderCart()
+  toast('✓ Commande envoyée !')
+}
+
+// ============ RÉSERVATION ============
+function submitReservation(e) {
+  e.preventDefault()
+  const r = {
+    id: Date.now(),
+    name: document.getElementById('res-name').value,
+    phone: document.getElementById('res-phone').value,
+    date: document.getElementById('res-date').value,
+    time: document.getElementById('res-time').value,
+    guests: document.getElementById('res-guests').value,
+    notes: document.getElementById('res-notes').value,
+    status: 'pending'
+  }
+  reservations.push(r); save()
+  const msg = `📅 *Réservation Rich'Lieux*\n\nNom: ${r.name}\nTéléphone: ${r.phone}\nDate: ${r.date} à ${r.time}\nPersonnes: ${r.guests}\nNotes: ${r.notes||'-'}`
+  window.open(`https://wa.me/2250789890470?text=${encodeURIComponent(msg)}`)
+  e.target.reset()
+  toast('✓ Réservation envoyée !')
+}
+
+// ============ ÉVÉNEMENTS ============
+function renderEvents() {
+  document.getElementById('events-list').innerHTML = events.map(e => `
+    <div class="card-luxe p-6 fade-in">
+      <div class="text-7xl text-center mb-4">${e.emoji||'🎉'}</div>
+      <h3 class="font-playfair text-2xl text-or mb-2">${e.title}</h3>
+      <p class="text-ivoire/70 mb-4">${e.desc}</p>
+      <p class="text-or font-bold">📅 ${e.date}</p>
+      <a href="tel:0789890470" class="btn-or inline-block mt-4">Réserver</a>
+    </div>
+  `).join('')
+}
+
+// ============ ADMIN ============
+function adminLogin(e) {
+  e.preventDefault()
+  const u = document.getElementById('admin-user').value
+  const p = document.getElementById('admin-pwd').value
+  if (u === 'admin' && p === 'richlieux2025') {
+    isAdmin = true
+    renderAdmin()
+    toast('✓ Connecté')
+  } else toast('✗ Identifiants incorrects')
+}
+
+function adminLogout() {
+  isAdmin = false
+  renderAdmin()
+}
+
+function renderAdmin() {
+  document.getElementById('admin-login').classList.toggle('hidden', isAdmin)
+  document.getElementById('admin-dashboard').classList.toggle('hidden', !isAdmin)
+  if (!isAdmin) return
+  
+  const today = new Date().toDateString()
+  const todayOrders = orders.filter(o => new Date(o.date).toDateString() === today)
+  document.getElementById('stat-orders').textContent = todayOrders.length
+  document.getElementById('stat-revenue').textContent = todayOrders.reduce((s,o)=>s+o.total,0).toLocaleString() + ' F'
+  document.getElementById('stat-reservations').textContent = reservations.length
+  document.getElementById('stat-products').textContent = products.length
+  
+  renderAdminProducts()
+  renderAdminOrders()
+  renderAdminReservations()
+  renderAdminEvents()
+}
+
+function adminTab(tab) {
+  document.querySelectorAll('.admin-content').forEach(c => c.classList.add('hidden'))
+  document.getElementById('admin-tab-'+tab).classList.remove('hidden')
+  document.querySelectorAll('.admin-tab').forEach(b => {
+    b.className = 'admin-tab border border-or text-or px-4 py-2 rounded-lg whitespace-nowrap'
+  })
+  event.target.className = 'admin-tab btn-or whitespace-nowrap'
+}
+
+function renderAdminProducts() {
+  document.getElementById('admin-products-list').innerHTML = products.map(p => `
+    <div class="card-luxe p-4 flex items-center gap-4">
+      <div class="text-3xl">${p.emoji||'🍽️'}</div>
+      <div class="flex-1">
+        <div class="text-or font-bold">${p.name}</div>
+        <div class="text-sm
