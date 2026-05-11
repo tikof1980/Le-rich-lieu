@@ -4,348 +4,278 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Rich'Lieux - Restaurant Lounge Bar</title>
+<title>Le Rich'Lieu - Restaurant Lounge Bar</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Inter',sans-serif;background:#111;color:#f5f5f5;overflow-x:hidden;}
+:root{--or:#D4AF37;--or2:#F0D87C;--bg:#111;--bg2:#0a0a0a;--bg3:#1a1a1a;--txt:#f5f5f5;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;}
 .fp{font-family:'Playfair Display',serif;}
-.or{color:#D4AF37;}
+.or{color:var(--or);}
 .tg{background:linear-gradient(90deg,#D4AF37,#F0D87C,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.page{display:none!important;}
-.page.active{display:block!important;}
+
+/* PAGES */
+.page{display:none;}
+.page.active{display:block;}
+
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,10,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,175,55,0.25);}
-.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;max-width:1400px;margin:0 auto;}
-.logo-txt{font-family:'Playfair Display',serif;font-size:1.3rem;color:#D4AF37;font-weight:900;cursor:pointer;}
-.logo-sub{font-size:0.6rem;color:rgba(212,175,55,0.7);letter-spacing:0.2em;display:block;text-transform:uppercase;}
-.nav-links{display:flex;gap:4px;align-items:center;flex-wrap:wrap;}
-.nav-links button{background:none;border:none;color:#f5f5f5;cursor:pointer;font-size:13px;padding:7px 10px;border-radius:6px;transition:all 0.2s;font-family:'Inter',sans-serif;position:relative;}
-.nav-links button:hover,.nav-links button.active{color:#D4AF37;background:rgba(212,175,55,0.12);}
-.badge{position:absolute;top:2px;right:2px;background:#D4AF37;color:#111;border-radius:50%;width:16px;height:16px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
-.nav-right{display:flex;gap:8px;align-items:center;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,5,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.2);}
+.nav-top{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1400px;margin:0 auto;}
+.logo{cursor:pointer;text-decoration:none;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1.4rem;color:#D4AF37;font-weight:900;display:block;}
+.logo-sub{font-size:0.6rem;color:rgba(212,175,55,0.6);letter-spacing:0.25em;text-transform:uppercase;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+.hamburger span{display:block;width:24px;height:2px;background:#D4AF37;border-radius:2px;transition:all 0.3s;}
+.nav-desktop{display:flex;gap:2px;align-items:center;}
+.nav-desktop button{background:none;border:none;color:rgba(245,245,245,0.8);cursor:pointer;font-size:13px;padding:8px 12px;border-radius:6px;transition:all 0.2s;font-family:'Inter',sans-serif;position:relative;white-space:nowrap;}
+.nav-desktop button:hover{color:#D4AF37;background:rgba(212,175,55,0.1);}
+.nav-desktop button.active-nav{color:#D4AF37;background:rgba(212,175,55,0.15);font-weight:600;}
+.nav-right-btns{display:flex;gap:8px;align-items:center;}
+.cart-pill{background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;border-radius:20px;padding:7px 14px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;transition:all 0.2s;}
+.cart-pill:hover{background:rgba(212,175,55,0.25);}
+.badge{background:#D4AF37;color:#111;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+
+/* MOBILE NAV */
+.nav-mobile{display:none;background:#050505;border-top:1px solid rgba(212,175,55,0.15);padding:12px;}
+.nav-mobile.open{display:block;}
+.nav-mobile button{display:block;width:100%;text-align:left;background:none;border:none;color:rgba(245,245,245,0.85);cursor:pointer;padding:12px 16px;font-size:14px;font-family:'Inter',sans-serif;border-radius:8px;transition:all 0.2s;border-left:3px solid transparent;}
+.nav-mobile button:hover{color:#D4AF37;background:rgba(212,175,55,0.08);border-left-color:#D4AF37;}
+.nav-mobile button.active-nav{color:#D4AF37;background:rgba(212,175,55,0.1);border-left-color:#D4AF37;}
+
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.3s;text-decoration:none;}
-.btn-gold{background:linear-gradient(135deg,#D4AF37,#F0D87C);color:#111;}
-.btn-gold:hover{transform:scale(1.04);box-shadow:0 8px 25px rgba(212,175,55,0.5);}
-.btn-green{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;}
-.btn-green:hover{transform:scale(1.04);box-shadow:0 8px 20px rgba(37,211,102,0.4);}
-.btn-red{background:linear-gradient(135deg,#c00,#8B0000);color:#fff;}
-.btn-red:hover{transform:scale(1.04);}
-.btn-outline{background:transparent;border:2px solid #D4AF37;color:#D4AF37;}
-.btn-outline:hover{background:#D4AF37;color:#111;}
-.btn-sm{padding:7px 14px;font-size:12px;}
-.btn-lg{padding:14px 32px;font-size:15px;}
-.btn-full{width:100%;justify-content:center;}
-/* CARDS */
-.card{background:linear-gradient(135deg,#0d0d0d,#1a1a1a);border:1px solid rgba(212,175,55,0.2);border-radius:14px;overflow:hidden;transition:all 0.3s;}
-.card:hover{border-color:rgba(212,175,55,0.55);transform:translateY(-5px);box-shadow:0 20px 45px rgba(212,175,55,0.12);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 22px;border-radius:9px;border:none;cursor:pointer;font-weight:600;font-size:14px;font-family:'Inter',sans-serif;transition:all 0.3s;text-decoration:none;line-height:1;}
+.btn:hover{transform:translateY(-2px);}
+.bg{background:linear-gradient(135deg,#D4AF37,#F0D87C);color:#111;}
+.bg:hover{box-shadow:0 8px 25px rgba(212,175,55,0.45);}
+.bb{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;}
+.bb:hover{box-shadow:0 8px 20px rgba(37,211,102,0.35);}
+.br{background:linear-gradient(135deg,#c00,#8B0000);color:#fff;}
+.br:hover{box-shadow:0 8px 20px rgba(200,0,0,0.35);}
+.bo{background:transparent;border:2px solid #D4AF37;color:#D4AF37;}
+.bo:hover{background:#D4AF37;color:#111;}
+.bn{background:#1a1a1a;border:1px solid rgba(212,175,55,0.2);color:#f5f5f5;}
+.bn:hover{border-color:#D4AF37;}
+.btn-sm{padding:7px 14px;font-size:12px;border-radius:7px;}
+.btn-lg{padding:14px 30px;font-size:15px;}
+.btn-full{width:100%;}
+
 /* INPUTS */
-.inp{width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.3);border-radius:8px;padding:12px 14px;color:#f5f5f5;outline:none;font-size:14px;font-family:'Inter',sans-serif;transition:border 0.3s;}
-.inp:focus{border-color:#D4AF37;}
-.inp option{background:#111;}
-select.inp option{background:#1a1a1a;}
-/* GRID */
-.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
-.grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;}
-.grid-4{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#050505 0%,#111 40%,#0a0a0a 100%);position:relative;padding:100px 20px 60px;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,175,55,0.08) 0%,transparent 70%);}
-.hero-slider{position:absolute;inset:0;overflow:hidden;}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s;display:flex;align-items:center;justify-content:center;font-size:8rem;}
-.hero-slide.on{opacity:0.06;}
-/* SECTION */
-.section{padding:80px 20px;}
-.section-inner{max-width:1200px;margin:0 auto;}
-.section-title{text-align:center;margin-bottom:48px;}
-.section-title p{color:#D4AF37;letter-spacing:0.3em;font-size:0.8rem;text-transform:uppercase;margin-bottom:8px;}
-.section-title h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;}
-/* PRODUCT IMAGE */
-.prod-img{width:100%;height:180px;object-fit:cover;background:#1a1a1a;}
-.prod-emoji{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,#1a1a1a,#0a0a0a);}
-/* CART FLOAT */
-.cart-float{position:fixed;bottom:24px;right:24px;z-index:999;}
-.cart-btn-float{background:linear-gradient(135deg,#D4AF37,#F0D87C);color:#111;border:none;border-radius:50px;padding:14px 22px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(212,175,55,0.5);display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;transition:all 0.3s;}
-.cart-btn-float:hover{transform:scale(1.08);}
-/* MODAL */
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;padding:20px;}
-.modal-bg.open{display:flex;}
-.modal{background:#111;border:1px solid rgba(212,175,55,0.35);border-radius:16px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;}
-.modal-head{padding:20px 24px;border-bottom:1px solid rgba(212,175,55,0.15);display:flex;justify-content:space-between;align-items:center;}
-.modal-body{padding:24px;}
-.close-btn{background:none;border:none;color:#f5f5f5;font-size:22px;cursor:pointer;transition:color 0.2s;}
-.close-btn:hover{color:#D4AF37;}
-/* TOAST */
-.toast-container{position:fixed;top:80px;right:20px;z-index:3000;display:flex;flex-direction:column;gap:8px;}
-.toast{background:linear-gradient(135deg,#1a1a1a,#0d0d0d);border:1px solid rgba(212,175,55,0.4);border-radius:10px;padding:12px 18px;font-size:13px;box-shadow:0 8px 25px rgba(0,0,0,0.5);animation:slideIn 0.3s ease;min-width:240px;}
-@keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+.inp{width:100%;background:#0d0d0d;border:1px solid rgba(212,175,55,0.25);border-radius:9px;padding:12px 14px;color:#f5f5f5;outline:none;font-size:14px;font-family:'Inter',sans-serif;transition:border 0.3s;}
+.inp:focus{border-color:#D4AF37;box-shadow:0 0 0 3px rgba(212,175,55,0.08);}
+.inp option,.inp optgroup{background:#1a1a1a;color:#f5f5f5;}
+label.lbl{display:block;color:rgba(212,175,55,0.9);font-size:12px;font-weight:600;margin-bottom:6px;letter-spacing:0.05em;text-transform:uppercase;}
+.fg{margin-bottom:16px;}
+
+/* CARDS */
+.card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.15);border-radius:14px;overflow:hidden;transition:all 0.3s;}
+.card:hover{border-color:rgba(212,175,55,0.45);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,0.5),0 0 30px rgba(212,175,55,0.08);}
+
+/* PRODUCT CARD */
+.prod-img-wrap{width:100%;height:190px;overflow:hidden;background:#111;position:relative;cursor:pointer;}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.prod-img-wrap:hover img{transform:scale(1.08);}
+.prod-emoji-wrap{width:100%;height:190px;display:flex;align-items:center;justify-content:center;font-size:4.5rem;background:linear-gradient(135deg,#181818,#0d0d0d);cursor:pointer;}
+.prod-body{padding:16px;}
+.prod-name{font-weight:700;font-size:15px;margin-bottom:4px;}
+.prod-desc{color:rgba(245,245,245,0.5);font-size:12px;line-height:1.6;margin-bottom:12px;}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.prod-price{font-family:'Playfair Display',serif;color:#D4AF37;font-size:1.25rem;font-weight:700;}
+
+/* REACTIONS */
+.react-bar{display:flex;gap:6px;padding:10px 16px;border-top:1px solid rgba(212,175,55,0.08);background:rgba(0,0,0,0.2);}
+.react-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 10px;cursor:pointer;font-size:15px;display:flex;align-items:center;gap:4px;transition:all 0.2s;color:#f5f5f5;font-family:'Inter',sans-serif;font-size:12px;}
+.react-btn:hover{background:rgba(212,175,55,0.15);border-color:rgba(212,175,55,0.3);transform:scale(1.1);}
+.react-btn.reacted{background:rgba(212,175,55,0.2);border-color:#D4AF37;color:#D4AF37;}
+
 /* CATEGORIES */
-.cat-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
-.cat-btn{background:#1a1a1a;border:1px solid rgba(212,175,55,0.2);color:#f5f5f5;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:13px;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.cat-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.cat-btn{background:#111;border:1px solid rgba(212,175,55,0.2);color:rgba(245,245,245,0.7);padding:8px 18px;border-radius:22px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.25s;white-space:nowrap;}
 .cat-btn:hover,.cat-btn.active{background:#D4AF37;color:#111;border-color:#D4AF37;font-weight:700;}
-/* STAT CARDS */
-.stat-card{background:linear-gradient(135deg,#0d0d0d,#1a1a1a);border:1px solid rgba(212,175,55,0.2);border-radius:14px;padding:24px;text-align:center;}
-.stat-num{font-size:2rem;font-weight:900;color:#D4AF37;font-family:'Playfair Display',serif;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:2000;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:linear-gradient(145deg,#111,#0d0d0d);border:1px solid rgba(212,175,55,0.3);border-radius:16px;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;animation:fadeUp 0.3s ease;}
+@keyframes fadeUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.modal-head{padding:20px 24px;border-bottom:1px solid rgba(212,175,55,0.12);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#111;z-index:1;}
+.modal-head h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:#D4AF37;}
+.modal-close{background:rgba(255,255,255,0.07);border:none;color:#f5f5f5;font-size:20px;cursor:pointer;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:rgba(200,0,0,0.3);color:#fff;}
+.modal-body{padding:24px;}
+
+/* TOAST */
+.toasts{position:fixed;top:90px;right:16px;z-index:4000;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+.toast{background:linear-gradient(135deg,#1a1a1a,#111);border:1px solid rgba(212,175,55,0.35);border-radius:10px;padding:12px 18px;font-size:13px;box-shadow:0 8px 30px rgba(0,0,0,0.6);animation:toastIn 0.3s ease;min-width:220px;max-width:300px;pointer-events:all;}
+.toast.success{border-color:rgba(37,211,102,0.5);}
+.toast.error{border-color:rgba(200,0,0,0.5);}
+@keyframes toastIn{from{transform:translateX(110%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes toastOut{from{transform:translateX(0);opacity:1;}to{transform:translateX(110%);opacity:0;}}
+
+/* SECTION */
+.section{padding:70px 20px;}
+.s-inner{max-width:1200px;margin:0 auto;}
+.s-title{text-align:center;margin-bottom:48px;}
+.s-title small{display:block;color:#D4AF37;letter-spacing:0.3em;font-size:0.75rem;text-transform:uppercase;margin-bottom:8px;}
+.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:900;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:100px 20px 60px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(212,175,55,0.07) 0%,transparent 65%);}
+.hero-deco{position:absolute;opacity:0.04;font-size:clamp(4rem,12vw,8rem);pointer-events:none;}
+
+/* STATS */
+.stat-card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:22px;text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:#D4AF37;}
+.stat-lbl{font-size:12px;color:rgba(245,245,245,0.5);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;}
+
 /* EVENT BANNER */
-.event-banner{background:linear-gradient(90deg,#8B0000,#D4AF37,#8B0000);color:#fff;text-align:center;padding:10px;font-weight:700;font-size:13px;position:relative;overflow:hidden;}
-.event-scroll{display:inline-block;animation:scroll 18s linear infinite;white-space:nowrap;}
-@keyframes scroll{from{transform:translateX(100vw);}to{transform:translateX(-100%)}}
+.evt-banner{background:linear-gradient(90deg,#8B0000,#D4AF37,#8B0000);padding:9px 0;overflow:hidden;}
+.evt-scroll{display:inline-block;white-space:nowrap;animation:scroll 22s linear infinite;color:#111;font-weight:700;font-size:13px;}
+@keyframes scroll{from{transform:translateX(100vw);}to{transform:translateX(-100%);}}
+
 /* ADMIN */
-.admin-sidebar{width:220px;min-width:220px;background:#0a0a0a;border-right:1px solid rgba(212,175,55,0.2);height:100%;position:fixed;top:0;left:0;padding-top:80px;z-index:500;}
-.admin-sidebar button{display:block;width:100%;text-align:left;background:none;border:none;color:#f5f5f5;padding:12px 20px;cursor:pointer;font-size:14px;font-family:'Inter',sans-serif;transition:all 0.2s;border-left:3px solid transparent;}
-.admin-sidebar button:hover,.admin-sidebar button.active{color:#D4AF37;background:rgba(212,175,55,0.08);border-left-color:#D4AF37;}
-.admin-content{margin-left:220px;padding:100px 30px 40px;}
+.admin-wrap{display:flex;min-height:100vh;padding-top:88px;}
+.admin-side{width:200px;min-width:200px;background:#050505;border-right:1px solid rgba(212,175,55,0.15);padding:20px 0;position:sticky;top:88px;height:calc(100vh - 88px);overflow-y:auto;}
+.admin-side button{display:block;width:100%;text-align:left;background:none;border:none;color:rgba(245,245,245,0.7);padding:11px 20px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.2s;border-left:3px solid transparent;white-space:nowrap;}
+.admin-side button:hover{color:#D4AF37;background:rgba(212,175,55,0.07);}
+.admin-side button.active{color:#D4AF37;background:rgba(212,175,55,0.1);border-left-color:#D4AF37;font-weight:600;}
+.admin-main{flex:1;padding:30px;overflow-x:hidden;}
 .admin-panel{display:none;}
 .admin-panel.active{display:block;}
-/* REACTION */
-.reactions{display:flex;gap:8px;padding:12px 16px;border-top:1px solid rgba(212,175,55,0.1);}
-.react-btn{background:none;border:none;font-size:18px;cursor:pointer;transition:transform 0.2s;position:relative;}
-.react-btn:hover{transform:scale(1.4);}
-.react-count{font-size:11px;color:rgba(245,245,245,0.5);margin-top:2px;text-align:center;}
-/* STARS */
-.stars{color:#D4AF37;font-size:16px;}
+
 /* GALLERY */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
-.gallery-item{position:relative;aspect-ratio:1;overflow:hidden;border-radius:10px;cursor:pointer;border:2px solid transparent;transition:all 0.3s;}
-.gallery-item:hover{border-color:#D4AF37;transform:scale(1.02);}
-.gallery-item img{width:100%;height:100%;object-fit:cover;}
-.gallery-del{position:absolute;top:6px;right:6px;background:rgba(200,0,0,0.85);border:none;border-radius:50%;width:28px;height:28px;color:#fff;font-size:14px;cursor:pointer;display:none;align-items:center;justify-content:center;}
-.gallery-item:hover .gallery-del{display:flex;}
-/* TABS */
-.tabs{display:flex;gap:4px;background:#0a0a0a;border-radius:10px;padding:4px;margin-bottom:24px;}
-.tab-btn{flex:1;padding:10px;background:none;border:none;color:rgba(245,245,245,0.6);cursor:pointer;border-radius:7px;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.2s;}
-.tab-btn.active{background:#D4AF37;color:#111;font-weight:700;}
-/* RESPONSIVE */
-@media(max-width:768px){
-.admin-sidebar{width:100%;height:auto;position:relative;padding-top:0;border-right:none;border-bottom:1px solid rgba(212,175,55,0.2);display:flex;flex-wrap:wrap;}
-.admin-sidebar button{width:auto;border-left:none;border-bottom:3px solid transparent;padding:10px 14px;font-size:12px;}
-.admin-sidebar button.active{border-bottom-color:#D4AF37;border-left:none;}
-.admin-content{margin-left:0;padding:20px 14px 80px;}
-.nav-links{display:none;}
-.grid-3,.grid-2,.grid-4{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
-}
-@media(max-width:480px){
-.grid-3,.grid-2,.grid-4{grid-template-columns:1fr 1fr;}
-.btn-lg{padding:12px 20px;font-size:14px;}
-}
-/* DIVIDER */
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.3),transparent);margin:40px 0;}
-/* PROGRESS */
-.progress{background:#1a1a1a;border-radius:10px;height:8px;overflow:hidden;}
-.progress-bar{height:100%;background:linear-gradient(90deg,#D4AF37,#F0D87C);border-radius:10px;transition:width 0.6s;}
-/* LABEL */
-label.lbl{display:block;color:#D4AF37;font-size:13px;font-weight:600;margin-bottom:6px;}
-/* FORM GROUP */
-.fg{margin-bottom:18px;}
-/* SWITCH */
-.switch{position:relative;display:inline-block;width:44px;height:24px;}
-.switch input{opacity:0;width:0;height:0;}
-.slider-sw{position:absolute;cursor:pointer;inset:0;background:#333;border-radius:24px;transition:0.3s;}
-.slider-sw:before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:0.3s;}
-input:checked+.slider-sw{background:#D4AF37;}
-input:checked+.slider-sw:before{transform:translateX(20px);}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.gal-item{aspect-ratio:1;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;border:2px solid transparent;transition:all 0.3s;}
+.gal-item:hover{border-color:#D4AF37;transform:scale(1.03);}
+.gal-item img{width:100%;height:100%;object-fit:cover;}
+.gal-item .gal-del{position:absolute;top:6px;right:6px;background:rgba(200,0,0,0.85);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:14px;}
+.gal-item:hover .gal-del{display:flex;}
+.gal-add{aspect-ratio:1;border-radius:10px;border:2px dashed rgba(212,175,55,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:8px;color:rgba(212,175,55,0.6);font-size:13px;transition:all 0.3s;}
+.gal-add:hover{border-color:#D4AF37;color:#D4AF37;background:rgba(212,175,55,0.05);}
+
 /* SCROLLBAR */
-::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:#0a0a0a;}
 ::-webkit-scrollbar-thumb{background:#D4AF37;border-radius:3px;}
-/* NOTIFICATION */
-.notif-dot{width:10px;height:10px;background:#D4AF37;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.3);}}
-/* HERO ICONS BG */
-.float-icon{position:absolute;font-size:3rem;opacity:0.04;animation:float 6s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+
+/* CART FLOAT */
+.cart-float{position:fixed;bottom:24px;right:20px;z-index:990;display:none;}
+.cart-float-btn{background:linear-gradient(135deg,#D4AF37,#F0D87C);color:#111;border:none;border-radius:50px;padding:13px 22px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(212,175,55,0.5);display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;transition:all 0.3s;}
+.cart-float-btn:hover{transform:scale(1.06);}
+
+/* RESERVATION */
+.res-card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.2);border-radius:14px;padding:28px;}
+
+/* TABLE QTY */
+.qty-wrap{display:flex;align-items:center;gap:10px;}
+.qty-btn{background:#1a1a1a;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;width:32px;height:32px;border-radius:7px;cursor:pointer;font-size:16px;font-family:'Inter',sans-serif;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
+.qty-btn:hover{background:#D4AF37;color:#111;}
+.qty-val{font-size:16px;font-weight:700;min-width:28px;text-align:center;}
+
+/* PROGRESS */
+.prog-wrap{background:#1a1a1a;border-radius:10px;height:7px;overflow:hidden;}
+.prog-bar{height:100%;background:linear-gradient(90deg,#D4AF37,#F0D87C);border-radius:10px;transition:width 0.6s;}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.25),transparent);margin:32px 0;}
+
+/* IMAGE UPLOAD */
+.img-upload-area{border:2px dashed rgba(212,175,55,0.35);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;}
+.img-upload-area:hover{border-color:#D4AF37;background:rgba(212,175,55,0.04);}
+.img-upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.img-preview{width:100%;max-height:180px;object-fit:contain;border-radius:8px;margin-top:12px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.admin-side{display:none;}
+.admin-main{padding:16px;}
+}
+@media(max-width:768px){
+.hamburger{display:flex;}
+.nav-desktop{display:none;}
+.admin-wrap{flex-direction:column;}
+}
+@media(max-width:500px){
+.btn-lg{padding:12px 20px;font-size:14px;}
+}
+
+/* PULSE */
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.pulse{animation:pulse 1.8s ease-in-out infinite;}
+/* STARS */
+.stars{color:#D4AF37;}
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:rgba(212,175,55,0.1);color:#D4AF37;padding:12px 14px;text-align:left;font-weight:600;border-bottom:1px solid rgba(212,175,55,0.2);}
+td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:middle;}
+tr:hover td{background:rgba(212,175,55,0.03);}
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.login-card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.3);border-radius:20px;padding:40px;width:100%;max-width:400px;}
 </style>
 </head>
 <body>
 
-<!-- TOAST -->
-<div class="toast-container" id="toasts"></div>
+<div class="toasts" id="toasts"></div>
 
 <!-- EVENT BANNER -->
-<div class="event-banner" id="eventBanner">
-  <span class="event-scroll">🎉 SOIRÉE VIP SAMEDI — DJ SET + COCKTAILS OFFERTS | Réservez maintenant au 0789890470 🥂 LE RICH'LIEUX LOUNGE BAR — Saveurs • Lounge • Élégance 🎶</span>
+<div class="evt-banner">
+  <span class="evt-scroll">🎉 SOIRÉE VIP CE SAMEDI — DJ SET + COCKTAILS PREMIUM | Réservez : 0789890470 🥂 LE RICH'LIEU LOUNGE BAR — Saveurs • Lounge • Élégance ✨ Quartier Garahio, Gagnoa</span>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <div onclick="showPage('home')" style="cursor:pointer;">
-      <span class="logo-txt">Le Rich'Lieux</span>
+  <div class="nav-top">
+    <a class="logo" onclick="goPage('home')">
+      <span class="logo-name">Le Rich'Lieu</span>
       <span class="logo-sub">Saveurs • Lounge • Élégance</span>
+    </a>
+    <div class="nav-desktop" id="navDesktop">
+      <button onclick="goPage('home')" id="nb-home">🏠 Accueil</button>
+      <button onclick="goPage('restaurant')" id="nb-restaurant">🍽️ Restaurant</button>
+      <button onclick="goPage('bar')" id="nb-bar">🍹 Bar Lounge</button>
+      <button onclick="goPage('reservation')" id="nb-reservation">📅 Réservation</button>
+      <button onclick="goPage('events')" id="nb-events">🎉 Évènements <span class="badge" id="evtBadge">1</span></button>
+      <button onclick="goPage('gallery')" id="nb-gallery">🖼️ Galerie</button>
+      <button onclick="goPage('admin')" id="nb-admin" style="color:#D4AF37;">👑 Admin</button>
     </div>
-    <div class="nav-links" id="navLinks">
-      <button onclick="showPage('home')" id="nav-home">🏠 Accueil</button>
-      <button onclick="showPage('restaurant')" id="nav-restaurant">🍽️ Restaurant</button>
-      <button onclick="showPage('bar')" id="nav-bar">🍹 Bar Lounge</button>
-      <button onclick="showPage('reservation')" id="nav-reservation">📅 Réservation</button>
-      <button onclick="showPage('events')" id="nav-events">🎉 Évènements <span class="badge" id="evtBadge">1</span></button>
-      <button onclick="showPage('gallery')" id="nav-gallery">🖼️ Galerie</button>
-      <button onclick="showPage('cart')" id="nav-cart">🛒 Panier <span class="badge" id="cartBadge" style="display:none">0</span></button>
-      <button onclick="showPage('admin')" id="nav-admin" style="color:#D4AF37;">👑 Admin</button>
+    <div class="nav-right-btns">
+      <button class="cart-pill" onclick="goPage('cart')">🛒 <span id="cartNum">0</span></button>
+      <button class="hamburger" onclick="toggleMenu()" id="hamBtn">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="nav-right">
-      <button onclick="showPage('cart')" style="background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;" id="cartNavBtn">🛒 <span id="cartCount">0</span></button>
-      <button onclick="openMobileMenu()" style="background:none;border:none;color:#D4AF37;font-size:22px;cursor:pointer;" id="menuBtn">☰</button>
-    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <button onclick="goPage('home');closeMenu();" id="nm-home">🏠 Accueil</button>
+    <button onclick="goPage('restaurant');closeMenu();" id="nm-restaurant">🍽️ Restaurant</button>
+    <button onclick="goPage('bar');closeMenu();" id="nm-bar">🍹 Bar Lounge</button>
+    <button onclick="goPage('reservation');closeMenu();" id="nm-reservation">📅 Réservation</button>
+    <button onclick="goPage('events');closeMenu();" id="nm-events">🎉 Évènements</button>
+    <button onclick="goPage('gallery');closeMenu();" id="nm-gallery">🖼️ Galerie</button>
+    <button onclick="goPage('admin');closeMenu();" id="nm-admin" style="color:#D4AF37;">👑 Administration</button>
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
-<div id="mobileMenu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.95);z-index:1500;padding:80px 30px 40px;overflow-y:auto;">
-  <button onclick="closeMobileMenu()" style="position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">✕</button>
-  <div style="display:flex;flex-direction:column;gap:8px;">
-    <button onclick="showPage('home');closeMobileMenu();" class="btn btn-outline btn-full" style="justify-content:flex-start;">🏠 Accueil</button>
-    <button onclick="showPage('restaurant');closeMobileMenu();" class="btn btn-outline btn-full" style="justify-content:flex-start;">🍽️ Restaurant</button>
-    <button onclick="showPage('bar');closeMobileMenu();" class="btn btn-outline btn-full" style="justify-content:flex-start;">🍹 Bar Lounge</button>
-    <button onclick="showPage('reservation');closeMobileMenu();" class="btn btn-outline btn-full" style="justify-content:flex-start;">📅 Réservation</button>
-    <button onclick="showPage('events');closeMobileMenu();" class="btn btn-outline btn-full" style="justify-content:flex-start;">🎉 Évènements</button>
-    <button onclick="showPage('gallery');closeMobileMenu();" class="btn btn-outline btn-full" style="justify-content:flex-start;">🖼️ Galerie</button>
-    <button onclick="showPage('cart');closeMobileMenu();" class="btn btn-outline btn-full" style="justify-content:flex-start;">🛒 Panier</button>
-    <button onclick="showPage('admin');closeMobileMenu();" class="btn btn-gold btn-full" style="justify-content:flex-start;">👑 Administration</button>
-    <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
-      <a href="tel:0789890470" class="btn btn-green btn-full">📞 0789890470</a>
-      <a href="tel:0779911714" class="btn btn-green btn-full">📞 0779911714</a>
-    </div>
-  </div>
-</div>
-
 <!-- CART FLOAT -->
-<div class="cart-float" id="cartFloat" style="display:none;">
-  <button class="cart-btn-float" onclick="showPage('cart')">🛒 Voir panier (<span id="cartFloatCount">0</span>) — <span id="cartFloatTotal">0</span> F</button>
+<div class="cart-float" id="cartFloat">
+  <button class="cart-float-btn" onclick="goPage('cart')">🛒 Panier (<span id="cfCount">0</span>) — <span id="cfTotal">0</span> FCFA</button>
 </div>
 
-<!-- ============================================================ -->
-<!-- PAGE ACCUEIL -->
-<!-- ============================================================ -->
-<div id="page-home" class="page active" style="padding-top:88px;">
-
-  <!-- HERO -->
+<!-- ================================================================ -->
+<!-- HOME PAGE -->
+<!-- ================================================================ -->
+<div id="page-home" class="page active">
   <div class="hero">
-    <div style="position:absolute;top:15%;left:10%;font-size:4rem;opacity:0.04;animation:float 5s ease-in-out infinite;">🍷</div>
-    <div style="position:absolute;top:30%;right:8%;font-size:3rem;opacity:0.04;animation:float 7s ease-in-out infinite 1s;">🍸</div>
-    <div style="position:absolute;bottom:20%;left:5%;font-size:3.5rem;opacity:0.04;animation:float 6s ease-in-out infinite 2s;">🍽️</div>
-    <div style="position:relative;z-index:1;">
-      <p style="color:#D4AF37;letter-spacing:0.4em;font-size:0.8rem;text-transform:uppercase;margin-bottom:16px;">★ Gagnoa, Quartier Garahio ★</p>
-      <h1 class="fp" style="font-size:clamp(2.5rem,8vw,5.5rem);font-weight:900;line-height:1.1;margin-bottom:16px;">
-        <span class="tg">Le Rich'Lieux</span><br>
-        <span style="font-size:0.55em;color:#f5f5f5;">Restaurant Lounge Bar</span>
+    <div class="hero-bg"></div>
+    <div class="hero-deco" style="top:15%;left:8%;animation:float1 6s ease-in-out infinite;">🍷</div>
+    <div class="hero-deco" style="top:25%;right:6%;animation:float1 8s ease-in-out infinite 1s;">🍸</div>
+    <div class="hero-deco" style="bottom:18%;left:4%;animation:float1 7s ease-in-out infinite 2s;">🍽️</div>
+    <style>@keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}</style>
+    <div style="position:relative;z-index:1;max-width:720px;">
+      <p style="color:#D4AF37;letter-spacing:0.4em;font-size:0.75rem;text-transform:uppercase;margin-bottom:16px;">★ Gagnoa, Quartier Garahio ★</p>
+      <h1 class="fp" style="font-size:clamp(2.8rem,9vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:16px;">
+        <span class="tg">Le Rich'Lieu</span><br>
+        <span style="font-size:0.5em;color:#f5f5f5;font-weight:400;">Restaurant Lounge Bar</span>
       </h1>
-      <p style="color:rgba(245,245,245,0.7);font-size:1rem;margin-bottom:12px;letter-spacing:0.15em;">Saveurs • Lounge • Élégance</p>
-      <p style="color:rgba(245,245,245,0.55);font-size:0.9rem;max-width:480px;margin:0 auto 36px;">Une expérience culinaire et lounge unique à Gagnoa. Découvrez nos menus gastronomiques, cocktails premium et soirées exclusives.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <button onclick="showPage('restaurant')" class="btn btn-gold btn-lg">🍽️ Voir le Menu</button>
-        <button onclick="showPage('reservation')" class="btn btn-outline btn-lg">📅 Réserver</button>
-        <button onclick="showPage('bar')" class="btn btn-outline btn-lg">🍹 Bar Lounge</button>
-      </div>
-      <div style="margin-top:28px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-        <a href="https://wa.me/2250789890470" target="_blank" class="btn btn-green">💬 WhatsApp</a>
-        <a href="tel:0789890470" class="btn btn-outline">📞 Appeler</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FEATURES -->
-  <div class="section" style="background:#0a0a0a;">
-    <div class="section-inner">
-      <div class="section-title">
-        <p>POURQUOI NOUS CHOISIR</p>
-        <h2 class="tg">L'Excellence au Quotidien</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;">
-        <div class="card" style="padding:28px;text-align:center;">
-          <div style="font-size:3rem;margin-bottom:16px;">🍽️</div>
-          <h3 class="fp or" style="font-size:1.1rem;margin-bottom:8px;">Cuisine Raffinée</h3>
-          <p style="color:rgba(245,245,245,0.6);font-size:13px;line-height:1.7;">Des plats préparés avec les meilleurs ingrédients locaux et internationaux.</p>
-        </div>
-        <div class="card" style="padding:28px;text-align:center;">
-          <div style="font-size:3rem;margin-bottom:16px;">🍹</div>
-          <h3 class="fp or" style="font-size:1.1rem;margin-bottom:8px;">Bar Premium</h3>
-          <p style="color:rgba(245,245,245,0.6);font-size:13px;line-height:1.7;">Cocktails exclusifs, champagnes et spiritueux de grande qualité.</p>
-        </div>
-        <div class="card" style="padding:28px;text-align:center;">
-          <div style="font-size:3rem;margin-bottom:16px;">🎵</div>
-          <h3 class="fp or" style="font-size:1.1rem;margin-bottom:8px;">Ambiance Lounge</h3>
-          <p style="color:rgba(245,245,245,0.6);font-size:13px;line-height:1.7;">Musique live, DJ sets et soirées thématiques pour vos moments inoubliables.</p>
-        </div>
-        <div class="card" style="padding:28px;text-align:center;">
-          <div style="font-size:3rem;margin-bottom:16px;">🚚</div>
-          <h3 class="fp or" style="font-size:1.1rem;margin-bottom:8px;">Commande Rapide</h3>
-          <p style="color:rgba(245,245,245,0.6);font-size:13px;line-height:1.7;">Commandez à distance via WhatsApp ou par téléphone, livraison disponible.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- QUICK ORDER -->
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-title">
-        <p>COMMANDE RAPIDE</p>
-        <h2 class="tg">Contactez-Nous</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;max-width:700px;margin:0 auto;">
-        <a href="https://wa.me/2250789890470?text=Bonjour%20Le%20Rich'Lieux%2C%20je%20souhaite%20passer%20une%20commande%20!" target="_blank" class="btn btn-green btn-lg btn-full">
-          💬 WhatsApp — 0789890470
-        </a>
-        <a href="https://wa.me/2250779911714?text=Bonjour%20Le%20Rich'Lieux%2C%20je%20souhaite%20passer%20une%20commande%20!" target="_blank" class="btn btn-green btn-lg btn-full">
-          💬 WhatsApp — 0779911714
-        </a>
-        <a href="tel:0789890470" class="btn btn-outline btn-lg btn-full">📞 Appel — 0789890470</a>
-        <a href="tel:0779911714" class="btn btn-outline btn-lg btn-full">📞 Appel — 0779911714</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- POPULAR ITEMS -->
-  <div class="section" style="background:#0a0a0a;">
-    <div class="section-inner">
-      <div class="section-title">
-        <p>NOS SPÉCIALITÉS</p>
-        <h2 class="tg">Plats Populaires</h2>
-      </div>
-      <div id="popularGrid" class="grid-3"></div>
-      <div style="text-align:center;margin-top:32px;">
-        <button onclick="showPage('restaurant')" class="btn btn-gold btn-lg">🍽️ Voir tout le Menu</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTACT -->
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-title">
-        <p>NOUS TROUVER</p>
-        <h2 class="tg">Contact & Localisation</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
-        <div class="card" style="padding:28px;">
-          <h3 class="fp or" style="margin-bottom:16px;">📍 Adresse</h3>
-          <p style="color:rgba(245,245,245,0.7);line-height:1.8;">Gagnoa, Quartier Garahio<br>Côte d'Ivoire</p>
-        </div>
-        <div class="card" style="padding:28px;">
-          <h3 class="fp or" style="margin-bottom:16px;">📞 Téléphones</h3>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <a href="tel:0789890470" class="btn btn-green btn-sm">📞 0789890470</a>
-            <a href="tel:0779911714" class="btn btn-green btn-sm">📞 0779911714</a>
-          </div>
-        </div>
-        <div class="card" style="padding:28px;">
-          <h3 class="fp or" style="margin-bottom:16px;">⏰ Horaires</h3>
-          <p style="color:rgba(245,245,245,0.7);line-height:1.8;">Lundi - Dimanche<br>12h00 — 00h00<br><span class="notif-dot" style="margin-right:6px;"></span>Ouvert maintenant</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- PAGE RESTAURANT -->
-<!-- ============================================================ -->
-<div id="page-restaurant" class="page" style="padding-top:88px;">
-  <div class="section-inner" style="padding:40px 20px 80px;max-width:1200px;margin:0 auto;">
-    <div class="section-title">
-      <p>NOS SPÉCIALITÉS</p>
-      <h2 class="tg">Menu Restaurant</h2>
-    </div>
-    <div class="cat-bar
+      <p style="color:rgba(245,245,245,0.55);font-size:0.95rem;margin-bottom:36px;
