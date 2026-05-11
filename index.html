@@ -5,406 +5,751 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Rich'Lieux - Restaurant Lounge Bar</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #111111; color: #F5F5F5; overflow-x: hidden; }
-.font-playfair { font-family: 'Playfair Display', serif; }
-.text-or { color: #D4AF37; }
-.bg-or { background: #D4AF37; }
-.text-gradient-or {
-  background: linear-gradient(90deg, #D4AF37, #F0D87C, #D4AF37);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.card-luxe {
-  background: linear-gradient(135deg, #0A0A0A, #1a1a1a);
-  border: 1px solid rgba(212,175,55,0.25);
-  border-radius: 1rem;
-  transition: all 0.3s ease;
-}
-.card-luxe:hover {
-  border-color: rgba(212,175,55,0.7);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(212,175,55,0.15);
-}
-.btn-or {
-  background: linear-gradient(90deg, #D4AF37, #F0D87C);
-  color: #111111;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-}
-.btn-or:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(212,175,55,0.45);
-}
-.btn-outline-or {
-  background: transparent;
-  color: #D4AF37;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid #D4AF37;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-}
-.btn-outline-or:hover {
-  background: #D4AF37;
-  color: #111;
-}
-.glass {
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(212,175,55,0.2);
-}
-.page { display: none !important; }
-.page.active { display: block !important; }
-.input-luxe {
-  width: 100%;
-  background: #0A0A0A;
-  border: 1px solid rgba(212,175,55,0.3);
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
-  color: #F5F5F5;
-  outline: none;
-  transition: border-color 0.3s;
-  font-size: 1rem;
-}
-.input-luxe:focus { border-color: #D4AF37; }
-.input-luxe option { background: #111; }
-@keyframes marquee {
-  0% { transform: translateX(100vw); }
-  100% { transform: translateX(-100%); }
-}
-.marquee-text { animation: marquee 30s linear infinite; display: inline-block; white-space: nowrap; }
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fade-up { animation: fadeUp 0.6s ease-out; }
-@keyframes pulse-or {
-  0%,100% { box-shadow: 0 0 15px rgba(212,175,55,0.4); }
-  50% { box-shadow: 0 0 40px rgba(212,175,55,0.8); }
-}
-.pulse-or { animation: pulse-or 2s infinite; }
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-.float { animation: float 3s ease-in-out infinite; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0A0A0A; }
-::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-.modal-overlay.open { display: flex !important; }
-.cat-btn {
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(212,175,55,0.3);
-  background: transparent;
-  color: #F5F5F5;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-  font-size: 0.9rem;
-}
-.cat-btn.active, .cat-btn:hover {
-  background: #D4AF37;
-  color: #111;
-  border-color: #D4AF37;
-  font-weight: 700;
-}
-.tab-btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(212,175,55,0.4);
-  background: transparent;
-  color: #D4AF37;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-  font-size: 0.85rem;
-}
-.tab-btn.active {
-  background: #D4AF37;
-  color: #111;
-  font-weight: 700;
-}
-.badge-status {
-  padding: 0.2rem 0.6rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-.badge-pending { background: rgba(212,175,55,0.2); color: #D4AF37; }
-.badge-confirmed { background: rgba(34,197,94,0.2); color: #22c55e; }
-.badge-cancelled { background: rgba(139,0,0,0.3); color: #ef4444; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#111;color:#f5f5f5;overflow-x:hidden;}
+.fp{font-family:'Playfair Display',serif;}
+.or{color:#D4AF37;}
+.bg-or{background:#D4AF37;}
+.tg{background:linear-gradient(90deg,#D4AF37,#F0D87C,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.card{background:linear-gradient(135deg,#0a0a0a,#1a1a1a);border:1px solid rgba(212,175,55,0.2);border-radius:12px;transition:all 0.3s;}
+.card:hover{border-color:rgba(212,175,55,0.6);transform:translateY(-4px);box-shadow:0 20px 40px rgba(212,175,55,0.15);}
+.btn{background:linear-gradient(90deg,#D4AF37,#F0D87C);color:#111;font-weight:700;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;transition:all 0.3s;font-size:14px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;}
+.btn:hover{transform:scale(1.04);box-shadow:0 10px 25px rgba(212,175,55,0.4);}
+.btn-g{background:linear-gradient(90deg,#25D366,#128C7E);color:#fff;}
+.btn-r{background:linear-gradient(90deg,#8B0000,#c00);color:#fff;}
+.btn-o{background:transparent;color:#D4AF37;border:2px solid #D4AF37;}
+.btn-o:hover{background:#D4AF37;color:#111;}
+.btn-s{padding:8px 16px;font-size:13px;}
+.inp{width:100%;background:#0a0a0a;border:1px solid rgba(212,175,55,0.3);border-radius:8px;padding:12px;color:#f5f5f5;outline:none;font-size:14px;transition:border-color 0.3s;}
+.inp:focus{border-color:#D4AF37;}
+.inp option{background:#111;}
+.page{display:none;}
+.page.on{display:block;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,175,55,0.2);}
+.nb{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1200px;margin:0 auto;}
+.nl button,.nl a{background:none;border:none;color:#f5f5f5;cursor:pointer;font-size:14px;text-decoration:none;padding:6px 10px;border-radius:6px;transition:all 0.2s;}
+.nl button:hover,.nl a:hover{color:#D4AF37;background:rgba(212,175,55,0.1);}
+.banner{position:fixed;top:62px;left:0;right:0;z-index:99;background:linear-gradient(90deg,#8B0000,#D4AF37,#8B0000);overflow:hidden;padding:5px 0;}
+@keyframes marquee{0%{transform:translateX(100vw);}100%{transform:translateX(-200%)}}
+.mq{animation:marquee 25s linear infinite;display:inline-block;white-space:nowrap;font-weight:700;color:#111;font-size:13px;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.fl{animation:float 3s ease-in-out infinite;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.fu{animation:fadeUp 0.5s ease-out;}
+.toast{position:fixed;bottom:30px;right:20px;z-index:9999;background:#D4AF37;color:#111;padding:12px 20px;border-radius:8px;font-weight:700;transform:translateX(200px);transition:transform 0.3s;pointer-events:none;}
+.toast.show{transform:translateX(0);}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:#D4AF37;border-radius:3px;}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:500;align-items:center;justify-content:center;padding:20px;}
+.modal.open{display:flex;}
+.modal-box{background:#111;border:1px solid rgba(212,175,55,0.4);border-radius:16px;padding:30px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+.cat-btn{padding:8px 18px;border-radius:20px;border:1px solid rgba(212,175,55,0.3);background:transparent;color:#f5f5f5;cursor:pointer;white-space:nowrap;transition:all 0.2s;font-size:13px;}
+.cat-btn.act{background:#D4AF37;color:#111;border-color:#D4AF37;font-weight:700;}
+.tab{padding:10px 18px;border-radius:8px;border:1px solid rgba(212,175,55,0.4);background:transparent;color:#D4AF37;cursor:pointer;white-space:nowrap;transition:all 0.2s;font-size:13px;}
+.tab.act{background:#D4AF37;color:#111;font-weight:700;}
+label{display:block;color:#D4AF37;margin-bottom:6px;font-weight:600;font-size:14px;}
+.pt{padding-top:105px;}
+section{padding:40px 20px;max-width:1200px;margin:0 auto;}
+h1.big{font-size:clamp(2rem,6vw,4rem);font-weight:900;line-height:1.1;}
+h2.mid{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:700;}
+.sub{color:#D4AF37;letter-spacing:0.3em;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.muted{color:rgba(245,245,245,0.65);}
+.divider{border:none;border-top:1px solid rgba(212,175,55,0.2);margin:16px 0;}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.badge-p{background:rgba(212,175,55,0.2);color:#D4AF37;}
+.badge-c{background:rgba(34,197,94,0.2);color:#22c55e;}
+.badge-x{background:rgba(239,68,68,0.2);color:#ef4444;}
+img.pimg{width:100%;height:160px;object-fit:cover;border-radius:8px 8px 0 0;}
+.qty-box{display:flex;align-items:center;gap:8px;}
+.qty-box button{background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:16px;font-weight:700;}
+.qty-box button:hover{background:#D4AF37;color:#111;}
+@media(max-width:768px){.nl{display:none;}.mob-show{display:flex!important;}}
 </style>
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
-<nav class="glass fixed top-0 left-0 right-0 z-50">
-  <div style="max-width:1200px;margin:0 auto;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;">
-    <div onclick="showPage('home')" style="cursor:pointer;">
-      <span class="font-playfair text-gradient-or" style="font-size:1.6rem;font-weight:900;">Le Rich'Lieux</span>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nb">
+    <div onclick="go('home')" style="cursor:pointer">
+      <span class="fp tg" style="font-size:1.5rem;font-weight:900;">Le Rich'Lieux</span>
     </div>
-    <div id="nav-desktop" style="display:flex;gap:1.5rem;align-items:center;" class="hidden-mobile">
-      <button onclick="showPage('home')" class="nav-link" style="background:none;border:none;color:#F5F5F5;cursor:pointer;font-size:0.95rem;transition:color 0.2s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#F5F5F5'">Accueil</button>
-      <button onclick="showPage('restaurant')" class="nav-link" style="background:none;border:none;color:#F5F5F5;cursor:pointer;font-size:0.95rem;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#F5F5F5'">Restaurant</button>
-      <button onclick="showPage('bar')" class="nav-link" style="background:none;border:none;color:#F5F5F5;cursor:pointer;font-size:0.95rem;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#F5F5F5'">Bar Lounge</button>
-      <button onclick="showPage('reservation')" class="nav-link" style="background:none;border:none;color:#F5F5F5;cursor:pointer;font-size:0.95rem;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#F5F5F5'">Réservation</button>
-      <button onclick="showPage('events')" class="nav-link" style="background:none;border:none;color:#F5F5F5;cursor:pointer;font-size:0.95rem;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#F5F5F5'">Évènements</button>
-      <button onclick="showPage('gallery')" class="nav-link" style="background:none;border:none;color:#F5F5F5;cursor:pointer;font-size:0.95rem;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#F5F5F5'">Galerie</button>
+    <div class="nl" style="display:flex;gap:4px;align-items:center;">
+      <button onclick="go('home')">🏠 Accueil</button>
+      <button onclick="go('restaurant')">🍽️ Restaurant</button>
+      <button onclick="go('bar')">🍹 Bar Lounge</button>
+      <button onclick="go('reservation')">📅 Réservation</button>
+      <button onclick="go('events')">🎉 Évènements</button>
+      <button onclick="go('gallery')">🖼️ Galerie</button>
     </div>
-    <div style="display:flex;align-items:center;gap:1rem;">
-      <a href="tel:0789890470" style="color:#D4AF37;font-size:1.3rem;text-decoration:none;" title="Appeler">📞</a>
-      <button onclick="showPage('cart')" style="background:none;border:none;cursor:pointer;position:relative;font-size:1.3rem;">
-        🛒
-        <span id="cart-badge" style="position:absolute;top:-8px;right:-8px;background:#8B0000;color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;">0</span>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button onclick="go('cart')" style="background:none;border:none;cursor:pointer;position:relative;font-size:1.2rem;">
+        🛒<span id="cbadge" style="position:absolute;top:-6px;right:-8px;background:#8B0000;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;">0</span>
       </button>
-      <button onclick="showPage('admin')" style="background:none;border:none;color:#D4AF37;cursor:pointer;font-size:0.8rem;">⚙️</button>
-      <button onclick="toggleMobileMenu()" id="burger-btn" style="background:none;border:none;color:#D4AF37;cursor:pointer;font-size:1.5rem;display:none;">☰</button>
+      <a href="tel:0789890470" style="color:#D4AF37;font-size:1.2rem;text-decoration:none;">📞</a>
+      <button onclick="go('admin')" style="background:none;border:none;color:#D4AF37;cursor:pointer;font-size:1.1rem;" title="Admin">⚙️</button>
+      <button onclick="toggleMenu()" id="burger" style="display:none;background:none;border:none;color:#D4AF37;cursor:pointer;font-size:1.4rem;">☰</button>
     </div>
   </div>
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" style="display:none;background:#0A0A0A;border-top:1px solid rgba(212,175,55,0.2);padding:1rem;">
-    <button onclick="showPage('home');closeMobileMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#F5F5F5;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid rgba(212,175,55,0.1);">🏠 Accueil</button>
-    <button onclick="showPage('restaurant');closeMobileMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#F5F5F5;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid rgba(212,175,55,0.1);">🍽️ Restaurant</button>
-    <button onclick="showPage('bar');closeMobileMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#F5F5F5;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid rgba(212,175,55,0.1);">🍹 Bar Lounge</button>
-    <button onclick="showPage('reservation');closeMobileMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#F5F5F5;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid rgba(212,175,55,0.1);">📅 Réservation</button>
-    <button onclick="showPage('events');closeMobileMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#F5F5F5;cursor:pointer;padding:0.75rem 0;border-bottom:1px solid rgba(212,175,55,0.1);">🎉 Évènements</button>
-    <button onclick="showPage('gallery');closeMobileMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#F5F5F5;cursor:pointer;padding:0.75rem 0;">🖼️ Galerie</button>
+  <div id="mmenu" style="display:none;background:#0a0a0a;border-top:1px solid rgba(212,175,55,0.15);padding:10px 20px;">
+    <button onclick="go('home');closeMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#f5f5f5;cursor:pointer;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.1);">🏠 Accueil</button>
+    <button onclick="go('restaurant');closeMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#f5f5f5;cursor:pointer;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.1);">🍽️ Restaurant</button>
+    <button onclick="go('bar');closeMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#f5f5f5;cursor:pointer;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.1);">🍹 Bar Lounge</button>
+    <button onclick="go('reservation');closeMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#f5f5f5;cursor:pointer;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.1);">📅 Réservation</button>
+    <button onclick="go('events');closeMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#f5f5f5;cursor:pointer;padding:10px 0;border-bottom:1px solid rgba(212,175,55,0.1);">🎉 Évènements</button>
+    <button onclick="go('gallery');closeMenu()" style="display:block;width:100%;text-align:left;background:none;border:none;color:#f5f5f5;cursor:pointer;padding:10px 0;">🖼️ Galerie</button>
   </div>
 </nav>
 
-<!-- Bannière événement -->
-<div style="position:fixed;top:68px;left:0;right:0;z-index:49;background:linear-gradient(90deg,#8B0000,#D4AF37,#8B0000);color:#111;font-weight:700;padding:0.4rem 0;overflow:hidden;">
-  <div class="marquee-text" style="font-size:0.85rem;">
-    🎉 SOIRÉE DJ VENDREDI &nbsp;&nbsp;•&nbsp;&nbsp; 🍾 CHAMPAGNE OFFERT VIP &nbsp;&nbsp;•&nbsp;&nbsp; 🎵 LIVE MUSIC SAMEDI &nbsp;&nbsp;•&nbsp;&nbsp; 📞 RÉSERVEZ : 0789890470 &nbsp;&nbsp;•&nbsp;&nbsp; 🥂 HAPPY HOUR 18H-20H &nbsp;&nbsp;•&nbsp;&nbsp; 🌟 BIENVENUE AU RICH'LIEUX &nbsp;&nbsp;&nbsp;&nbsp;
-  </div>
+<!-- BANNER -->
+<div class="banner">
+  <span class="mq">🎉 SOIRÉE DJ VENDREDI &nbsp;•&nbsp; 🍾 CHAMPAGNE OFFERT VIP &nbsp;•&nbsp; 🎵 LIVE MUSIC SAMEDI &nbsp;•&nbsp; 📞 RÉSERVEZ : 0789890470 &nbsp;•&nbsp; 🥂 HAPPY HOUR 18H-20H &nbsp;•&nbsp; 🌟 BIENVENUE AU RICH'LIEUX &nbsp;&nbsp;</span>
 </div>
 
-<!-- ========== PAGE ACCUEIL ========== -->
-<div id="page-home" class="page active" style="padding-top:100px;">
+<!-- ===== PAGE ACCUEIL ===== -->
+<div id="page-home" class="page on pt">
 
   <!-- Hero -->
-  <section style="min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#0A0A0A 0%,#111 50%,rgba(139,0,0,0.2) 100%);">
-    <div style="position:absolute;top:10%;left:5%;width:300px;height:300px;background:#D4AF37;border-radius:50%;filter:blur(100px);opacity:0.08;pointer-events:none;"></div>
-    <div style="position:absolute;bottom:10%;right:5%;width:400px;height:400px;background:#8B0000;border-radius:50%;filter:blur(120px);opacity:0.1;pointer-events:none;"></div>
-    <div class="fade-up" style="text-align:center;padding:2rem;max-width:800px;position:relative;z-index:1;">
-      <p style="color:#D4AF37;letter-spacing:0.4em;font-size:0.9rem;margin-bottom:1rem;text-transform:uppercase;">Saveurs • Lounge • Élégance</p>
-      <h1 class="font-playfair" style="font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;">
-        Bienvenue au<br><span class="text-gradient-or">Rich'Lieux</span>
-      </h1>
-      <p style="color:rgba(245,245,245,0.75);font-size:1.1rem;max-width:550px;margin:0 auto 2.5rem;line-height:1.8;">
-        Une expérience culinaire et lounge d'exception à Gagnoa.<br>
-        Saveurs authentiques, cocktails créatifs, ambiance premium.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
-        <a href="tel:0789890470" class="btn-or" style="font-size:1rem;">📞 Commander : 0789890470</a>
-        <button onclick="showPage('reservation')" class="btn-outline-or" style="font-size:1rem;">📅 Réserver une table</button>
+  <div style="min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0a0a,#111,rgba(139,0,0,0.15));">
+    <div style="position:absolute;top:10%;left:5%;width:300px;height:300px;background:#D4AF37;border-radius:50%;filter:blur(100px);opacity:0.06;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:10%;right:5%;width:400px;height:400px;background:#8B0000;border-radius:50%;filter:blur(120px);opacity:0.08;pointer-events:none;"></div>
+    <div class="fu" style="padding:20px;z-index:1;max-width:800px;">
+      <p class="sub">Saveurs • Lounge • Élégance</p>
+      <h1 class="fp big" style="margin-bottom:20px;">Bienvenue au<br><span class="tg">Rich'Lieux</span></h1>
+      <p class="muted" style="font-size:1.05rem;max-width:550px;margin:0 auto 30px;line-height:1.9;">Une expérience culinaire et lounge d'exception à Gagnoa. Saveurs authentiques, cocktails créatifs, ambiance premium.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:16px;">
+        <a href="tel:0789890470" class="btn" style="font-size:15px;">📞 Commander : 0789890470</a>
+        <button onclick="go('reservation')" class="btn btn-o" style="font-size:15px;">📅 Réserver une table</button>
       </div>
-      <div style="margin-top:2rem;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;">
-        <a href="https://wa.me/2250789890470" target="_blank" class="btn-or" style="background:linear-gradient(90deg,#25D366,#128C7E);font-size:0.9rem;padding:0.6rem 1.2rem;">💬 WhatsApp</a>
-        <a href="tel:0779911714" class="btn-outline-or" style="font-size:0.9rem;padding:0.6rem 1.2rem;">📞 0779911714</a>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <a href="https://wa.me/2250789890470" target="_blank" class="btn btn-g">💬 WhatsApp</a>
+        <a href="tel:0779911714" class="btn btn-o">📞 0779911714</a>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Stats -->
-  <section style="padding:4rem 1.5rem;max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
-      <div class="card-luxe" style="padding:2rem;text-align:center;">
-        <div class="text-gradient-or font-playfair" style="font-size:3rem;font-weight:900;">500+</div>
-        <div style="color:rgba(245,245,245,0.7);margin-top:0.5rem;">Clients satisfaits</div>
+  <section>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+      <div class="card" style="padding:28px;text-align:center;"><div class="fp tg" style="font-size:2.5rem;font-weight:900;">500+</div><div class="muted" style="margin-top:6px;">Clients satisfaits</div></div>
+      <div class="card" style="padding:28px;text-align:center;"><div class="fp tg" style="font-size:2.5rem;font-weight:900;">50+</div><div class="muted" style="margin-top:6px;">Plats au menu</div></div>
+      <div class="card" style="padding:28px;text-align:center;"><div class="fp tg" style="font-size:2.5rem;font-weight:900;">30+</div><div class="muted" style="margin-top:6px;">Cocktails signature</div></div>
+      <div class="card" style="padding:28px;text-align:center;"><div class="fp tg" style="font-size:2.5rem;font-weight:900;">7j/7</div><div class="muted" style="margin-top:6px;">Ouvert toute la semaine</div></div>
+    </div>
+  </section>
+
+  <!-- Menu rapide -->
+  <section>
+    <div style="text-align:center;margin-bottom:30px;">
+      <p class="sub">NOTRE CARTE</p>
+      <h2 class="fp mid">Découvrez nos <span class="tg">spécialités</span></h2>
+    </div>
+    <div class="grid3">
+      <div class="card" onclick="go('restaurant')" style="padding:28px;text-align:center;cursor:pointer;">
+        <div class="fl" style="font-size:3.5rem;margin-bottom:12px;">🍛</div>
+        <h3 class="fp or" style="font-size:1.3rem;margin-bottom:6px;">Riz & Sauces</h3>
+        <p class="muted" style="font-size:13px;">Composez votre plat</p>
       </div>
-      <div class="card-luxe" style="padding:2rem;text-align:center;">
-        <div class="text-gradient-or font-playfair" style="font-size:3rem;font-weight:900;">50+</div>
-        <div style="color:rgba(245,245,245,0.7);margin-top:0.5rem;">Plats au menu</div>
+      <div class="card" onclick="go('restaurant')" style="padding:28px;text-align:center;cursor:pointer;">
+        <div class="fl" style="font-size:3.5rem;margin-bottom:12px;">🍖</div>
+        <h3 class="fp or" style="font-size:1.3rem;margin-bottom:6px;">Grillades</h3>
+        <p class="muted" style="font-size:13px;">Viandes et poissons</p>
       </div>
-      <div class="card-luxe" style="padding:2rem;text-align:center;">
-        <div class="text-gradient-or font-playfair" style="font-size:3rem;font-weight:900;">30+</div>
-        <div style="color:rgba(245,245,245,0.7);margin-top:0.5rem;">Cocktails signature</div>
+      <div class="card" onclick="go('bar')" style="padding:28px;text-align:center;cursor:pointer;">
+        <div class="fl" style="font-size:3.5rem;margin-bottom:12px;">🍹</div>
+        <h3 class="fp or" style="font-size:1.3rem;margin-bottom:6px;">Cocktails</h3>
+        <p class="muted" style="font-size:13px;">Créations exclusives</p>
       </div>
-      <div class="card-luxe" style="padding:2rem;text-align:center;">
-        <div class="text-gradient-or font-playfair" style="font-size:3rem;font-weight:900;">7j/7</div>
-        <div style="color:rgba(245,245,245,0.7);margin-top:0.5rem;">Ouvert toute la semaine</div>
+      <div class="card" onclick="go('bar')" style="padding:28px;text-align:center;cursor:pointer;">
+        <div class="fl" style="font-size:3.5rem;margin-bottom:12px;">🍾</div>
+        <h3 class="fp or" style="font-size:1.3rem;margin-bottom:6px;">Champagnes</h3>
+        <p class="muted" style="font-size:13px;">Sélection premium</p>
+      </div>
+      <div class="card" onclick="go('events')" style="padding:28px;text-align:center;cursor:pointer;">
+        <div class="fl" style="font-size:3.5rem;margin-bottom:12px;">🎉</div>
+        <h3 class="fp or" style="font-size:1.3rem;margin-bottom:6px;">Évènements</h3>
+        <p class="muted" style="font-size:13px;">Soirées & animations</p>
+      </div>
+      <div class="card" onclick="go('reservation')" style="padding:28px;text-align:center;cursor:pointer;">
+        <div class="fl" style="font-size:3.5rem;margin-bottom:12px;">📅</div>
+        <h3 class="fp or" style="font-size:1.3rem;margin-bottom:6px;">Réservation</h3>
+        <p class="muted" style="font-size:13px;">Réservez votre table</p>
       </div>
     </div>
   </section>
 
-  <!-- Catégories -->
-  <section style="padding:4rem 1.5rem;max-width:1200px;margin:0 auto;">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <p style="color:#D4AF37;letter-spacing:0.3em;font-size:0.85rem;text-transform:uppercase;margin-bottom:0.75rem;">NOTRE CARTE</p>
-      <h2 class="font-playfair" style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;">Découvrez nos <span class="text-gradient-or">spécialités</span></h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;">
-      <div class="card-luxe" onclick="showPage('restaurant')" style="padding:2.5rem;text-align:center;cursor:pointer;">
-        <div class="float" style="font-size:4.5rem;margin-bottom:1rem;">🍛</div>
-        <h3 class="text-or font-playfair" style="font-size:1.4rem;font-weight:700;margin-bottom:0.5rem;">Riz & Sauces</h3>
-        <p style="color:rgba(245,245,245,0.65);font-size:0.9rem;">Composez votre plat idéal</p>
-      </div>
-      <div class="card-luxe" onclick="showPage('restaurant')" style="padding:2.5rem;text-align:center;cursor:pointer;">
-        <div class="float" style="font-size:4.5rem;margin-bottom:1rem;">🍖</div>
-        <h3 class="text-or font-playfair" style="font-size:1.4rem;font-weight:700;margin-bottom:0.5rem;">Grillades</h3>
-        <p style="color:rgba(245,245,245,0.65);font-size:0.9rem;">Viandes et poissons braisés</p>
-      </div>
-      <div class="card-luxe" onclick="showPage('bar')" style="padding:2.5rem;text-align:center;cursor:pointer;">
-        <div class="float" style="font-size:4.5rem;margin-bottom:1rem;">🍹</div>
-        <h3 class="text-or font-playfair" style="font-size:1.4rem;font-weight:700;margin-bottom:0.5rem;">Cocktails</h3>
-        <p style="color:rgba(245,245,245,0.65);font-size:0.9rem;">Créations exclusives</p>
-      </div>
-      <div class="card-luxe" onclick="showPage('bar')" style="padding:2.5rem;text-align:center;cursor:pointer;">
-        <div class="float" style="font-size:4.5rem;margin-bottom:1rem;">🍾</div>
-        <h3 class="text-or font-playfair" style="font-size:1.4rem;font-weight:700;margin-bottom:0.5rem;">Champagnes</h3>
-        <p style="color:rgba(245,245,245,0.65);font-size:0.9rem;">Sélection premium</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- À propos -->
-  <section style="padding:4rem 1.5rem;max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;align-items:center;">
+  <!-- Contact -->
+  <section>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;align-items:start;">
       <div>
-        <p style="color:#D4AF37;letter-spacing:0.3em;font-size:0.85rem;text-transform:uppercase;margin-bottom:0.75rem;">À PROPOS</p>
-        <h2 class="font-playfair" style="font-size:2.5rem;font-weight:700;margin-bottom:1.5rem;">L'art de recevoir <span class="text-gradient-or">à l'ivoirienne</span></h2>
-        <p style="color:rgba(245,245,245,0.75);line-height:1.9;margin-bottom:1rem;">
-          Situé au cœur de Gagnoa dans le quartier Garahio, Le Rich'Lieux Lounge Bar vous offre une expérience unique alliant gastronomie raffinée et ambiance lounge premium.
-        </p>
-        <p style="color:rgba(245,245,245,0.75);line-height:1.9;margin-bottom:2rem;">
-          Cocktails créatifs, champagnes d'exception, plats traditionnels revisités... Tout est pensé pour faire de votre visite un moment inoubliable.
-        </p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <a href="tel:0789890470" class="btn-or">📞 Nous appeler</a>
-          <a href="https://wa.me/2250789890470" target="_blank" class="btn-outline-or">💬 WhatsApp</a>
+        <p class="sub">À PROPOS</p>
+        <h2 class="fp mid" style="margin-bottom:16px;">L'art de recevoir <span class="tg">à l'ivoirienne</span></h2>
+        <p class="muted" style="line-height:1.9;margin-bottom:12px;">Situé au cœur de Gagnoa dans le quartier Garahio, Le Rich'Lieux vous offre une expérience unique alliant gastronomie raffinée et ambiance lounge premium.</p>
+        <p class="muted" style="line-height:1.9;margin-bottom:20px;">Cocktails créatifs, champagnes d'exception, plats traditionnels revisités... Tout est pensé pour faire de votre visite un moment inoubliable.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="tel:0789890470" class="btn">📞 Appeler</a>
+          <a href="https://wa.me/2250789890470" target="_blank" class="btn btn-g">💬 WhatsApp</a>
         </div>
       </div>
-      <div class="card-luxe pulse-or" style="padding:2.5rem;">
-        <h3 class="font-playfair text-or" style="font-size:1.5rem;margin-bottom:1.5rem;">📍 Nous trouver</h3>
-        <div style="space-y:1rem;">
-          <p style="margin-bottom:1rem;color:rgba(245,245,245,0.8);">📍 Gagnoa, quartier Garahio</p>
-          <p style="margin-bottom:1rem;"><a href="tel:0789890470" style="color:#D4AF37;text-decoration:none;">📞 0789890470</a></p>
-          <p style="margin-bottom:1rem;"><a href="tel:0779911714" style="color:#D4AF37;text-decoration:none;">📞 0779911714</a></p>
-          <p style="margin-bottom:1rem;"><a href="https://wa.me/2250789890470" target="_blank" style="color:#25D366;text-decoration:none;">💬 WhatsApp disponible</a></p>
-          <hr style="border-color:rgba(212,175,55,0.2);margin:1rem 0;">
-          <p style="color:rgba(245,245,245,0.7);font-size:0.9rem;">🕐 Lun-Jeu : 12h - 00h</p>
-          <p style="color:rgba(245,245,245,0.7);font-size:0.9rem;">🕐 Ven-Sam : 12h - 04h</p>
-          <p style="color:rgba(245,245,245,0.7);font-size:0.9rem;">🕐 Dim : 14h - 00h</p>
-        </div>
+      <div class="card" style="padding:28px;border-color:rgba(212,175,55,0.4);">
+        <h3 class="fp or" style="font-size:1.3rem;margin-bottom:18px;">📍 Informations</h3>
+        <p style="margin-bottom:10px;color:rgba(245,245,245,0.8);">📍 Gagnoa, quartier Garahio</p>
+        <p style="margin-bottom:10px;"><a href="tel:0789890470" style="color:#D4AF37;text-decoration:none;">📞 0789890470</a></p>
+        <p style="margin-bottom:10px;"><a href="tel:0779911714" style="color:#D4AF37;text-decoration:none;">📞 0779911714</a></p>
+        <p style="margin-bottom:10px;"><a href="https://wa.me/2250789890470" target="_blank" style="color:#25D366;text-decoration:none;">💬 WhatsApp</a></p>
+        <hr class="divider">
+        <p class="muted" style="font-size:13px;margin-bottom:6px;">🕐 Lun–Jeu : 12h – 00h</p>
+        <p class="muted" style="font-size:13px;margin-bottom:6px;">🕐 Ven–Sam : 12h – 04h</p>
+        <p class="muted" style="font-size:13px;">🕐 Dim : 14h – 00h</p>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ========== PAGE RESTAURANT ========== -->
-<div id="page-restaurant" class="page" style="padding-top:105px;">
-  <div style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <p style="color:#D4AF37;letter-spacing:0.3em;font-size:0.85rem;text-transform:uppercase;margin-bottom:0.75rem;">MENU</p>
-      <h1 class="font-playfair text-gradient-or" style="font-size:clamp(2rem,5vw,3.5rem);font-weight:900;">Notre Restaurant</h1>
+<!-- ===== PAGE RESTAURANT ===== -->
+<div id="page-restaurant" class="page pt">
+  <section>
+    <div style="text-align:center;margin-bottom:30px;">
+      <p class="sub">MENU</p>
+      <h1 class="fp tg big">Notre Restaurant</h1>
     </div>
-    <div id="rest-cat-bar" style="display:flex;gap:0.75rem;overflow-x:auto;padding-bottom:1rem;margin-bottom:2rem;scrollbar-width:none;"></div>
-    <div id="rest-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;"></div>
-  </div>
+    <div id="rcat" style="display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;margin-bottom:24px;scrollbar-width:none;"></div>
+    <div id="rgrid" class="grid2"></div>
+  </section>
 </div>
 
-<!-- ========== PAGE BAR ========== -->
-<div id="page-bar" class="page" style="padding-top:105px;">
-  <div style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <p style="color:#D4AF37;letter-spacing:0.3em;font-size:0.85rem;text-transform:uppercase;margin-bottom:0.75rem;">BOISSONS</p>
-      <h1 class="font-playfair text-gradient-or" style="font-size:clamp(2rem,5vw,3.5rem);font-weight:900;">Bar Lounge</h1>
+<!-- ===== PAGE BAR ===== -->
+<div id="page-bar" class="page pt">
+  <section>
+    <div style="text-align:center;margin-bottom:30px;">
+      <p class="sub">BOISSONS</p>
+      <h1 class="fp tg big">Bar Lounge</h1>
     </div>
-    <div id="bar-cat-bar" style="display:flex;gap:0.75rem;overflow-x:auto;padding-bottom:1rem;margin-bottom:2rem;scrollbar-width:none;"></div>
-    <div id="bar-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;"></div>
-  </div>
+    <div id="bcat" style="display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;margin-bottom:24px;scrollbar-width:none;"></div>
+    <div id="bgrid" class="grid2"></div>
+  </section>
 </div>
 
-<!-- ========== PAGE PANIER ========== -->
-<div id="page-cart" class="page" style="padding-top:105px;">
-  <div style="max-width:800px;margin:0 auto;padding:2rem 1.5rem;">
-    <h1 class="font-playfair text-gradient-or" style="font-size:2.5rem;font-weight:900;margin-bottom:2rem;">🛒 Mon Panier</h1>
+<!-- ===== PAGE PANIER ===== -->
+<div id="page-cart" class="page pt">
+  <section style="max-width:800px;">
+    <h1 class="fp tg" style="font-size:2rem;font-weight:900;margin-bottom:24px;">🛒 Mon Panier</h1>
     <div id="cart-content"></div>
-  </div>
+  </section>
 </div>
 
-<!-- ========== PAGE RÉSERVATION ========== -->
-<div id="page-reservation" class="page" style="padding-top:105px;">
-  <div style="max-width:600px;margin:0 auto;padding:2rem 1.5rem;">
-    <div style="text-align:center;margin-bottom:2.5rem;">
-      <p style="color:#D4AF37;letter-spacing:0.3em;font-size:0.85rem;text-transform:uppercase;margin-bottom:0.75rem;">RÉSERVATION</p>
-      <h1 class="font-playfair text-gradient-or" style="font-size:2.5rem;font-weight:900;">Réservez votre table</h1>
+<!-- ===== PAGE RÉSERVATION ===== -->
+<div id="page-reservation" class="page pt">
+  <section style="max-width:620px;">
+    <div style="text-align:center;margin-bottom:30px;">
+      <p class="sub">RÉSERVATION</p>
+      <h1 class="fp tg big">Réservez votre table</h1>
     </div>
-    <form id="reservation-form" class="card-luxe" style="padding:2.5rem;" onsubmit="submitReservation(event)">
-      <div style="margin-bottom:1.25rem;">
-        <label style="display:block;color:#D4AF37;margin-bottom:0.5rem;font-weight:600;">Nom complet *</label>
-        <input type="text" id="res-name" required class="input-luxe" placeholder="Votre nom complet">
+    <form class="card" style="padding:30px;" onsubmit="submitReservation(event)">
+      <div style="margin-bottom:18px;">
+        <label>Nom complet *</label>
+        <input type="text" id="rn" required class="inp" placeholder="Votre nom">
       </div>
-      <div style="margin-bottom:1.25rem;">
-        <label style="display:block;color:#D4AF37;margin-bottom:0.5rem;font-weight:600;">Téléphone *</label>
-        <input type="tel" id="res-phone" required class="input-luxe" placeholder="Ex: 0789890470">
+      <div style="margin-bottom:18px;">
+        <label>Téléphone *</label>
+        <input type="tel" id="rp" required class="inp" placeholder="0789890470">
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
-        <div>
-          <label style="display:block;color:#D4AF37;margin-bottom:0.5rem;font-weight:600;">Date *</label>
-          <input type="date" id="res-date" required class="input-luxe">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;">
+        <div><label>Date *</label><input type="date" id="rd" required class="inp"></div>
+        <div><label>Heure *</label><input type="time" id="rt" required class="inp"></div>
+      </div>
+      <div style="margin-bottom:18px;">
+        <label>Nombre de personnes *</label>
+        <input type="number" id="rg" required class="inp" min="1" max="50" placeholder="2">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label>Notes spéciales</label>
+        <textarea id="rnotes" class="inp" rows="3" placeholder="Anniversaire, allergies, préférences..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-g" style="width:100%;justify-content:center;font-size:15px;padding:14px;">💬 Réserver via WhatsApp</button>
+      <p style="text-align:center;color:rgba(245,245,245,0.4);font-size:12px;margin-top:10px;">Vous serez redirigé vers WhatsApp pour confirmation</p>
+    </form>
+  </section>
+</div>
+
+<!-- ===== PAGE ÉVÉNEMENTS ===== -->
+<div id="page-events" class="page pt">
+  <section>
+    <div style="text-align:center;margin-bottom:30px;">
+      <p class="sub">AGENDA</p>
+      <h1 class="fp tg big">Nos Évènements</h1>
+    </div>
+    <div id="evgrid" class="grid2"></div>
+  </section>
+</div>
+
+<!-- ===== PAGE GALERIE ===== -->
+<div id="page-gallery" class="page pt">
+  <section>
+    <div style="text-align:center;margin-bottom:30px;">
+      <p class="sub">PHOTOS</p>
+      <h1 class="fp tg big">Notre Galerie</h1>
+    </div>
+    <div id="galGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;"></div>
+    <p style="text-align:center;margin-top:20px;" class="muted">Connectez-vous en admin pour ajouter des photos</p>
+  </section>
+</div>
+
+<!-- ===== PAGE ADMIN ===== -->
+<div id="page-admin" class="page pt">
+  <section>
+    <!-- Login -->
+    <div id="admin-login" style="max-width:400px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:30px;">
+        <p class="sub">ACCÈS RÉSERVÉ</p>
+        <h1 class="fp tg" style="font-size:2rem;font-weight:900;">Administration</h1>
+      </div>
+      <form class="card" style="padding:30px;" onsubmit="adminLogin(event)">
+        <div style="margin-bottom:18px;">
+          <label>Code d'accès</label>
+          <input type="password" id="acode" required class="inp" placeholder="Entrez le code admin">
         </div>
-        <div>
-          <label style="display:block;color:#D4AF37;margin-bottom:0.5rem;font-weight:600;">Heure *</label>
-          <input type="time" id="res-time" required class="input-luxe">
+        <button type="submit" class="btn" style="width:100%;justify-content:center;font-size:15px;padding:14px;">🔓 Se connecter</button>
+        <p id="aerr" style="color:#ef4444;text-align:center;margin-top:10px;font-size:13px;display:none;">Code incorrect. Réessayez.</p>
+      </form>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="admin-dash" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+        <h1 class="fp tg" style="font-size:2rem;font-weight:900;">⚙️ Administration</h1>
+        <button onclick="adminLogout()" class="btn btn-r btn-s">🚪 Déconnexion</button>
+      </div>
+
+      <!-- Stats -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:28px;">
+        <div class="card" style="padding:20px;text-align:center;">
+          <div class="fp tg" style="font-size:2rem;font-weight:900;" id="st1">0</div>
+          <div class="muted" style="font-size:13px;margin-top:4px;">Commandes</div>
+        </div>
+        <div class="card" style="padding:20px;text-align:center;">
+          <div class="fp tg" style="font-size:2rem;font-weight:900;" id="st2">0 F</div>
+          <div class="muted" style="font-size:13px;margin-top:4px;">Chiffre d'affaires</div>
+        </div>
+        <div class="card" style="padding:20px;text-align:center;">
+          <div class="fp tg" style="font-size:2rem;font-weight:900;" id="st3">0</div>
+          <div class="muted" style="font-size:13px;margin-top:4px;">Réservations</div>
+        </div>
+        <div class="card" style="padding:20px;text-align:center;">
+          <div class="fp tg" style="font-size:2rem;font-weight:900;" id="st4">0</div>
+          <div class="muted" style="font-size:13px;margin-top:4px;">Produits</div>
         </div>
       </div>
-      <div style="margin-bottom:1.25rem;">
-        <label style="display:block;color:#D4AF37;margin-bottom:0.5rem;font-weight:600;">Nombre de personnes *</label>
-        <input type="number" id="res-guests" required class="input-luxe" min="1" max="30" placeholder="Ex: 4">
+
+      <!-- Tabs -->
+      <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:24px;scrollbar-width:none;">
+        <button class="tab act" onclick="atab(this,'at-products')">🍽️ Produits</button>
+        <button class="tab" onclick="atab(this,'at-orders')">📦 Commandes</button>
+        <button class="tab" onclick="atab(this,'at-reservations')">📅 Réservations</button>
+        <button class="tab" onclick="atab(this,'at-events')">🎉 Évènements</button>
+        <button class="tab" onclick="atab(this,'at-gallery')">🖼️ Galerie</button>
       </div>
-      <div style="margin-bottom:1.5rem;">
-        <label style="display:block;color:#D4AF37;margin-bottom:0.5rem;font-weight:600;">Notes spéciales</label>
-        <textarea id="res-notes" class="input-luxe" rows="3" placeholder="Anniversaire, allergies, préférences..."></textarea>
+
+      <!-- Tab: Produits -->
+      <div id="at-products">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+          <h2 class="fp or" style="font-size:1.4rem;">Gestion des produits</h2>
+          <button onclick="openAddProduct()" class="btn btn-s">+ Ajouter un produit</button>
+        </div>
+        <div id="admin-products"></div>
       </div>
-      <button type="submit" class="btn-or" style="width:100%;font-size:1rem;padding:1rem;">📅 Confirmer via WhatsApp</button>
-      <p style="text-align:center;color:rgba(245,245,245,0.5);font-size:0.8rem;margin-top:1rem;">Vous serez redirigé vers WhatsApp pour confirmation</p>
+
+      <!-- Tab: Commandes -->
+      <div id="at-orders" style="display:none;">
+        <h2 class="fp or" style="font-size:1.4rem;margin-bottom:16px;">Commandes reçues</h2>
+        <div id="admin-orders"></div>
+      </div>
+
+      <!-- Tab: Réservations -->
+      <div id="at-reservations" style="display:none;">
+        <h2 class="fp or" style="font-size:1.4rem;margin-bottom:16px;">Réservations</h2>
+        <div id="admin-reservations"></div>
+      </div>
+
+      <!-- Tab: Évènements -->
+      <div id="at-events" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+          <h2 class="fp or" style="font-size:1.4rem;">Gestion des évènements</h2>
+          <button onclick="openAddEvent()" class="btn btn-s">+ Ajouter un évènement</button>
+        </div>
+        <div id="admin-events"></div>
+      </div>
+
+      <!-- Tab: Galerie Admin -->
+      <div id="at-gallery" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+          <h2 class="fp or" style="font-size:1.4rem;">Gestion de la galerie</h2>
+          <button onclick="document.getElementById('galInput').click()" class="btn btn-s">📷 Ajouter photos</button>
+          <input type="file" id="galInput" accept="image/*" multiple style="display:none;" onchange="addGalleryPhotos(event)">
+        </div>
+        <div id="admin-gallery-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MODAL: Ajouter/Modifier Produit -->
+<div class="modal" id="modal-product">
+  <div class="modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <h2 class="fp or" style="font-size:1.4rem;" id="mp-title">Ajouter un produit</h2>
+      <button onclick="closeModal('modal-product')" style="background:none;border:none;color:#D4AF37;cursor:pointer;font-size:1.4rem;">✕</button>
+    </div>
+    <form onsubmit="saveProduct(event)">
+      <input type="hidden" id="mp-id">
+      <div style="margin-bottom:14px;">
+        <label>Nom du produit *</label>
+        <input type="text" id="mp-name" required class="inp" placeholder="Ex: Riz graine + Poisson">
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Catégorie *</label>
+        <select id="mp-cat" required class="inp">
+          <optgroup label="Restaurant">
+            <option value="riz-sauces">Riz & Sauces</option>
+            <option value="grillades">Grillades</option>
+            <option value="plats-speciaux">Plats Spéciaux</option>
+            <option value="entrees">Entrées</option>
+          </optgroup>
+          <optgroup label="Bar">
+            <option value="cocktails">Cocktails</option>
+            <option value="champagnes">Champagnes & Vins</option>
+            <option value="bieres">Bières</option>
+            <option value="softs">Softs & Jus</option>
+            <option value="whisky">Whisky & Spiritueux</option>
+          </optgroup>
+        </select>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Prix (FCFA) *</label>
+        <input type="number" id="mp-price" required class="inp" placeholder="2500">
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Description</label>
+        <textarea id="mp-desc" class="inp" rows="2" placeholder="Description du produit..."></textarea>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Emoji</label>
+        <input type="text" id="mp-emoji" class="inp" placeholder="🍛" maxlength="4">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label>Photo (depuis galerie)</label>
+        <input type="file" id="mp-img" accept="image/*" class="inp" style="padding:8px;" onchange="previewImg(event)">
+        <img id="mp-preview" style="width:100%;height:150px;object-fit:cover;border-radius:8px;margin-top:8px;display:none;border:1px solid rgba(212,175,55,0.3);">
+      </div>
+      <button type="submit" class="btn" style="width:100%;justify-content:center;padding:14px;">💾 Sauvegarder</button>
     </form>
   </div>
 </div>
 
-<!-- ========== PAGE ÉVÉNEMENTS ========== -->
-<div id="page-events" class="page" style="padding-top:105px;">
-  <div style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <p style="color:#D4AF37;letter-spacing:0.3em;font-size:0.85rem;text-transform:uppercase;margin-bottom:0.75rem;">AGENDA</p>
-      <h1 class="font-playfair text-gradient-or" style="font-size:clamp(2rem,5vw,3.5rem);font-weight:900;">Nos Évènements</h1>
+<!-- MODAL: Ajouter Évènement -->
+<div class="modal" id="modal-event">
+  <div class="modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <h2 class="fp or" style="font-size:1.4rem;" id="me-title">Ajouter un évènement</h2>
+      <button onclick="closeModal('modal-event')" style="background:none;border:none;color:#D4AF37;cursor:pointer;font-size:1.4rem;">✕</button>
     </div>
-    <div id="events-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;"></div>
+    <form onsubmit="saveEvent(event)">
+      <input type="hidden" id="me-id">
+      <div style="margin-bottom:14px;">
+        <label>Titre de l'évènement *</label>
+        <input type="text" id="me-title-inp" required class="inp" placeholder="Ex: Soirée DJ Mix">
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Date *</label>
+        <input type="date" id="me-date" required class="inp">
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Heure</label>
+        <input type="time" id="me-time" class="inp">
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Description</label>
+        <textarea id="me-desc" class="inp" rows="3" placeholder="Détails de l'évènement..."></textarea>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label>Emoji</label>
+        <input type="text" id="me-emoji" class="inp" placeholder="🎉" maxlength="4">
+      </div>
+      <div style="margin-bottom:20px;">
+        <label>Photo (depuis galerie)</label>
+        <input type="file" id="me-img" accept="image/*" class="inp" style="padding:8px;" onchange="previewEvImg(event)">
+        <img id="me-preview" style="width:100%;height:150px;object-fit:cover;border-radius:8px;margin-top:8px;display:none;border:1px solid rgba(212,175,55,0.3);">
+      </div>
+      <button type="submit" class="btn" style="width:100%;justify-content:center;padding:14px;">💾 Sauvegarder</button>
+    </form>
   </div>
 </div>
 
-<!-- ========== PAGE GALERIE ========== -->
-<div id="page-gallery" class="page" style="padding-top:105px;">
-  <div style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <p style="color:#D4AF37;letter-spacing:0
+<script>
+// ===== DATA =====
+var products = JSON.parse(localStorage.getItem('rl_products') || 'null') || [
+  {id:1,name:"Riz + Sauce graine + Poisson",cat:"riz-sauces",price:2500,desc:"Riz blanc, sauce graine maison, poisson braisé",emoji:"🍛",img:""},
+  {id:2,name:"Riz + Sauce feuille + Poulet",cat:"riz-sauces",price:2800,desc:"Riz, sauce feuille de manioc, poulet braisé",emoji:"🍲",img:""},
+  {id:3,name:"Riz + Sauce arachide + Bœuf",cat:"riz-sauces",price:3000,desc:"Riz, sauce arachide riche, bœuf tendre",emoji:"🥘",img:""},
+  {id:4,name:"Riz + Sauce tomate + Thon",cat:"riz-sauces",price:2200,desc:"Riz, sauce tomate fraîche, thon braisé",emoji:"🐟",img:""},
+  {id:5,name:"Poulet braisé entier",cat:"grillades",price:5000,desc:"Poulet entier braisé aux épices",emoji:"🍗",img:""},
+  {id:6,name:"Poisson braisé",cat:"grillades",price:3500,desc:"Poisson frais braisé au charbon",emoji:"🐠",img:""},
+  {id:7,name:"Côtes de porc grillées",cat:"grillades",price:4000,desc:"Côtes marinées et grillées",emoji:"🥩",img:""},
+  {id:8,name:"Brochettes de bœuf",cat:"grillades",price:3000,desc:"Brochettes tendres avec sauce",emoji:"🍢",img:""},
+  {id:9,name:"Attiéké + Poisson + Alloco",cat:"plats-speciaux",price:2500,desc:"Attiéké frais, poisson braisé, alloco sucré",emoji:"🌽",img:""},
+  {id:10,name:"Foutou + Soupe légume",cat:"plats-speciaux",price:2500,desc:"Foutou banane, soupe aux légumes",emoji:"🫙",img:""},
+  {id:11,name:"Mojito Classique",cat:"cocktails",price:2000,desc:"Rhum blanc, menthe fraîche, citron vert",emoji:"🍹",img:""},
+  {id:12,name:"Piña Colada",cat:"cocktails",price:2500,desc:"Rhum, noix de coco, ananas",emoji:"🥥",img:""},
+  {id:13,name:"Sex on the Beach",cat:"cocktails",price:2500,desc:"Vodka, jus de pêche, cranberry",emoji:"🍑",img:""},
+  {id:14,name:"Rich'Lieux Special",cat:"cocktails",price:3000,desc:"Notre cocktail signature exclusif",emoji:"✨",img:""},
+  {id:15,name:"Moët & Chandon",cat:"champagnes",price:35000,desc:"Champagne brut impérial",emoji:"🍾",img:""},
+  {id:16,name:"Vin rouge Bordeaux",cat:"champagnes",price:8000,desc:"Grand cru classé",emoji:"🍷",img:""},
+  {id:17,name:"Vin blanc Chardonnay",cat:"champagnes",price:7500,desc:"Vin blanc sec fruité",emoji:"🥂",img:""},
+  {id:18,name:"Flag / Castel",cat:"bieres",price:1000,desc:"Bière locale fraîche",emoji:"🍺",img:""},
+  {id:19,name:"Heineken / Corona",cat:"bieres",price:1500,desc:"Bière internationale",emoji:"🍻",img:""},
+  {id:20,name:"Coca-Cola / Fanta / Sprite",cat:"softs",price:700,desc:"Boissons gazeuses fraîches",emoji:"🥤",img:""},
+  {id:21,name:"Jus de fruit frais",cat:"softs",price:1000,desc:"Ananas, gingembre, bissap...",emoji:"🧃",img:""},
+  {id:22,name:"Jack Daniel's",cat:"whisky",price:3500,desc:"Whisky américain",emoji:"🥃",img:""},
+  {id:23,name:"Johnnie Walker Black",cat:"whisky",price:4000,desc:"Scotch whisky 12 ans",emoji:"🥃",img:""},
+];
+var cart = JSON.parse(localStorage.getItem('rl_cart') || '[]');
+var orders = JSON.parse(localStorage.getItem('rl_orders') || '[]');
+var reservations = JSON.parse(localStorage.getItem('rl_reservations') || '[]');
+var events = JSON.parse(localStorage.getItem('rl_events') || 'null') || [
+  {id:1,title:"Soirée DJ Vendredi",date:"2025-08-01",time:"21:00",desc:"DJ Mix afrobeat & international. Entrée libre avant 22h.",emoji:"🎵",img:""},
+  {id:2,title:"Nuit du Champagne",date:"2025-08-08",time:"20:00",desc:"Soirée champagne et cocktails premium. Réservation obligatoire.",emoji:"🍾",img:""},
+  {id:3,title:"Live Musique Samedi",date:"2025-08-15",time:"20:30",desc:"Concert live avec artistes locaux. Ambiance garantie !",emoji:"🎸",img:""},
+  {id:4,title:"Happy Hour Quotidien",date:"2025-08-01",time:"18:00",desc:"Cocktails à -30% tous les soirs de 18h à 20h.",emoji:"🥂",img:""},
+];
+var gallery = JSON.parse(localStorage.getItem('rl_gallery') || '[]');
+var isAdmin = false;
+var editingProductId = null;
+var editingEventId = null;
+var currentRestCat = 'all';
+var currentBarCat = 'all';
+
+function save() {
+  localStorage.setItem('rl_products', JSON.stringify(products));
+  localStorage.setItem('rl_cart', JSON.stringify(cart));
+  localStorage.setItem('rl_orders', JSON.stringify(orders));
+  localStorage.setItem('rl_reservations', JSON.stringify(reservations));
+  localStorage.setItem('rl_events', JSON.stringify(events));
+  localStorage.setItem('rl_gallery', JSON.stringify(gallery));
+}
+
+// ===== NAVIGATION =====
+function go(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  var el = document.getElementById('page-' + page);
+  if (el) { el.classList.add('on'); window.scrollTo(0, 0); }
+  if (page === 'restaurant') renderRestaurant();
+  if (page === 'bar') renderBar();
+  if (page === 'cart') renderCart();
+  if (page === 'events') renderEvents();
+  if (page === 'gallery') renderGallery();
+  if (page === 'admin') renderAdminPage();
+  updateCartBadge();
+}
+
+function toggleMenu() {
+  var m = document.getElementById('mmenu');
+  m.style.display = m.style.display === 'none' ? 'block' : 'none';
+}
+function closeMenu() { document.getElementById('mmenu').style.display = 'none'; }
+
+// Responsive
+function checkMobile() {
+  var b = document.getElementById('burger');
+  b.style.display = window.innerWidth < 768 ? 'block' : 'none';
+}
+window.addEventListener('resize', checkMobile);
+checkMobile();
+
+// ===== TOAST =====
+function toast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = type === 'err' ? '#ef4444' : '#D4AF37';
+  t.style.color = type === 'err' ? '#fff' : '#111';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ===== CART =====
+function updateCartBadge() {
+  var total = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cbadge').textContent = total;
+}
+
+function addToCart(id) {
+  var p = products.find(x => x.id === id);
+  if (!p) return;
+  var existing = cart.find(x => x.id === id);
+  if (existing) existing.qty++;
+  else cart.push({ id: p.id, name: p.name, price: p.price, emoji: p.emoji, qty: 1 });
+  save();
+  updateCartBadge();
+  toast('✅ ' + p.name + ' ajouté au panier');
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  save();
+  updateCartBadge();
+  renderCart();
+}
+
+function changeQty(id, delta) {
+  var item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+  save();
+  updateCartBadge();
+  renderCart();
+}
+
+function renderCart() {
+  var el = document.getElementById('cart-content');
+  if (cart.length === 0) {
+    el.innerHTML = '<div class="card" style="padding:40px;text-align:center;"><div style="font-size:4rem;margin-bottom:16px;">🛒</div><p class="muted">Votre panier est vide</p><button onclick="go(\'restaurant\')" class="btn" style="margin-top:20px;">Voir le menu</button></div>';
+    return;
+  }
+  var total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  var items = cart.map(i => `
+    <div class="card" style="padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <div style="font-size:2.5rem;">${i.emoji || '🍽️'}</div>
+      <div style="flex:1;min-width:150px;">
+        <div style="font-weight:600;margin-bottom:4px;">${i.name}</div>
+        <div class="or">${(i.price * i.qty).toLocaleString()} FCFA</div>
+      </div>
+      <div class="qty-box">
+        <button onclick="changeQty(${i.id}, -1)">−</button>
+        <span style="font-weight:700;min-width:24px;text-align:center;">${i.qty}</span>
+        <button onclick="changeQty(${i.id}, 1)">+</button>
+      </div>
+      <button onclick="removeFromCart(${i.id})" style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:8px 12px;border-radius:6px;cursor:pointer;">🗑️</button>
+    </div>`).join('');
+  
+  var orderMsg = encodeURIComponent(
+    '🍽️ *Nouvelle Commande - Le Rich\'Lieux*\n\n' +
+    cart.map(i => `• ${i.emoji||''} ${i.name} x${i.qty} = ${(i.price*i.qty).toLocaleString()} FCFA`).join('\n') +
+    `\n\n💰 *TOTAL: ${total.toLocaleString()} FCFA*\n\n📍 Gagnoa, quartier Garahio`
+  );
+
+  el.innerHTML = items + `
+    <div class="card" style="padding:24px;margin-top:16px;border-color:rgba(212,175,55,0.4);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
+        <span class="fp" style="font-size:1.3rem;font-weight:700;">Total</span>
+        <span class="fp tg" style="font-size:1.8rem;font-weight:900;">${total.toLocaleString()} FCFA</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a href="https://wa.me/2250789890470?text=${orderMsg}" target="_blank" class="btn btn-g" style="justify-content:center;font-size:15px;padding:14px;width:100%;text-align:center;">💬 Commander via WhatsApp</a>
+        <a href="tel:0789890470" class="btn" style="justify-content:center;font-size:15px;padding:14px;width:100%;text-align:center;">📞 Commander par téléphone</a>
+        <button onclick="clearCart()" class="btn btn-r" style="justify-content:center;padding:14px;width:100%;">🗑️ Vider le panier</button>
+      </div>
+    </div>`;
+}
+
+function clearCart() {
+  if (confirm('Vider le panier ?')) {
+    cart = [];
+    save();
+    updateCartBadge();
+    renderCart();
+  }
+}
+
+function placeOrderWhatsApp() {
+  if (cart.length === 0) return;
+  var total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  var msg = '🍽️ *Nouvelle Commande - Le Rich\'Lieux*\n\n' +
+    cart.map(i => `• ${i.emoji || ''} ${i.name} x${i.qty} = ${(i.price * i.qty).toLocaleString()} FCFA`).join('\n') +
+    `\n\n💰 *TOTAL: ${total.toLocaleString()} FCFA*`;
+  var order = { id: Date.now(), items: [...cart], total, date: new Date().toISOString(), status: 'pending' };
+  orders.push(order);
+  save();
+  window.open('https://wa.me/2250789890470?text=' + encodeURIComponent(msg), '_blank');
+  toast('✅ Commande envoyée !');
+}
+
+// ===== RESTAURANT =====
+var restCats = [
+  { key: 'all', label: '🍽️ Tout' },
+  { key: 'riz-sauces', label: '🍛 Riz & Sauces' },
+  { key: 'grillades', label: '🔥 Grillades' },
+  { key: 'plats-speciaux', label: '🌟 Plats Spéciaux' },
+  { key: 'entrees', label: '🥗 Entrées' }
+];
+
+function renderRestaurant() {
+  var catBar = document.getElementById('rcat');
+  catBar.innerHTML = restCats.map(c =>
+    `<button class="cat-btn ${currentRestCat === c.key ? 'act' : ''}" onclick="setRestCat('${c.key}')">${c.label}</button>`
+  ).join('');
+  var filtered = currentRestCat === 'all'
+    ? products.filter(p => ['riz-sauces','grillades','plats-speciaux','entrees'].includes(p.cat))
+    : products.filter(p => p.cat === currentRestCat);
+  document.getElementById('rgrid').innerHTML = filtered.length
+    ? filtered.map(p => productCard(p)).join('')
+    : '<p class="muted" style="text-align:center;padding:40px;">Aucun produit dans cette catégorie.</p>';
+}
+
+function setRestCat(cat) {
+  currentRestCat = cat;
+  renderRestaurant();
+}
+
+// ===== BAR =====
+var barCats = [
+  { key: 'all', label: '🍹 Tout' },
+  { key: 'cocktails', label: '🍸 Cocktails' },
+  { key: 'champagnes', label: '🍾 Champagnes & Vins' },
+  { key: 'bieres', label: '🍺 Bières' },
+  { key: 'softs', label: '🥤 Softs' },
+  { key: 'whisky', label: '🥃 Whisky' }
+];
+
+function renderBar() {
+  var catBar = document.getElementById('bcat');
+  catBar.innerHTML = barCats.map(c =>
+    `<button class="cat-btn ${currentBarCat === c.key ? 'act' : ''}" onclick="setBarCat('${c.key}')">${c.label}</button>`
+  ).join('');
+  var filtered = currentBarCat === 'all'
+    ? products.filter(p => ['cocktails','champagnes','bieres','softs','whisky'].includes(p.cat))
+    : products.filter(p => p.cat === currentBarCat);
+  document.getElementById('bgrid').innerHTML = filtered.length
+    ? filtered.map(p => productCard(p)).join('')
+    : '<p class="muted" style="text-align:center;padding:40px;">Aucun produit dans cette catégorie.</p>';
+}
+
+function setBarCat(cat) {
+  currentBarCat = cat;
+  renderBar();
+}
+
+function productCard(p) {
+  return `<div class="card" style="overflow:hidden;">
+    ${p.img ? `<img src="${p.img}" class="pimg">` : `<div style="height:120px;background:linear-gradient(135deg,#1a1a1a,#0a0a0a);display:flex;align-items:center;justify-content:center;font-size:3.5rem;">${p.emoji || '🍽️'}</div>`}
+    <div style="padding:16px;">
+      <h3 style="font-weight:700;margin-bottom:6px;font-size:15px;">${p.name}</h3>
+      ${p.desc ? `<p class="muted" style="font-size:12px;margin-bottom:10px;line-height:1.6;">${p.desc}</p>` : ''}
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        <span class="fp or" style="font-size:1.2rem;font-weight:700;">${p.price.toLocaleString()} F</span>
+        <button onclick="addToCart(${p.id})" class="btn btn-s">🛒 Ajouter</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ===== RÉSERVATION =====
+function submitReservation(e) {
+  e.preventDefault();
+  var name = document.getElementById('r
