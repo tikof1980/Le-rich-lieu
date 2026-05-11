@@ -8,274 +8,654 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--or:#D4AF37;--or2:#F0D87C;--bg:#111;--bg2:#0a0a0a;--bg3:#1a1a1a;--txt:#f5f5f5;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:#111;color:#f5f5f5;overflow-x:hidden;}
 .fp{font-family:'Playfair Display',serif;}
-.or{color:var(--or);}
+.or{color:#D4AF37;}
 .tg{background:linear-gradient(90deg,#D4AF37,#F0D87C,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-/* PAGES */
 .page{display:none;}
 .page.active{display:block;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,5,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.2);}
-.nav-top{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1400px;margin:0 auto;}
-.logo{cursor:pointer;text-decoration:none;}
-.logo-name{font-family:'Playfair Display',serif;font-size:1.4rem;color:#D4AF37;font-weight:900;display:block;}
-.logo-sub{font-size:0.6rem;color:rgba(212,175,55,0.6);letter-spacing:0.25em;text-transform:uppercase;}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
-.hamburger span{display:block;width:24px;height:2px;background:#D4AF37;border-radius:2px;transition:all 0.3s;}
-.nav-desktop{display:flex;gap:2px;align-items:center;}
-.nav-desktop button{background:none;border:none;color:rgba(245,245,245,0.8);cursor:pointer;font-size:13px;padding:8px 12px;border-radius:6px;transition:all 0.2s;font-family:'Inter',sans-serif;position:relative;white-space:nowrap;}
-.nav-desktop button:hover{color:#D4AF37;background:rgba(212,175,55,0.1);}
-.nav-desktop button.active-nav{color:#D4AF37;background:rgba(212,175,55,0.15);font-weight:600;}
-.nav-right-btns{display:flex;gap:8px;align-items:center;}
-.cart-pill{background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;border-radius:20px;padding:7px 14px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;transition:all 0.2s;}
-.cart-pill:hover{background:rgba(212,175,55,0.25);}
-.badge{background:#D4AF37;color:#111;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
-
-/* MOBILE NAV */
-.nav-mobile{display:none;background:#050505;border-top:1px solid rgba(212,175,55,0.15);padding:12px;}
-.nav-mobile.open{display:block;}
-.nav-mobile button{display:block;width:100%;text-align:left;background:none;border:none;color:rgba(245,245,245,0.85);cursor:pointer;padding:12px 16px;font-size:14px;font-family:'Inter',sans-serif;border-radius:8px;transition:all 0.2s;border-left:3px solid transparent;}
-.nav-mobile button:hover{color:#D4AF37;background:rgba(212,175,55,0.08);border-left-color:#D4AF37;}
-.nav-mobile button.active-nav{color:#D4AF37;background:rgba(212,175,55,0.1);border-left-color:#D4AF37;}
-
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 22px;border-radius:9px;border:none;cursor:pointer;font-weight:600;font-size:14px;font-family:'Inter',sans-serif;transition:all 0.3s;text-decoration:none;line-height:1;}
-.btn:hover{transform:translateY(-2px);}
-.bg{background:linear-gradient(135deg,#D4AF37,#F0D87C);color:#111;}
-.bg:hover{box-shadow:0 8px 25px rgba(212,175,55,0.45);}
-.bb{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;}
-.bb:hover{box-shadow:0 8px 20px rgba(37,211,102,0.35);}
-.br{background:linear-gradient(135deg,#c00,#8B0000);color:#fff;}
-.br:hover{box-shadow:0 8px 20px rgba(200,0,0,0.35);}
-.bo{background:transparent;border:2px solid #D4AF37;color:#D4AF37;}
-.bo:hover{background:#D4AF37;color:#111;}
-.bn{background:#1a1a1a;border:1px solid rgba(212,175,55,0.2);color:#f5f5f5;}
-.bn:hover{border-color:#D4AF37;}
-.btn-sm{padding:7px 14px;font-size:12px;border-radius:7px;}
-.btn-lg{padding:14px 30px;font-size:15px;}
-.btn-full{width:100%;}
-
-/* INPUTS */
-.inp{width:100%;background:#0d0d0d;border:1px solid rgba(212,175,55,0.25);border-radius:9px;padding:12px 14px;color:#f5f5f5;outline:none;font-size:14px;font-family:'Inter',sans-serif;transition:border 0.3s;}
-.inp:focus{border-color:#D4AF37;box-shadow:0 0 0 3px rgba(212,175,55,0.08);}
-.inp option,.inp optgroup{background:#1a1a1a;color:#f5f5f5;}
-label.lbl{display:block;color:rgba(212,175,55,0.9);font-size:12px;font-weight:600;margin-bottom:6px;letter-spacing:0.05em;text-transform:uppercase;}
-.fg{margin-bottom:16px;}
-
-/* CARDS */
-.card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.15);border-radius:14px;overflow:hidden;transition:all 0.3s;}
-.card:hover{border-color:rgba(212,175,55,0.45);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,0.5),0 0 30px rgba(212,175,55,0.08);}
-
-/* PRODUCT CARD */
-.prod-img-wrap{width:100%;height:190px;overflow:hidden;background:#111;position:relative;cursor:pointer;}
-.prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
-.prod-img-wrap:hover img{transform:scale(1.08);}
-.prod-emoji-wrap{width:100%;height:190px;display:flex;align-items:center;justify-content:center;font-size:4.5rem;background:linear-gradient(135deg,#181818,#0d0d0d);cursor:pointer;}
-.prod-body{padding:16px;}
-.prod-name{font-weight:700;font-size:15px;margin-bottom:4px;}
-.prod-desc{color:rgba(245,245,245,0.5);font-size:12px;line-height:1.6;margin-bottom:12px;}
-.prod-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
-.prod-price{font-family:'Playfair Display',serif;color:#D4AF37;font-size:1.25rem;font-weight:700;}
-
-/* REACTIONS */
-.react-bar{display:flex;gap:6px;padding:10px 16px;border-top:1px solid rgba(212,175,55,0.08);background:rgba(0,0,0,0.2);}
-.react-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:5px 10px;cursor:pointer;font-size:15px;display:flex;align-items:center;gap:4px;transition:all 0.2s;color:#f5f5f5;font-family:'Inter',sans-serif;font-size:12px;}
-.react-btn:hover{background:rgba(212,175,55,0.15);border-color:rgba(212,175,55,0.3);transform:scale(1.1);}
-.react-btn.reacted{background:rgba(212,175,55,0.2);border-color:#D4AF37;color:#D4AF37;}
-
-/* CATEGORIES */
-.cat-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
-.cat-btn{background:#111;border:1px solid rgba(212,175,55,0.2);color:rgba(245,245,245,0.7);padding:8px 18px;border-radius:22px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.25s;white-space:nowrap;}
-.cat-btn:hover,.cat-btn.active{background:#D4AF37;color:#111;border-color:#D4AF37;font-weight:700;}
+nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(5,5,5,0.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,0.25);}
+.nav-wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;max-width:1400px;margin:0 auto;}
+.logo-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:#D4AF37;font-weight:900;cursor:pointer;line-height:1.1;}
+.logo-sub{font-size:0.55rem;color:rgba(212,175,55,0.6);letter-spacing:0.2em;text-transform:uppercase;}
+.nav-scroll{display:flex;gap:2px;align-items:center;overflow-x:auto;scrollbar-width:none;flex:1;margin:0 12px;}
+.nav-scroll::-webkit-scrollbar{display:none;}
+.nb{background:none;border:none;color:rgba(245,245,245,0.75);cursor:pointer;font-size:12px;padding:7px 10px;border-radius:6px;white-space:nowrap;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.nb:hover,.nb.acv{color:#D4AF37;background:rgba(212,175,55,0.12);font-weight:600;}
+.nav-right{display:flex;gap:8px;align-items:center;flex-shrink:0;}
+.cart-btn{background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.35);color:#D4AF37;border-radius:20px;padding:7px 14px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;transition:all 0.2s;white-space:nowrap;}
+.cart-btn:hover{background:rgba(212,175,55,0.25);}
+.adm-btn{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.adm-btn:hover{transform:scale(1.04);}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:2000;align-items:center;justify-content:center;padding:16px;}
-.modal-overlay.open{display:flex;}
-.modal-box{background:linear-gradient(145deg,#111,#0d0d0d);border:1px solid rgba(212,175,55,0.3);border-radius:16px;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;animation:fadeUp 0.3s ease;}
-@keyframes fadeUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-.modal-head{padding:20px 24px;border-bottom:1px solid rgba(212,175,55,0.12);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#111;z-index:1;}
-.modal-head h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:#D4AF37;}
-.modal-close{background:rgba(255,255,255,0.07);border:none;color:#f5f5f5;font-size:20px;cursor:pointer;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
-.modal-close:hover{background:rgba(200,0,0,0.3);color:#fff;}
-.modal-body{padding:24px;}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;align-items:center;justify-content:center;padding:16px;}
+.modal-bg.open{display:flex;}
+.modal{background:#1a1a1a;border:1px solid rgba(212,175,55,0.35);border-radius:16px;padding:32px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;}
+.modal h2{font-family:'Playfair Display',serif;color:#D4AF37;margin-bottom:20px;font-size:1.4rem;}
+.inp{width:100%;background:#111;border:1px solid rgba(212,175,55,0.3);color:#f5f5f5;border-radius:8px;padding:11px 14px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:12px;outline:none;transition:border 0.2s;}
+.inp:focus{border-color:#D4AF37;}
+.inp option{background:#111;}
+.lbl{display:block;color:rgba(212,175,55,0.8);font-size:12px;font-weight:600;margin-bottom:5px;letter-spacing:0.05em;}
+.fg{margin-bottom:12px;}
+.btn-or{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border:none;border-radius:8px;padding:12px 24px;cursor:pointer;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;width:100%;transition:all 0.2s;}
+.btn-or:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,175,55,0.35);}
+.btn-ghost{background:transparent;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;border-radius:8px;padding:10px 20px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.btn-ghost:hover{background:rgba(212,175,55,0.1);}
+.btn-red{background:rgba(139,0,0,0.8);border:none;color:#fff;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.btn-red:hover{background:#8B0000;}
+.btn-green{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;border-radius:8px;padding:12px 20px;cursor:pointer;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;width:100%;margin-bottom:8px;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-green:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,0.35);}
+.btn-blue{background:linear-gradient(135deg,#0088cc,#005580);color:#fff;border:none;border-radius:8px;padding:12px 20px;cursor:pointer;font-weight:700;font-size:14px;font-family:'Inter',sans-serif;width:100%;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-blue:hover{transform:translateY(-1px);}
+.close-btn{float:right;background:none;border:none;color:rgba(245,245,245,0.5);font-size:22px;cursor:pointer;line-height:1;}
+.close-btn:hover{color:#D4AF37;}
 
-/* TOAST */
-.toasts{position:fixed;top:90px;right:16px;z-index:4000;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
-.toast{background:linear-gradient(135deg,#1a1a1a,#111);border:1px solid rgba(212,175,55,0.35);border-radius:10px;padding:12px 18px;font-size:13px;box-shadow:0 8px 30px rgba(0,0,0,0.6);animation:toastIn 0.3s ease;min-width:220px;max-width:300px;pointer-events:all;}
-.toast.success{border-color:rgba(37,211,102,0.5);}
-.toast.error{border-color:rgba(200,0,0,0.5);}
-@keyframes toastIn{from{transform:translateX(110%);opacity:0;}to{transform:translateX(0);opacity:1;}}
-@keyframes toastOut{from{transform:translateX(0);opacity:1;}to{transform:translateX(110%);opacity:0;}}
+/* CARDS */
+.card{background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:14px;overflow:hidden;transition:all 0.3s;}
+.card:hover{border-color:rgba(212,175,55,0.4);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.4);}
+.card-img{width:100%;height:180px;object-fit:cover;background:#222;display:block;}
+.card-img-placeholder{width:100%;height:180px;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);display:flex;align-items:center;justify-content:center;font-size:3rem;}
+.card-body{padding:16px;}
+.card-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:#f5f5f5;margin-bottom:6px;}
+.card-desc{font-size:12px;color:rgba(245,245,245,0.5);margin-bottom:10px;line-height:1.5;}
+.card-price{font-size:1.1rem;font-weight:700;color:#D4AF37;margin-bottom:12px;}
+.card-footer{display:flex;gap:8px;}
 
-/* SECTION */
-.section{padding:70px 20px;}
-.s-inner{max-width:1200px;margin:0 auto;}
-.s-title{text-align:center;margin-bottom:48px;}
-.s-title small{display:block;color:#D4AF37;letter-spacing:0.3em;font-size:0.75rem;text-transform:uppercase;margin-bottom:8px;}
-.s-title h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:900;}
+/* GRID */
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:20px;}
+@media(max-width:600px){.grid-cards{grid-template-columns:repeat(2,1fr);gap:12px;}.card-img,.card-img-placeholder{height:140px;}}
+
+/* CATS */
+.cat-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.cat-chip{background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);color:rgba(212,175,55,0.8);border-radius:20px;padding:6px 14px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.cat-chip:hover,.cat-chip.sel{background:#D4AF37;color:#111;font-weight:700;border-color:#D4AF37;}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:100px 20px 60px;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(212,175,55,0.07) 0%,transparent 65%);}
-.hero-deco{position:absolute;opacity:0.04;font-size:clamp(4rem,12vw,8rem);pointer-events:none;}
+.hero{min-height:100vh;background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.8) 100%),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&q=80') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,8vw,5rem);line-height:1.1;margin-bottom:16px;}
+.hero p{font-size:clamp(1rem,3vw,1.3rem);color:rgba(245,245,245,0.7);margin-bottom:32px;max-width:600px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
 
-/* STATS */
-.stat-card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:22px;text-align:center;}
-.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:#D4AF37;}
-.stat-lbl{font-size:12px;color:rgba(245,245,245,0.5);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;}
+/* SECTIONS */
+.section{padding:60px 20px;max-width:1200px;margin:0 auto;}
+.sec-title{text-align:center;margin-bottom:40px;}
+.sec-title p{font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:8px;}
+.sec-title h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);}
+.divider{width:60px;height:2px;background:linear-gradient(90deg,#D4AF37,#F0D87C);margin:12px auto 0;}
 
-/* EVENT BANNER */
-.evt-banner{background:linear-gradient(90deg,#8B0000,#D4AF37,#8B0000);padding:9px 0;overflow:hidden;}
-.evt-scroll{display:inline-block;white-space:nowrap;animation:scroll 22s linear infinite;color:#111;font-weight:700;font-size:13px;}
-@keyframes scroll{from{transform:translateX(100vw);}to{transform:translateX(-100%);}}
-
-/* ADMIN */
-.admin-wrap{display:flex;min-height:100vh;padding-top:88px;}
-.admin-side{width:200px;min-width:200px;background:#050505;border-right:1px solid rgba(212,175,55,0.15);padding:20px 0;position:sticky;top:88px;height:calc(100vh - 88px);overflow-y:auto;}
-.admin-side button{display:block;width:100%;text-align:left;background:none;border:none;color:rgba(245,245,245,0.7);padding:11px 20px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;transition:all 0.2s;border-left:3px solid transparent;white-space:nowrap;}
-.admin-side button:hover{color:#D4AF37;background:rgba(212,175,55,0.07);}
-.admin-side button.active{color:#D4AF37;background:rgba(212,175,55,0.1);border-left-color:#D4AF37;font-weight:600;}
-.admin-main{flex:1;padding:30px;overflow-x:hidden;}
+/* ADMIN SIDEBAR */
+.admin-layout{display:flex;min-height:100vh;padding-top:65px;}
+.admin-sidebar{width:220px;background:#0d0d0d;border-right:1px solid rgba(212,175,55,0.15);padding:20px 12px;flex-shrink:0;position:sticky;top:65px;height:calc(100vh - 65px);overflow-y:auto;}
+.admin-sidebar h3{font-size:10px;letter-spacing:0.2em;color:rgba(212,175,55,0.5);text-transform:uppercase;margin-bottom:12px;padding:0 8px;}
+.sb-btn{display:block;width:100%;background:none;border:none;color:rgba(245,245,245,0.7);cursor:pointer;font-size:13px;padding:10px 12px;border-radius:8px;text-align:left;font-family:'Inter',sans-serif;transition:all 0.2s;margin-bottom:3px;}
+.sb-btn:hover,.sb-btn.sb-active{color:#D4AF37;background:rgba(212,175,55,0.12);}
+.admin-content{flex:1;padding:28px;overflow-y:auto;}
 .admin-panel{display:none;}
 .admin-panel.active{display:block;}
+@media(max-width:700px){.admin-layout{flex-direction:column;}.admin-sidebar{width:100%;position:static;height:auto;display:flex;gap:4px;flex-wrap:wrap;padding:10px;}.admin-sidebar h3{display:none;}.sb-btn{width:auto;font-size:11px;padding:7px 10px;}.admin-content{padding:16px;}}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:28px;}
+.stat-card{background:linear-gradient(135deg,#1a1a1a,#151515);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:20px;text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;color:#D4AF37;font-weight:700;}
+.stat-lbl{font-size:11px;color:rgba(245,245,245,0.5);margin-top:4px;}
 
 /* GALLERY */
-.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
-.gal-item{aspect-ratio:1;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;border:2px solid transparent;transition:all 0.3s;}
-.gal-item:hover{border-color:#D4AF37;transform:scale(1.03);}
-.gal-item img{width:100%;height:100%;object-fit:cover;}
-.gal-item .gal-del{position:absolute;top:6px;right:6px;background:rgba(200,0,0,0.85);border:none;border-radius:50%;width:28px;height:28px;color:#fff;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:14px;}
-.gal-item:hover .gal-del{display:flex;}
-.gal-add{aspect-ratio:1;border-radius:10px;border:2px dashed rgba(212,175,55,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:8px;color:rgba(212,175,55,0.6);font-size:13px;transition:all 0.3s;}
-.gal-add:hover{border-color:#D4AF37;color:#D4AF37;background:rgba(212,175,55,0.05);}
-
-/* SCROLLBAR */
-::-webkit-scrollbar{width:5px;}
-::-webkit-scrollbar-track{background:#0a0a0a;}
-::-webkit-scrollbar-thumb{background:#D4AF37;border-radius:3px;}
-
-/* CART FLOAT */
-.cart-float{position:fixed;bottom:24px;right:20px;z-index:990;display:none;}
-.cart-float-btn{background:linear-gradient(135deg,#D4AF37,#F0D87C);color:#111;border:none;border-radius:50px;padding:13px 22px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(212,175,55,0.5);display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;transition:all 0.3s;}
-.cart-float-btn:hover{transform:scale(1.06);}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
+.gal-item{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:#1a1a1a;}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;}
+.gal-del{position:absolute;top:6px;right:6px;background:rgba(139,0,0,0.85);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;}
 
 /* RESERVATION */
-.res-card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.2);border-radius:14px;padding:28px;}
+.res-form{background:#1a1a1a;border:1px solid rgba(212,175,55,0.2);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;}
 
-/* TABLE QTY */
-.qty-wrap{display:flex;align-items:center;gap:10px;}
-.qty-btn{background:#1a1a1a;border:1px solid rgba(212,175,55,0.3);color:#D4AF37;width:32px;height:32px;border-radius:7px;cursor:pointer;font-size:16px;font-family:'Inter',sans-serif;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
-.qty-btn:hover{background:#D4AF37;color:#111;}
-.qty-val{font-size:16px;font-weight:700;min-width:28px;text-align:center;}
+/* UPLOAD AREA */
+.upload-area{border:2px dashed rgba(212,175,55,0.35);border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(212,175,55,0.03);}
+.upload-area:hover{border-color:#D4AF37;background:rgba(212,175,55,0.07);}
 
-/* PROGRESS */
-.prog-wrap{background:#1a1a1a;border-radius:10px;height:7px;overflow:hidden;}
-.prog-bar{height:100%;background:linear-gradient(90deg,#D4AF37,#F0D87C);border-radius:10px;transition:width 0.6s;}
+/* PRODUCT FORM */
+.prod-img-preview{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:none;}
 
-/* DIVIDER */
-.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,0.25),transparent);margin:32px 0;}
+/* ORDERS */
+.order-card{background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:18px;margin-bottom:12px;}
+.order-status{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.status-new{background:rgba(212,175,55,0.2);color:#D4AF37;}
+.status-done{background:rgba(37,211,102,0.2);color:#25D366;}
+.status-cancelled{background:rgba(139,0,0,0.2);color:#ff6666;}
 
-/* IMAGE UPLOAD */
-.img-upload-area{border:2px dashed rgba(212,175,55,0.35);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;}
-.img-upload-area:hover{border-color:#D4AF37;background:rgba(212,175,55,0.04);}
-.img-upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;}
-.img-preview{width:100%;max-height:180px;object-fit:contain;border-radius:8px;margin-top:12px;}
+/* EVENTS */
+.evt-card{background:linear-gradient(135deg,#1a1a1a,#111);border:1px solid rgba(212,175,55,0.2);border-radius:14px;padding:22px;margin-bottom:14px;display:flex;gap:16px;align-items:center;}
+.evt-date{background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border-radius:10px;padding:10px 14px;text-align:center;min-width:56px;flex-shrink:0;}
+.evt-day{font-size:1.5rem;font-weight:900;font-family:'Playfair Display',serif;line-height:1;}
+.evt-mon{font-size:10px;font-weight:700;text-transform:uppercase;}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-.admin-side{display:none;}
-.admin-main{padding:16px;}
-}
+/* CART SIDEBAR */
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:8888;}
+.cart-overlay.open{display:block;}
+.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:360px;max-width:100vw;background:#141414;border-left:1px solid rgba(212,175,55,0.2);z-index:8889;padding:24px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.3s ease;}
+.cart-drawer.open{transform:translateX(0);}
+.cart-items{flex:1;overflow-y:auto;margin:16px 0;}
+.ci{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.ci-img{width:50px;height:50px;border-radius:8px;object-fit:cover;background:#222;flex-shrink:0;}
+.ci-name{font-size:13px;font-weight:600;flex:1;}
+.ci-price{font-size:13px;color:#D4AF37;font-weight:700;}
+.ci-qty{display:flex;align-items:center;gap:8px;}
+.qty-btn{background:rgba(212,175,55,0.15);border:none;color:#D4AF37;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.cart-total{font-family:'Playfair Display',serif;font-size:1.3rem;color:#D4AF37;text-align:center;padding:16px 0;border-top:1px solid rgba(212,175,55,0.2);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:#D4AF37;color:#111;padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;z-index:99999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* REACTION */
+.reaction-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.r-btn{background:rgba(255,255,255,0.07);border:none;border-radius:20px;padding:5px 12px;cursor:pointer;font-size:13px;color:#f5f5f5;transition:all 0.2s;}
+.r-btn:hover{background:rgba(212,175,55,0.2);transform:scale(1.1);}
+.r-btn.reacted{background:rgba(212,175,55,0.25);color:#D4AF37;}
+
+/* FOOTER */
+footer{background:#0a0a0a;border-top:1px solid rgba(212,175,55,0.15);padding:40px 20px;text-align:center;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.8rem;color:#D4AF37;margin-bottom:8px;}
+
+/* LOUNGE HERO */
+.lounge-hero{height:350px;background:linear-gradient(135deg,rgba(0,0,0,0.8),rgba(139,0,0,0.3)),url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1200&q=80') center/cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin-top:65px;}
+
+/* ANIMATE */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.anim{animation:fadeUp 0.5s ease forwards;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;}}
+.about-img{width:100%;height:300px;object-fit:cover;border-radius:16px;border:2px solid rgba(212,175,55,0.2);}
+
+/* NAV MOBILE */
 @media(max-width:768px){
-.hamburger{display:flex;}
-.nav-desktop{display:none;}
-.admin-wrap{flex-direction:column;}
+.nav-scroll button span{display:none;}
 }
-@media(max-width:500px){
-.btn-lg{padding:12px 20px;font-size:14px;}
-}
-
-/* PULSE */
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-.pulse{animation:pulse 1.8s ease-in-out infinite;}
-/* STARS */
-.stars{color:#D4AF37;}
-/* TABLE */
-table{width:100%;border-collapse:collapse;font-size:13px;}
-th{background:rgba(212,175,55,0.1);color:#D4AF37;padding:12px 14px;text-align:left;font-weight:600;border-bottom:1px solid rgba(212,175,55,0.2);}
-td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:middle;}
-tr:hover td{background:rgba(212,175,55,0.03);}
-/* LOGIN */
-.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
-.login-card{background:linear-gradient(145deg,#0d0d0d,#181818);border:1px solid rgba(212,175,55,0.3);border-radius:20px;padding:40px;width:100%;max-width:400px;}
 </style>
 </head>
 <body>
 
-<div class="toasts" id="toasts"></div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
-<!-- EVENT BANNER -->
-<div class="evt-banner">
-  <span class="evt-scroll">🎉 SOIRÉE VIP CE SAMEDI — DJ SET + COCKTAILS PREMIUM | Réservez : 0789890470 🥂 LE RICH'LIEU LOUNGE BAR — Saveurs • Lounge • Élégance ✨ Quartier Garahio, Gagnoa</span>
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <h3 class="fp or" style="font-size:1.2rem;">🛒 Mon Panier</h3>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-total" id="cartTotal">Total : 0 FCFA</div>
+  <button class="btn-or" onclick="checkout()" style="margin-bottom:8px;">✅ Commander</button>
+  <button class="btn-green" onclick="orderWhatsApp()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Commander via WhatsApp
+  </button>
+  <button class="btn-blue" onclick="orderCall()">📞 Commander par Téléphone</button>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-top">
-    <a class="logo" onclick="goPage('home')">
-      <span class="logo-name">Le Rich'Lieu</span>
-      <span class="logo-sub">Saveurs • Lounge • Élégance</span>
-    </a>
-    <div class="nav-desktop" id="navDesktop">
-      <button onclick="goPage('home')" id="nb-home">🏠 Accueil</button>
-      <button onclick="goPage('restaurant')" id="nb-restaurant">🍽️ Restaurant</button>
-      <button onclick="goPage('bar')" id="nb-bar">🍹 Bar Lounge</button>
-      <button onclick="goPage('reservation')" id="nb-reservation">📅 Réservation</button>
-      <button onclick="goPage('events')" id="nb-events">🎉 Évènements <span class="badge" id="evtBadge">1</span></button>
-      <button onclick="goPage('gallery')" id="nb-gallery">🖼️ Galerie</button>
-      <button onclick="goPage('admin')" id="nb-admin" style="color:#D4AF37;">👑 Admin</button>
+  <div class="nav-wrap">
+    <div onclick="showPage('home')" style="cursor:pointer;">
+      <div class="logo-name">Le Rich'Lieu</div>
+      <div class="logo-sub">Restaurant • Lounge • Bar</div>
     </div>
-    <div class="nav-right-btns">
-      <button class="cart-pill" onclick="goPage('cart')">🛒 <span id="cartNum">0</span></button>
-      <button class="hamburger" onclick="toggleMenu()" id="hamBtn">
-        <span></span><span></span><span></span>
+    <div class="nav-scroll">
+      <button class="nb acv" onclick="showPage('home')">🏠 Accueil</button>
+      <button class="nb" onclick="showPage('restaurant')">🍽️ Restaurant</button>
+      <button class="nb" onclick="showPage('bar')">🍹 Bar Lounge</button>
+      <button class="nb" onclick="showPage('reservation')">📅 Réservation</button>
+      <button class="nb" onclick="showPage('events')">🎉 Évènements</button>
+      <button class="nb" onclick="showPage('gallery')">🖼️ Galerie</button>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()">
+        🛒 <span id="cartCount">0</span>
       </button>
+      <button class="adm-btn" onclick="openAdminModal()">👑 Admin</button>
     </div>
-  </div>
-  <div class="nav-mobile" id="navMobile">
-    <button onclick="goPage('home');closeMenu();" id="nm-home">🏠 Accueil</button>
-    <button onclick="goPage('restaurant');closeMenu();" id="nm-restaurant">🍽️ Restaurant</button>
-    <button onclick="goPage('bar');closeMenu();" id="nm-bar">🍹 Bar Lounge</button>
-    <button onclick="goPage('reservation');closeMenu();" id="nm-reservation">📅 Réservation</button>
-    <button onclick="goPage('events');closeMenu();" id="nm-events">🎉 Évènements</button>
-    <button onclick="goPage('gallery');closeMenu();" id="nm-gallery">🖼️ Galerie</button>
-    <button onclick="goPage('admin');closeMenu();" id="nm-admin" style="color:#D4AF37;">👑 Administration</button>
   </div>
 </nav>
 
-<!-- CART FLOAT -->
-<div class="cart-float" id="cartFloat">
-  <button class="cart-float-btn" onclick="goPage('cart')">🛒 Panier (<span id="cfCount">0</span>) — <span id="cfTotal">0</span> FCFA</button>
-</div>
-
-<!-- ================================================================ -->
-<!-- HOME PAGE -->
-<!-- ================================================================ -->
+<!-- ==================== HOME ==================== -->
 <div id="page-home" class="page active">
   <div class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-deco" style="top:15%;left:8%;animation:float1 6s ease-in-out infinite;">🍷</div>
-    <div class="hero-deco" style="top:25%;right:6%;animation:float1 8s ease-in-out infinite 1s;">🍸</div>
-    <div class="hero-deco" style="bottom:18%;left:4%;animation:float1 7s ease-in-out infinite 2s;">🍽️</div>
-    <style>@keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}</style>
-    <div style="position:relative;z-index:1;max-width:720px;">
-      <p style="color:#D4AF37;letter-spacing:0.4em;font-size:0.75rem;text-transform:uppercase;margin-bottom:16px;">★ Gagnoa, Quartier Garahio ★</p>
-      <h1 class="fp" style="font-size:clamp(2.8rem,9vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:16px;">
-        <span class="tg">Le Rich'Lieu</span><br>
-        <span style="font-size:0.5em;color:#f5f5f5;font-weight:400;">Restaurant Lounge Bar</span>
-      </h1>
-      <p style="color:rgba(245,245,245,0.55);font-size:0.95rem;margin-bottom:36px;
+    <div class="anim">
+      <p style="font-size:12px;letter-spacing:0.3em;color:rgba(212,175,55,0.7);text-transform:uppercase;margin-bottom:12px;">✨ Bienvenue au</p>
+      <h1 class="fp">Le Rich'<span style="color:#D4AF37;">Lieu</span></h1>
+      <p style="color:rgba(245,245,245,0.75);font-size:1.1rem;margin-bottom:12px;">Saveurs • Lounge • Élégance</p>
+      <p style="color:rgba(245,245,245,0.5);font-size:14px;margin-bottom:32px;">Gagnoa, Quartier Garahio</p>
+      <div class="hero-btns">
+        <button class="btn-or" style="padding:14px 28px;border-radius:30px;font-size:15px;" onclick="showPage('restaurant')">🍽️ Voir le Menu</button>
+        <button onclick="showPage('reservation')" style="background:rgba(255,255,255,0.1);border:1px solid rgba(212,175,55,0.4);color:#D4AF37;border-radius:30px;padding:14px 28px;cursor:pointer;font-size:15px;font-family:'Inter',sans-serif;backdrop-filter:blur(8px);transition:all 0.2s;">📅 Réserver une Table</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <div class="sec-title">
+      <p>NOS SERVICES</p>
+      <h2 class="fp tg">Une Expérience Unique</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;">
+      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('restaurant')">
+        <div style="font-size:3rem;margin-bottom:12px;">🍽️</div>
+        <h3 class="fp or" style="margin-bottom:8px;">Restaurant</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Plats raffinés, spécialités locales et cuisine internationale</p>
+      </div>
+      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('bar')">
+        <div style="font-size:3rem;margin-bottom:12px;">🍹</div>
+        <h3 class="fp or" style="margin-bottom:8px;">Bar Lounge</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Cocktails exclusifs, champagnes et whiskys premium</p>
+      </div>
+      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('reservation')">
+        <div style="font-size:3rem;margin-bottom:12px;">📅</div>
+        <h3 class="fp or" style="margin-bottom:8px;">Réservation</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Réservez votre table en quelques clics facilement</p>
+      </div>
+      <div class="card" style="padding:28px;text-align:center;cursor:pointer;" onclick="showPage('events')">
+        <div style="font-size:3rem;margin-bottom:12px;">🎉</div>
+        <h3 class="fp or" style="margin-bottom:8px;">Évènements</h3>
+        <p style="color:rgba(245,245,245,0.5);font-size:13px;">Soirées spéciales, concerts live et événements privés</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div style="background:#0d0d0d;padding:60px 0;">
+    <div class="section">
+      <div class="about-grid">
+        <div>
+          <p style="font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:12px;">QUI SOMMES-NOUS</p>
+          <h2 class="fp tg" style="font-size:2.2rem;margin-bottom:20px;">L'Art de Recevoir</h2>
+          <p style="color:rgba(245,245,245,0.6);line-height:1.8;margin-bottom:16px;">Le Rich'Lieu Lounge Bar, situé à Gagnoa quartier Garahio, vous offre une expérience moderne alliant gastronomie raffinée et ambiance lounge premium.</p>
+          <p style="color:rgba(245,245,245,0.6);line-height:1.8;margin-bottom:24px;">Découvrez nos spécialités culinaires, nos cocktails exclusifs et nos soirées thématiques dans un cadre élégant et chaleureux.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="tel:0789890470" style="background:linear-gradient(135deg,#D4AF37,#a07820);color:#111;border-radius:8px;padding:12px 20px;text-decoration:none;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;">📞 0789890470</a>
+            <a href="https://wa.me/2250789890470" target="_blank" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:8px;padding:12px 20px;text-decoration:none;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;">💬 WhatsApp</a>
+          </div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Restaurant" class="about-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div class="section">
+    <div class="sec-title">
+      <p>NOS INCONTOURNABLES</p>
+      <h2 class="fp tg">Menu Vedette</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-cards" id="featuredGrid"></div>
+  </div>
+
+  <!-- CONTACT -->
+  <div style="background:#0d0d0d;padding:60px 0;">
+    <div class="section" style="text-align:center;">
+      <div class="sec-title">
+        <p>NOUS TROUVER</p>
+        <h2 class="fp tg">Contact & Localisation</h2>
+        <div class="divider"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:32px;">
+        <div class="card" style="padding:24px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">📍</div>
+          <h4 class="fp or" style="margin-bottom:6px;">Adresse</h4>
+          <p style="color:rgba(245,245,245,0.5);font-size:13px;">Gagnoa, Quartier Garahio</p>
+        </div>
+        <div class="card" style="padding:24px;text-align:center;cursor:pointer;" onclick="window.location='tel:0789890470'">
+          <div style="font-size:2rem;margin-bottom:8px;">📞</div>
+          <h4 class="fp or" style="margin-bottom:6px;">Téléphone</h4>
+          <p style="color:rgba(245,245,245,0.5);font-size:13px;">0789890470<br>0779911714</p>
+        </div>
+        <div class="card" style="padding:24px;text-align:center;cursor:pointer;" onclick="window.open('https://wa.me/2250789890470','_blank')">
+          <div style="font-size:2rem;margin-bottom:8px;">💬</div>
+          <h4 class="fp or" style="margin-bottom:6px;">WhatsApp</h4>
+          <p style="color:rgba(245,245,245,0.5);font-size:13px;">Commandez directement via WhatsApp</p>
+        </div>
+        <div class="card" style="padding:24px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">⏰</div>
+          <h4 class="fp or" style="margin-bottom:6px;">Horaires</h4>
+          <p style="color:rgba(245,245,245,0.5);font-size:13px;">Lun-Dim : 12h – 00h</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo fp">Le Rich'Lieu</div>
+    <p style="color:rgba(212,175,55,0.5);font-size:12px;margin-bottom:4px;">Saveurs • Lounge • Élégance</p>
+    <p style="color:rgba(245,245,245,0.3);font-size:11px;">Gagnoa, Quartier Garahio | © 2025 Le Rich'Lieu</p>
+  </footer>
+</div>
+
+<!-- ==================== RESTAURANT ==================== -->
+<div id="page-restaurant" class="page" style="padding-top:70px;">
+  <div style="background:linear-gradient(135deg,rgba(0,0,0,0.9),rgba(139,0,0,0.2)),url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80') center/cover;padding:60px 20px;text-align:center;">
+    <p style="font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:8px;">NOS SPÉCIALITÉS</p>
+    <h1 class="fp tg" style="font-size:2.5rem;">Menu Restaurant</h1>
+  </div>
+  <div class="section">
+    <div class="cat-bar" id="restCatBar"></div>
+    <div class="grid-cards" id="restGrid"></div>
+  </div>
+</div>
+
+<!-- ==================== BAR ==================== -->
+<div id="page-bar" class="page">
+  <div class="lounge-hero">
+    <div>
+      <p style="font-size:11px;letter-spacing:0.3em;color:rgba(212,175,55,0.6);text-transform:uppercase;margin-bottom:8px;">NOTRE BAR LOUNGE</p>
+      <h1 class="fp tg" style="font-size:2.5rem;">Bar & Cocktails</h1>
+      <p style="color:rgba(245,245,245,0.6);margin-top:8px;">Cocktails exclusifs • Champagnes • Whiskys Premium</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="cat-bar" id="barCatBar"></div>
+    <div class="grid-cards" id="barGrid"></div>
+  </div>
+</div>
+
+<!-- ==================== RESERVATION ==================== -->
+<div id="page-reservation" class="page" style="padding-top:70px;">
+  <div class="section">
+    <div class="sec-title">
+      <p>TABLE & ÉVÉNEMENT</p>
+      <h2 class="fp tg">Réserver une Table</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="res-form">
+      <div class="fg">
+        <label class="lbl">👤 Votre Nom</label>
+        <input class="inp" id="resName" type="text" placeholder="Ex: Kouassi Jean">
+      </div>
+      <div class="fg">
+        <label class="lbl">📞 Votre Numéro</label>
+        <input class="inp" id="resPhone" type="tel" placeholder="Ex: 0789890470">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="fg">
+          <label class="lbl">📅 Date</label>
+          <input class="inp" id="resDate" type="date">
+        </div>
+        <div class="fg">
+          <label class="lbl">⏰ Heure</label>
+          <input class="inp" id="resTime" type="time">
+        </div>
+      </div>
+      <div class="fg">
+        <label class="lbl">👥 Nombre de Personnes</label>
+        <select class="inp" id="resGuests">
+          <option value="1">1 personne</option>
+          <option value="2">2 personnes</option>
+          <option value="3">3 personnes</option>
+          <option value="4">4 personnes</option>
+          <option value="5">5 personnes</option>
+          <option value="6">6 personnes</option>
+          <option value="8">8 personnes</option>
+          <option value="10">10+ personnes</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="lbl">🍽️ Type de Réservation</label>
+        <select class="inp" id="resType">
+          <option value="restaurant">Restaurant</option>
+          <option value="bar-lounge">Bar Lounge</option>
+          <option value="vip">Salon VIP</option>
+          <option value="evenement">Événement Privé</option>
+          <option value="anniversaire">Anniversaire</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="lbl">📝 Message (optionnel)</label>
+        <textarea class="inp" id="resMsg" rows="3" placeholder="Informations supplémentaires, demandes spéciales..."></textarea>
+      </div>
+      <button class="btn-or" onclick="submitReservation()" style="margin-bottom:10px;">✅ Confirmer la Réservation</button>
+      <button class="btn-green" onclick="reservWhatsApp()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Réserver via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== EVENTS ==================== -->
+<div id="page-events" class="page" style="padding-top:70px;">
+  <div class="section">
+    <div class="sec-title">
+      <p>AGENDA</p>
+      <h2 class="fp tg">Nos Évènements</h2>
+      <div class="divider"></div>
+    </div>
+    <div id="eventsList"></div>
+  </div>
+</div>
+
+<!-- ==================== GALLERY ==================== -->
+<div id="page-gallery" class="page" style="padding-top:70px;">
+  <div class="section">
+    <div class="sec-title">
+      <p>NOTRE UNIVERS</p>
+      <h2 class="fp tg">Galerie Photos</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="gal-grid" id="publicGallery"></div>
+  </div>
+</div>
+
+<!-- ==================== ADMIN ==================== -->
+<div id="page-admin" class="page">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <h3>ADMINISTRATION</h3>
+      <button class="sb-btn sb-active" onclick="showPanel('dashboard')">📊 Dashboard</button>
+      <button class="sb-btn" onclick="showPanel('add-product')">➕ Ajouter Produit</button>
+      <button class="sb-btn" onclick="showPanel('manage-products')">📦 Mes Produits</button>
+      <button class="sb-btn" onclick="showPanel('orders')">🧾 Commandes</button>
+      <button class="sb-btn" onclick="showPanel('reservations-admin')">📅 Réservations</button>
+      <button class="sb-btn" onclick="showPanel('events-admin')">🎉 Évènements</button>
+      <button class="sb-btn" onclick="showPanel('gallery-admin')">🖼️ Galerie</button>
+      <button class="sb-btn" onclick="showPanel('caisse')">💰 Caisse</button>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(212,175,55,0.15);">
+        <button class="sb-btn" onclick="adminLogout()" style="color:rgba(255,100,100,0.8);">🚪 Déconnexion</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <!-- DASHBOARD -->
+      <div class="admin-panel active" id="panel-dashboard">
+        <h2 class="fp tg" style="font-size:1.8rem;margin-bottom:8px;">Tableau de Bord</h2>
+        <p style="color:rgba(212,175,55,0.5);margin-bottom:24px;font-size:13px;">Bienvenue dans l'administration du Rich'Lieu</p>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-num" id="statProducts">0</div><div class="stat-lbl">Produits</div></div>
+          <div class="stat-card"><div class="stat-num" id="statOrders">0</div><div class="stat-lbl">Commandes</div></div>
+          <div class="stat-card"><div class="stat-num" id="statReservations">0</div><div class="stat-lbl">Réservations</div></div>
+          <div class="stat-card"><div class="stat-num" id="statRevenue">0</div><div class="stat-lbl">Revenus FCFA</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:20px;">
+            <h3 class="fp or" style="margin-bottom:16px;font-size:1rem;">📋 Dernières Commandes</h3>
+            <div id="dashOrders"><p style="color:rgba(245,245,245,0.3);font-size:13px;">Aucune commande</p></div>
+          </div>
+          <div style="background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:20px;">
+            <h3 class="fp or" style="margin-bottom:16px;font-size:1rem;">📅 Dernières Réservations</h3>
+            <div id="dashReservations"><p style="color:rgba(245,245,245,0.3);font-size:13px;">Aucune réservation</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADD PRODUCT -->
+      <div class="admin-panel" id="panel-add-product">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">➕ Ajouter un Produit</h2>
+        <div style="max-width:500px;">
+          <!-- IMAGE UPLOAD -->
+          <div class="fg">
+            <label class="lbl">📸 Photo du Produit</label>
+            <label class="upload-area" for="prodImgInput" style="display:block;">
+              <img id="prodImgPreview" class="prod-img-preview" alt="Aperçu">
+              <div id="uploadPrompt">
+                <div style="font-size:2.5rem;margin-bottom:8px;">📷</div>
+                <p style="color:rgba(212,175,55,0.7);font-weight:600;font-size:14px;">Cliquez pour choisir une photo</p>
+                <p style="color:rgba(245,245,245,0.3);font-size:12px;margin-top:4px;">Depuis votre galerie téléphone</p>
+              </div>
+            </label>
+            <input type="file" id="prodImgInput" accept="image/*" style="display:none;" onchange="previewProdImg(event)">
+          </div>
+          <div class="fg">
+            <label class="lbl">🏷️ Nom du Produit *</label>
+            <input class="inp" id="prodName" type="text" placeholder="Ex: Poulet Grillé aux Herbes">
+          </div>
+          <div class="fg">
+            <label class="lbl">💰 Prix (FCFA) *</label>
+            <input class="inp" id="prodPrice" type="number" placeholder="Ex: 3500">
+          </div>
+          <div class="fg">
+            <label class="lbl">📂 Type *</label>
+            <select class="inp" id="prodType" onchange="updateCategories()">
+              <option value="restaurant">🍽️ Restaurant</option>
+              <option value="bar">🍹 Bar Lounge</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="lbl">🗂️ Catégorie *</label>
+            <select class="inp" id="prodCat"></select>
+          </div>
+          <div class="fg">
+            <label class="lbl">📝 Description</label>
+            <textarea class="inp" id="prodDesc" rows="3" placeholder="Décrivez votre plat ou boisson..."></textarea>
+          </div>
+          <button class="btn-or" onclick="saveProduct()">💾 Enregistrer le Produit</button>
+        </div>
+      </div>
+
+      <!-- MANAGE PRODUCTS -->
+      <div class="admin-panel" id="panel-manage-products">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">📦 Gérer les Produits</h2>
+        <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+          <button class="cat-chip sel" onclick="filterAdminProducts('all',this)">Tous</button>
+          <button class="cat-chip" onclick="filterAdminProducts('restaurant',this)">🍽️ Restaurant</button>
+          <button class="cat-chip" onclick="filterAdminProducts('bar',this)">🍹 Bar</button>
+        </div>
+        <div class="grid-cards" id="adminProductsGrid"></div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="admin-panel" id="panel-orders">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">🧾 Commandes Reçues</h2>
+        <div id="ordersAdmin"><p style="color:rgba(245,245,245,0.3);">Aucune commande pour l'instant.</p></div>
+      </div>
+
+      <!-- RESERVATIONS ADMIN -->
+      <div class="admin-panel" id="panel-reservations-admin">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">📅 Réservations</h2>
+        <div id="reservationsAdmin"><p style="color:rgba(245,245,245,0.3);">Aucune réservation pour l'instant.</p></div>
+      </div>
+
+      <!-- EVENTS ADMIN -->
+      <div class="admin-panel" id="panel-events-admin">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">🎉 Gérer les Évènements</h2>
+        <div style="max-width:500px;margin-bottom:32px;">
+          <div class="fg">
+            <label class="lbl">🎪 Nom de l'Évènement *</label>
+            <input class="inp" id="evtName" type="text" placeholder="Ex: Soirée Jazz Live">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="fg">
+              <label class="lbl">📅 Date *</label>
+              <input class="inp" id="evtDate" type="date">
+            </div>
+            <div class="fg">
+              <label class="lbl">⏰ Heure *</label>
+              <input class="inp" id="evtTime" type="time">
+            </div>
+          </div>
+          <div class="fg">
+            <label class="lbl">🎭 Type</label>
+            <select class="inp" id="evtType">
+              <option value="🎵 Concert Live">🎵 Concert Live</option>
+              <option value="🎶 Soirée DJ">🎶 Soirée DJ</option>
+              <option value="👑 Soirée VIP">👑 Soirée VIP</option>
+              <option value="🎂 Anniversaire">🎂 Anniversaire</option>
+              <option value="🥂 Cocktail Party">🥂 Cocktail Party</option>
+              <option value="🍽️ Dîner Gala">🍽️ Dîner Gala</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="lbl">📝 Description</label>
+            <textarea class="inp" id="evtDesc" rows="2" placeholder="Description de l'évènement..."></textarea>
+          </div>
+          <button class="btn-or" onclick="saveEvent()">💾 Enregistrer l'Évènement</button>
+        </div>
+        <div id="eventsAdminList"></div>
+      </div>
+
+      <!-- GALLERY ADMIN -->
+      <div class="admin-panel" id="panel-gallery-admin">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">🖼️ Gérer la Galerie</h2>
+        <div class="fg">
+          <label class="upload-area" for="galInput" style="display:block;">
+            <input type="file" id="galInput" accept="image/*" multiple onchange="addGalleryImgs(event)" style="display:none;">
+            <div style="font-size:2.5rem;margin-bottom:8px;">📷</div>
+            <p style="color:rgba(212,175,55,0.7);font-weight:600;font-size:14px;">Ajouter des photos depuis votre galerie</p>
+            <p style="color:rgba(245,245,245,0.3);font-size:12px;margin-top:4px;">Plusieurs photos acceptées</p>
+          </label>
+        </div>
+        <div class="gal-grid" id="adminGalleryGrid"></div>
+      </div>
+
+      <!-- CAISSE -->
+      <div class="admin-panel" id="panel-caisse">
+        <h2 class="fp tg" style="font-size:1.5rem;margin-bottom:24px;">💰 Caisse & Statistiques</h2>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-num" id="caisseJour">0</div><div class="stat-lbl">Ventes Aujourd'hui (FCFA)</div></div>
+          <div class="stat-card"><div class="stat-num" id="caisseMois">0</div><div class="stat-lbl">Ventes Ce Mois</div></div>
+          <div class="stat-card"><div class="stat-num" id="caisseTotal">0</div><div class="stat-lbl">Total Général</div></div>
+          <div class="stat-card"><div class="stat-num" id="caisseNb">0</div><div class="stat-lbl">Nb Commandes</div></div>
+        </div>
+        <div style="background:#1a1a1a;border:1px solid rgba(212,175,55,0.15);border-radius:12px;padding:20px;">
+          <h3 class="fp or" style="margin-bottom:16px;">📋 Historique des Ventes</h3>
+          <div id="salesHistory"><p style="color:rgba(245,245,245,0.3);font-size:13px;">Aucune vente enregistrée.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODALS ==================== -->
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="modal-bg" id="adminLoginModal">
+  <div class="modal" style="max-width:380px;">
+    <button class="close-btn" onclick="closeModal('adminLoginModal')">✕</button>
+    <h2>👑 Administration</h2>
+    <p style="color:rgba(245,245,245,0.5);font-size:13px;margin-bottom:20px;">Le Rich'Lieu — Accès sécurisé</p>
+    <div class="fg">
+      <label class="lbl">🔐 Code d'accès</label>
+      <input class="inp" id="adminCode" type="password" placeholder="Entrez le code admin" onkeydown="if(event.key==='Enter')checkAdmin()">
+    </div>
+    <button class="btn-or" onclick="checkAdmin()">🔓 Se Connecter</button>
+    <p id="adminErr" style="color:#ff6666;font-size:12px;margin-top:10px;display:none;">❌ Code incorrect. Réessayez.</p>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-bg" id="productModal">
+  <div class="modal" style="max-width:500px;">
+    <button class="close-btn" onclick="closeModal('productModal')">✕</button>
+    <img id="pmImg" style="width:100%;height:220px;object-fit:cover;border-radius:12px;margin-bottom:16px;background:#222;" alt="">
+    <h2 id="pmName" style="font-size:1.4rem;margin-bottom:8px;"></h2>
+    <p id="pmDesc" style="color:rgba(245,245,245,0.5);font-size:13px;margin-bottom:12px;line-height:1.6;"></p>
+    <p id="pmPrice" style="color:#D4AF37;font-size:1.3rem;font-weight:700;margin-bottom:8px;"></p>
+    <p id="pmCat" style="color:rgba(212,175,55,0.5);font-size:12px;margin-bottom:16px;"></p>
+    <div class="reaction-bar"
